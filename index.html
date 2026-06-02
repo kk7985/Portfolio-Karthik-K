@@ -532,7 +532,7 @@
         <div class="ctas">
           <button class="btn-a" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])">View Projects</button>
           <button class="btn-b" onclick="go('contact', document.querySelectorAll('.nav-links a')[4])">Contact Me</button>
-          <a class="btn-b" href="https://drive.google.com/file/d/1dgQPFV5YPH9fQtZ0KWggRJL268E0YxQ3/view?usp=sharing" target="_blank" download style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+          <a class="btn-b" href="https://drive.google.com/file/d/164rWikXpy-ijXTjKs6TmLZCZuaXj5XFj/view?usp=sharing" target="_blank" download style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Resume
           </a>
@@ -1347,41 +1347,44 @@
   var basePath = '/Portfolio-Karthik-K';
 
   var sectionRoutes = {
-    home: basePath + '/',
-    projects: basePath + '/projects',
-    about: basePath + '/about',
-    skills: basePath + '/skills',
-    contact: basePath + '/contact'
+    home: '/',
+    projects: '/projects',
+    about: '/about',
+    skills: '/skills',
+    contact: '/contact'
   };
 
   var projectRoutes = {
-    p1: basePath + '/project/ecommerce',
-    p2: basePath + '/project/customer-segmentation',
-    p3: basePath + '/project/social-media-trend',
-    p4: basePath + '/project/college-campaign',
-    p5: basePath + '/project/my-portfolio'
+    p1: '/project/ecommerce',
+    p2: '/project/customer-segmentation',
+    p3: '/project/social-media-trend',
+    p4: '/project/college-campaign',
+    p5: '/project/my-portfolio'
   };
 
-  var projectAliases = {
+  var routeProjects = {
     '/project/ecommerce': 'p1',
     '/project/e-commerce': 'p1',
     '/project/ecommerrce': 'p1',
-    '/project/ecommerce-sales-dashboard': 'p1'
+    '/project/ecommerce-sales-dashboard': 'p1',
+    '/project/customer-segmentation': 'p2',
+    '/project/social-media-trend': 'p3',
+    '/project/college-campaign': 'p4',
+    '/project/my-portfolio': 'p5'
+  };
+
+  var routeSections = {
+    '/': 'home',
+    '/projects': 'projects',
+    '/about': 'about',
+    '/skills': 'skills',
+    '/contact': 'contact'
   };
 
   function updateUrl(path, replaceUrl) {
-    if (window.location.protocol === 'file:') {
-      var localPath = path.indexOf(basePath) === 0 ? path.slice(basePath.length) : path;
-      if (replaceUrl) history.replaceState(null, '', '#' + localPath);
-      else window.location.hash = localPath;
-      return;
-    }
-
-    if (replaceUrl) {
-      history.replaceState(null, '', path);
-    } else {
-      history.pushState(null, '', path);
-    }
+    var nextUrl = window.location.protocol === 'file:' ? '#' + path : basePath + path;
+    if (replaceUrl) history.replaceState(null, '', nextUrl);
+    else history.pushState(null, '', nextUrl);
   }
 
   function go(id, el, replaceUrl) {
@@ -1389,7 +1392,7 @@
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     if (el) el.classList.add('active');
-    updateUrl(sectionRoutes[id] || (basePath + '/'), replaceUrl);
+    updateUrl(sectionRoutes[id] || '/', replaceUrl);
     window.scrollTo(0, 0);
   }
 
@@ -1398,42 +1401,27 @@
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-links a')[1].classList.add('active');
-    updateUrl(projectRoutes[id] || (basePath + '/projects'), replaceUrl);
+    updateUrl(projectRoutes[id] || '/projects', replaceUrl);
     window.scrollTo(0, 0);
   }
 
   function loadRoute() {
-    var path = window.location.protocol === 'file:'
-      ? ((window.location.hash || '#/').replace(/^#/, ''))
-      : window.location.pathname.replace(/\\/$/, '');
+    var path;
+    if (window.location.protocol === 'file:') {
+      path = (window.location.hash || '#/').substring(1) || '/';
+    } else {
+      path = window.location.pathname;
+      if (path.indexOf(basePath) === 0) path = path.substring(basePath.length) || '/';
+      if (path.length > 1 && path.charAt(path.length - 1) === '/') path = path.slice(0, -1);
+    }
 
-    if (path === basePath.replace(/\/$/, '')) {
-      go('home', document.querySelectorAll('.nav-links a')[0], true);
+    if (routeProjects[path]) {
+      openProject(routeProjects[path], true);
       return;
     }
 
-    var projectId = Object.keys(projectRoutes).find(function(id) {
-      return projectRoutes[id] === path;
-    });
-
-    if (!projectId && path.indexOf(basePath) === 0) {
-      projectId = projectAliases[path.slice(basePath.length)];
-    }
-
-    if (!projectId) {
-      projectId = projectAliases[path];
-    }
-
-    if (projectId) {
-      openProject(projectId, true);
-      return;
-    }
-
-    var sectionId = Object.keys(sectionRoutes).find(function(id) {
-      return sectionRoutes[id].replace(/\/$/, '') === path;
-    });
-
-    if (sectionId) {
+    if (routeSections[path]) {
+      var sectionId = routeSections[path];
       var navIndex = ['home', 'projects', 'about', 'skills', 'contact'].indexOf(sectionId);
       go(sectionId, document.querySelectorAll('.nav-links a')[navIndex], true);
     }
@@ -1550,6 +1538,7 @@
 </script>
 </body>
 </html>
+
 
 
 
