@@ -1344,27 +1344,29 @@
     });
   }
 
+  var basePath = '/Portfolio-Karthik-K';
+
   var sectionRoutes = {
-    home: '/',
-    projects: '/projects',
-    about: '/about',
-    skills: '/skills',
-    contact: '/contact'
+    home: basePath + '/',
+    projects: basePath + '/projects',
+    about: basePath + '/about',
+    skills: basePath + '/skills',
+    contact: basePath + '/contact'
   };
 
   var projectRoutes = {
-    p1: '/project/ecommerce',
-    p2: '/project/customer-segmentation',
-    p3: '/project/social-media-trend',
-    p4: '/project/college-campaign',
-    p5: '/project/my-portfolio'
+    p1: basePath + '/project/ecommerce',
+    p2: basePath + '/project/customer-segmentation',
+    p3: basePath + '/project/social-media-trend',
+    p4: basePath + '/project/college-campaign',
+    p5: basePath + '/project/my-portfolio'
   };
 
-  function updateHash(path, replaceUrl) {
+  function updateUrl(path, replaceUrl) {
     if (replaceUrl) {
-      history.replaceState(null, '', '#' + path);
+      history.replaceState(null, '', path);
     } else {
-      window.location.hash = path;
+      history.pushState(null, '', path);
     }
   }
 
@@ -1373,7 +1375,7 @@
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     if (el) el.classList.add('active');
-    updateHash(sectionRoutes[id] || '/', replaceUrl);
+    updateUrl(sectionRoutes[id] || (basePath + '/'), replaceUrl);
     window.scrollTo(0, 0);
   }
 
@@ -1382,25 +1384,38 @@
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-links a')[1].classList.add('active');
-    updateHash(projectRoutes[id] || '/projects', replaceUrl);
+    updateUrl(projectRoutes[id] || (basePath + '/projects'), replaceUrl);
     window.scrollTo(0, 0);
   }
 
   function loadRoute() {
-    var path = window.location.hash.replace(/^#/, '') || '/';
-    var projectId = Object.keys(projectRoutes).find(function(id) { return projectRoutes[id] === path; });
+    var path = window.location.pathname.replace(/\/$/, '');
+
+    if (path === basePath.replace(/\/$/, '')) {
+      go('home', document.querySelectorAll('.nav-links a')[0], true);
+      return;
+    }
+
+    var projectId = Object.keys(projectRoutes).find(function(id) {
+      return projectRoutes[id] === path;
+    });
+
     if (projectId) {
       openProject(projectId, true);
       return;
     }
-    var sectionId = Object.keys(sectionRoutes).find(function(id) { return sectionRoutes[id] === path; });
+
+    var sectionId = Object.keys(sectionRoutes).find(function(id) {
+      return sectionRoutes[id].replace(/\/$/, '') === path;
+    });
+
     if (sectionId) {
       var navIndex = ['home', 'projects', 'about', 'skills', 'contact'].indexOf(sectionId);
       go(sectionId, document.querySelectorAll('.nav-links a')[navIndex], true);
     }
   }
 
-  window.addEventListener('hashchange', loadRoute);
+  window.addEventListener('popstate', loadRoute);
   loadRoute();
 
   function loadDetailPhoto(input, imgId, phId) {
@@ -1511,6 +1526,7 @@
 </script>
 </body>
 </html>
+
 
 
 
