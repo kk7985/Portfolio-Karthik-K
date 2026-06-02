@@ -125,7 +125,7 @@
   .proj-inner { display: flex; align-items: stretch; min-height: 160px; }
   .proj-content { flex: 1; min-width: 0; padding: 28px 32px; }
 
-  /* PROJECT CARD IMAGE — full flush right */
+  /* PROJECT CARD IMAGE â€” full flush right */
   .proj-img-wrap {
     width: 260px; flex-shrink: 0;
     position: relative; overflow: hidden;
@@ -505,7 +505,7 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <div class="lightbox-close" onclick="closeLightbox()">âœ•</div>
   <img id="lightbox-img" src="" alt=""/>
   <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
@@ -570,12 +570,12 @@
     <div class="proj-list">
 
       <!-- PROJECT 1 CARD -->
-      <div class="proj" data-domain="data-analysis" onclick="openProject('p1')" style="cursor:pointer;">
+      <div class="proj" data-domain="data-analysis" onclick="openProject('p1')" data-route="/portfolio/project/ecommerce" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Data Analysis</div>
             <div class="proj-name">E-Commerce Sales Dashboard (Excel/Power BI)</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Excel · Power BI · 2025</div>
+            <div class="proj-yr" style="margin-bottom:10px;">Excel Â· Power BI Â· 2025</div>
             <div class="proj-desc">Built Excel and Power BI dashboards to analyze 3.5 years of sales data. Identified key KPIs based on monthly and yearly sales, sales by regions and product, and salesperson performance over time.</div>
             <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span></div>
           </div>
@@ -590,12 +590,12 @@
       </div>
 
       <!-- PROJECT 2 CARD -->
-      <div class="proj" data-domain="machine-learning" onclick="openProject('p2')" style="cursor:pointer;">
+      <div class="proj" data-domain="machine-learning" onclick="openProject('p2')" data-route="/portfolio/project/customer-segmentation" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Machine Learning</div>
             <div class="proj-name">Customer Segmentation using Clustering</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Machine Learning · 2025</div>
+            <div class="proj-yr" style="margin-bottom:10px;">Machine Learning Â· 2025</div>
             <div class="proj-desc">Applied K Means Clustering, Customer segmentation is the process of dividing customers into groups based on similar characteristics. In this project, clustering techniques are used to automatically identify these groups from data without predefined labels.</div>
             <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">Matplolib</span><span class="tag">Seaborn</span></div>
           </div>
@@ -611,12 +611,12 @@
 
 
       <!-- PROJECT 3 CARD -->
-      <div class="proj" data-domain="academic" onclick="openProject('p3')" style="cursor:pointer;">
+      <div class="proj" data-domain="academic" onclick="openProject('p3')" data-route="/portfolio/project/social-media-trend" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Academic</div>
             <div class="proj-name">Social Media Trend Analyzing</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Academic Research · 2023</div>
+            <div class="proj-yr" style="margin-bottom:10px;">Academic Research Â· 2023</div>
             <div class="proj-desc">Analyzed data from a specific Facebook account using NLP and machine learning to identify trends, sentiment and user behavior and helping improve decision making in marketing and related areas.</div>
             <div class="tags"><span class="tag">Python</span><span class="tag">Facebook API</span><span class="tag">Pandas</span><span class="tag">Numpy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">TextBlob</span><span class="tag">WordCloud</span></div>
           </div>
@@ -631,12 +631,12 @@
       </div>
 
       <!-- PROJECT 4 CARD -->
-      <div class="proj" data-domain="data-analysis" onclick="openProject('p4')" style="cursor:pointer;">
+      <div class="proj" data-domain="data-analysis" onclick="openProject('p4')" data-route="/portfolio/project/college-campaign" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Data Analysis</div>
             <div class="proj-name">College Campaign Data Analysis and Dashboard (SQL/Tableau)</div>
-            <div class="proj-yr" style="margin-bottom:10px;">SQL · Tableau · Excel · 2026</div>
+            <div class="proj-yr" style="margin-bottom:10px;">SQL Â· Tableau Â· Excel Â· 2026</div>
             <div class="proj-desc">Analyzed campaign data using SQL and created interactive dashboards using Tableau to track Conversion Rate, Return on Investment, Identify revenue performance based on cost to practical steps can take to boost user interaction and increase the chance of turning visitors into customers.</div>
             <div class="tags"><span class="tag">Excel</span><span class="tag">SQL</span><span class="tag">Tableau</span></div>
           </div>
@@ -651,12 +651,12 @@
       </div>
 
        <!-- PROJECT 5 CARD -->
-      <div class="proj" data-domain="Web-domain" onclick="openProject('p5')" style="cursor:pointer;">
+      <div class="proj" data-domain="Web-domain" onclick="openProject('p5')" data-route="/portfolio/project/my-portfolio" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Web Pages</div>
             <div class="proj-name">My Portfolio</div>
-            <div class="proj-yr" style="margin-bottom:10px;">HTML · CSS · Javascript · 2025</div>
+            <div class="proj-yr" style="margin-bottom:10px;">HTML Â· CSS Â· Javascript Â· 2025</div>
             <div class="proj-desc">Personal Portfolio Website Development using HTML, CSS and Javascript.</div>
             <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Javascript</span></div>
           </div>
@@ -676,7 +676,7 @@
 
   <!-- PROJECT 1 DETAIL -->
   <section id="p1">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">â†</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-num"></div>
       <div class="detail-title">E-Commerce Sales Dashboard(Excel/Power BI)</div>
@@ -739,19 +739,19 @@
           <div class="info-row"><div class="ilab">Dataset</div><div class="ival">Retail Sales dataset</div></div>
           <div class="info-row"><div class="ilab">Duration</div><div class="ival">3 weeks</div></div>
           <div class="info-row"><div class="ilab">Year</div><div class="ival">2025</div></div>
-          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K, Abhishek Kumar Singh — Infotact Solutions</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K, Abhishek Kumar Singh â€” Infotact Solutions</div></div>
         </div>
         <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2025-09-28 155837.png', 'E-Commerce Dashboard — Screenshot 1')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2025-09-28 155837.png', 'E-Commerce Dashboard â€” Screenshot 1')">
             <img src="Image Folder/Screenshot 2025-09-28 155837.png" alt="E-Commerce Dashboard Screenshot 1" onerror="this.style.display='none';document.getElementById('p1-sa-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p1-sa-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
               Add image URL in src
             </div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-02 153303.png', 'E-Commerce Dashboard — Screenshot 2')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-02 153303.png', 'E-Commerce Dashboard â€” Screenshot 2')">
             <img src="Image Folder/Screenshot 2026-04-02 153303.png" alt="E-Commerce Dashboard Screenshot 2" onerror="this.style.display='none';document.getElementById('p1-sb-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p1-sb-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -779,7 +779,7 @@
 
   <!-- PROJECT 2 DETAIL -->
   <section id="p2">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">â†</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-num"></div>
       <div class="detail-title">Customer Segmentation using Clustering</div>
@@ -844,19 +844,19 @@
           <div class="info-row"><div class="ilab">Dataset</div><div class="ival">Retail & Product Categorization Datasets</div></div>
           <div class="info-row"><div class="ilab">Duration</div><div class="ival">2 weeks</div></div>
           <div class="info-row"><div class="ilab">Year</div><div class="ival">2025</div></div>
-          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K, Abhishek Kumar Singh — Infotact Solutions</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K, Abhishek Kumar Singh â€” Infotact Solutions</div></div>
         </div>
         <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/cluster label age vs spending score.png', 'Customer Segmentation — Screenshot 1')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/cluster label age vs spending score.png', 'Customer Segmentation â€” Screenshot 1')">
             <img src="Image Folder/cluster label age vs spending score.png" alt="Customer Segmentation Screenshot 1" onerror="this.style.display='none';document.getElementById('p2-sa-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p2-sa-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
               Add image URL in src
             </div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Age vs spending score table.png', 'Customer Segmentation — Screenshot 2')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Age vs spending score table.png', 'Customer Segmentation â€” Screenshot 2')">
             <img src="Image Folder/Age vs spending score table.png" alt="Customer Segmentation Screenshot 2" onerror="this.style.display='none';document.getElementById('p2-sb-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p2-sb-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -884,7 +884,7 @@
 
   <!-- PROJECT 3 DETAIL -->
   <section id="p3">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">â†</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-num"></div>
       <div class="detail-title">Social Media Trend Analyzing</div>
@@ -930,7 +930,7 @@
         <div class="detail-section-title">What I Did</div>
         <div class="detail-highlights">
           <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Collected post level data from a specific Facebook account using the Graph API </strong> with an access token and stored it in CSV format.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Preprocessed the data and performed keyword,hashtag and sentiment analysis using NLP to identify trends and user opinions.</strong> — chi-square, correlation analysis, and regression to identify significant predictors of placement.</div></div>
+          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Preprocessed the data and performed keyword,hashtag and sentiment analysis using NLP to identify trends and user opinions.</strong> â€” chi-square, correlation analysis, and regression to identify significant predictors of placement.</div></div>
           <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Applied topic modeling (LDA)</strong> to uncover hidden themes and time series analysis to track posting patterns over daily, weekly and monthly intervals.</div></div>
           <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Visualized results with charts and graphs to extract actionable insights for marketing, content strategy and decision making.</div></div>
         </div>
@@ -956,21 +956,21 @@
         <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Graph API.jpeg', 'Social Media Trend Analyzing — Screenshot 1')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Graph API.jpeg', 'Social Media Trend Analyzing â€” Screenshot 1')">
             <img src="Image Folder/Graph API.jpeg" alt="Social Media Trend Analyzing Screenshot 1" onerror="this.style.display='none';document.getElementById('p4-sa-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p4-sa-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
               Add image URL in src
             </div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Sentiment Analysis.jpeg', 'Social Media Trend Analyzing — Screenshot 2')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Sentiment Analysis.jpeg', 'Social Media Trend Analyzing â€” Screenshot 2')">
             <img src="Image Folder/Sentiment Analysis.jpeg" alt="Social Media Trend Analyzing Screenshot 2" onerror="this.style.display='none';document.getElementById('p4-sb-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p4-sb-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
               Add image URL in src
             </div>
           </div>
-         <div class="detail-img-slot" onclick="openLightbox('Image Folder/Time Post.jpeg', 'Social Media Trend Analyzing  — Screenshot 3')">
+         <div class="detail-img-slot" onclick="openLightbox('Image Folder/Time Post.jpeg', 'Social Media Trend Analyzing  â€” Screenshot 3')">
             <img src="Image Folder/Time Post.jpeg" alt="Social Media Trend Analyzing Screenshot 3" onerror="this.style.display='none';document.getElementById('p4-sb-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p4-sb-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -998,7 +998,7 @@
 
   <!-- PROJECT 4 DETAIL -->
   <section id="p4">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">â†</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-num"></div>
       <div class="detail-title">College Campaign Data Analysis and Dashboard (SQL/Tableau) </div>
@@ -1070,7 +1070,7 @@
         <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 013449.png', 'College Campaign Data Analysis and Dashboard (SQL/Tableau) — Screenshot 1')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 013449.png', 'College Campaign Data Analysis and Dashboard (SQL/Tableau) â€” Screenshot 1')">
             <img src="Image Folder/Screenshot 2026-04-05 013449.png" alt="College Campaign Data Analysis and Dashboard Screenshot 1" onerror="this.style.display='none';document.getElementById('p1-sa-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p1-sa-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -1098,7 +1098,7 @@
 
   <!-- PROJECT 5 DETAIL -->
   <section id="p5">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">â†</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-num"></div>
       <div class="detail-title">My Portfolio</div>
@@ -1154,14 +1154,14 @@
         <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 015716.png', 'My Portfolio — Screenshot 1')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 015716.png', 'My Portfolio â€” Screenshot 1')">
             <img src="Image Folder/Screenshot 2026-04-05 015716.png" alt="My Portfolio Screenshot 1" onerror="this.style.display='none';document.getElementById('p1-sa-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p1-sa-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
               Add image URL in src
             </div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 015730.png', 'My Portfolio — Screenshot 2')">
+          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 015730.png', 'My Portfolio â€” Screenshot 2')">
             <img src="Image Folder/Screenshot 2026-04-05 015730.png" alt="My Portfolio Screenshot 2" onerror="this.style.display='none';document.getElementById('p1-sb-ph').style.display='flex'"/>
             <div class="detail-img-placeholder" id="p1-sb-ph" style="display:none;">
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
@@ -1204,7 +1204,7 @@
           <div class="info-row"><div class="ilab">College</div><div class="ival">SRMIST,Ramapuram,Chennai</div></div>
           <div class="info-row"><div class="ilab">Graduated</div><div class="ival">May 2025</div></div>
           <div class="info-row"><div class="ilab">Location</div><div class="ival">Chennai, Tamil Nadu</div></div>
-          <div class="info-row"><div class="ilab">Availability</div><div class="ival">Immediate · Full-time</div></div>
+          <div class="info-row"><div class="ilab">Availability</div><div class="ival">Immediate Â· Full-time</div></div>
           <div class="info-row"><div class="ilab">Languages</div><div class="ival">English, Tamil</div></div>
         </div>
       </div>
@@ -1321,7 +1321,7 @@
         </div>
       </div>
       
-        <div class="sent-ok" id="sentok">✓ Message received! I'll get back to you soon.</div>
+        <div class="sent-ok" id="sentok">âœ“ Message received! I'll get back to you soon.</div>
       </div>
     </div>
   </section>
@@ -1344,29 +1344,62 @@
     });
   }
 
+  var sectionRoutes = {
+    home: '/portfolio',
+    projects: '/portfolio/projects',
+    about: '/portfolio/about',
+    skills: '/portfolio/skills',
+    contact: '/portfolio/contact'
+  };
 
+  var projectRoutes = {
+    p1: '/portfolio/project/ecommerce',
+    p2: '/portfolio/project/customer-segmentation',
+    p3: '/portfolio/project/social-media-trend',
+    p4: '/portfolio/project/college-campaign',
+    p5: '/portfolio/project/my-portfolio'
+  };
 
-  function go(id, el) {
+  function updateUrl(path, replace) {
+    if (window.location.protocol === 'file:') return;
+    if (replace) history.replaceState(null, '', path);
+    else history.pushState(null, '', path);
+  }
+
+  function go(id, el, replaceUrl) {
     document.querySelectorAll('section').forEach(function(s) { s.classList.remove('active'); });
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     if (el) el.classList.add('active');
+    updateUrl(sectionRoutes[id] || '/portfolio', replaceUrl);
     window.scrollTo(0, 0);
-
   }
 
-
-
-  function openProject(id) {
+  function openProject(id, replaceUrl) {
     document.querySelectorAll('section').forEach(function(s) { s.classList.remove('active'); });
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-links a')[1].classList.add('active');
+    updateUrl(projectRoutes[id] || '/portfolio/projects', replaceUrl);
     window.scrollTo(0, 0);
-
   }
 
+  function loadRoute() {
+    var path = window.location.pathname.replace(/\/$/, '');
+    var projectId = Object.keys(projectRoutes).find(function(id) { return projectRoutes[id] === path; });
+    if (projectId) {
+      openProject(projectId, true);
+      return;
+    }
+    var sectionId = Object.keys(sectionRoutes).find(function(id) { return sectionRoutes[id] === path; });
+    if (sectionId) {
+      var navIndex = ['home', 'projects', 'about', 'skills', 'contact'].indexOf(sectionId);
+      go(sectionId, document.querySelectorAll('.nav-links a')[navIndex], true);
+    }
+  }
 
+  window.addEventListener('popstate', loadRoute);
+  loadRoute();
 
   function loadDetailPhoto(input, imgId, phId) {
     if (input.files && input.files[0]) {
@@ -1375,12 +1408,8 @@
       img.src = URL.createObjectURL(input.files[0]);
       img.style.display = 'block';
       ph.style.display = 'none';
-
     }
-
   }
-
-
 
   function loadDetailVideo(input, vidId, overlayId, fnId) {
     if (input.files && input.files[0]) {
@@ -1389,12 +1418,8 @@
       video.load();
       document.getElementById(overlayId).classList.remove('hidden');
       if (fnId) document.getElementById(fnId).textContent = input.files[0].name;
-
     }
-
   }
-
-
 
   function projDemoPlay(vidId, overlayId) {
     var video = document.getElementById(vidId);
@@ -1402,10 +1427,7 @@
     if (video.paused) { video.play(); overlay.classList.add('hidden'); }
     else { video.pause(); overlay.classList.remove('hidden'); }
     video.addEventListener('ended', function() { overlay.classList.remove('hidden'); });
-
   }
-
-
 
   function loadProjImg(input, imgId, placeholderId) {
     if (input.files && input.files[0]) {
@@ -1415,84 +1437,47 @@
       img.style.display = 'block';
       ph.style.display = 'none';
     }
-
   }
-
-
 
   function loadProjVideo(input, vidId, overlayId) {
-
     if (input.files && input.files[0]) {
-
       var video = document.getElementById(vidId);
-
       video.src = URL.createObjectURL(input.files[0]);
-
       video.load();
-
       document.getElementById(overlayId).classList.remove('hidden');
-
     }
-
   }
-
-
-
 
 
   function togglePlay() {
-
     var video = document.getElementById('introVideo');
-
     var overlay = document.getElementById('playOverlay');
-
     if (video.src && video.src !== window.location.href) {
-
       if (video.paused) { video.play(); overlay.classList.add('hidden'); }
-
       else { video.pause(); overlay.classList.remove('hidden'); }
-
     }
-
   }
-
-
 
   document.getElementById('introVideo').addEventListener('ended', function() {
-
     document.getElementById('playOverlay').classList.remove('hidden');
-
   });
 
-
-
   function loadVideo(input) {
-
     if (input.files && input.files[0]) {
-
       var video = document.getElementById('introVideo');
-
       video.src = URL.createObjectURL(input.files[0]);
-
       video.load();
-
     }
-
   }
 
-
-
   function handleSend() {
-
     var n = document.getElementById('fn').value.trim();
     var e = document.getElementById('fe').value.trim();
     var m = document.getElementById('fm').value.trim();
     if (!n || !e || !m) {
       alert('Please fill in all fields before sending.');
       return;
-
     }
-
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(e)) {
       alert('Please enter a valid email address.');
@@ -1500,10 +1485,7 @@
     }
     document.getElementById('cform').style.display = 'none';
     document.getElementById('sentok').style.display = 'block';
-
   }
-
-
 
   function openLightbox(src, caption) {
     var lb = document.getElementById('lightbox');
@@ -1513,21 +1495,17 @@
     cap.textContent = caption || '';
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
-
   }
-
-
 
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
     document.getElementById('lightbox-img').src = '';
     document.body.style.overflow = '';
-
   }
+
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeLightbox();
   });
-
 </script>
 </body>
-</html> 
+</html>
