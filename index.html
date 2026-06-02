@@ -1344,13 +1344,18 @@
     });
   }
 
+
+
   function go(id, el) {
     document.querySelectorAll('section').forEach(function(s) { s.classList.remove('active'); });
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     if (el) el.classList.add('active');
     window.scrollTo(0, 0);
+
   }
+
+
 
   function openProject(id) {
     document.querySelectorAll('section').forEach(function(s) { s.classList.remove('active'); });
@@ -1358,7 +1363,10 @@
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-links a')[1].classList.add('active');
     window.scrollTo(0, 0);
+
   }
+
+
 
   function loadDetailPhoto(input, imgId, phId) {
     if (input.files && input.files[0]) {
@@ -1367,8 +1375,12 @@
       img.src = URL.createObjectURL(input.files[0]);
       img.style.display = 'block';
       ph.style.display = 'none';
+
     }
+
   }
+
+
 
   function loadDetailVideo(input, vidId, overlayId, fnId) {
     if (input.files && input.files[0]) {
@@ -1377,8 +1389,12 @@
       video.load();
       document.getElementById(overlayId).classList.remove('hidden');
       if (fnId) document.getElementById(fnId).textContent = input.files[0].name;
+
     }
+
   }
+
+
 
   function projDemoPlay(vidId, overlayId) {
     var video = document.getElementById(vidId);
@@ -1386,7 +1402,10 @@
     if (video.paused) { video.play(); overlay.classList.add('hidden'); }
     else { video.pause(); overlay.classList.remove('hidden'); }
     video.addEventListener('ended', function() { overlay.classList.remove('hidden'); });
+
   }
+
+
 
   function loadProjImg(input, imgId, placeholderId) {
     if (input.files && input.files[0]) {
@@ -1396,47 +1415,84 @@
       img.style.display = 'block';
       ph.style.display = 'none';
     }
+
   }
 
+
+
   function loadProjVideo(input, vidId, overlayId) {
+
     if (input.files && input.files[0]) {
+
       var video = document.getElementById(vidId);
+
       video.src = URL.createObjectURL(input.files[0]);
+
       video.load();
+
       document.getElementById(overlayId).classList.remove('hidden');
+
     }
+
   }
+
+
+
 
 
   function togglePlay() {
+
     var video = document.getElementById('introVideo');
+
     var overlay = document.getElementById('playOverlay');
+
     if (video.src && video.src !== window.location.href) {
+
       if (video.paused) { video.play(); overlay.classList.add('hidden'); }
+
       else { video.pause(); overlay.classList.remove('hidden'); }
+
     }
+
   }
+
+
 
   document.getElementById('introVideo').addEventListener('ended', function() {
+
     document.getElementById('playOverlay').classList.remove('hidden');
+
   });
 
+
+
   function loadVideo(input) {
+
     if (input.files && input.files[0]) {
+
       var video = document.getElementById('introVideo');
+
       video.src = URL.createObjectURL(input.files[0]);
+
       video.load();
+
     }
+
   }
 
+
+
   function handleSend() {
+
     var n = document.getElementById('fn').value.trim();
     var e = document.getElementById('fe').value.trim();
     var m = document.getElementById('fm').value.trim();
     if (!n || !e || !m) {
       alert('Please fill in all fields before sending.');
       return;
+
     }
+
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(e)) {
       alert('Please enter a valid email address.');
@@ -1444,7 +1500,10 @@
     }
     document.getElementById('cform').style.display = 'none';
     document.getElementById('sentok').style.display = 'block';
+
   }
+
+
 
   function openLightbox(src, caption) {
     var lb = document.getElementById('lightbox');
@@ -1454,17 +1513,21 @@
     cap.textContent = caption || '';
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
+
   }
+
+
 
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
     document.getElementById('lightbox-img').src = '';
     document.body.style.overflow = '';
-  }
 
+  }
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeLightbox();
   });
+
 </script>
 </body>
-</html>
+</html> 
