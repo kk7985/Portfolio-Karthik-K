@@ -1345,19 +1345,19 @@
   }
 
   var sectionRoutes = {
-    home: '/portfolio',
-    projects: '/portfolio/projects',
-    about: '/portfolio/about',
-    skills: '/portfolio/skills',
-    contact: '/portfolio/contact'
+    home: '/Portfolio-Karthik-K/',
+    projects: '/Portfolio-Karthik-K/projects',
+    about: '/Portfolio-Karthik-K/about',
+    skills: '/Portfolio-Karthik-K/skills',
+    contact: '/Portfolio-Karthik-K/contact'
   };
 
   var projectRoutes = {
-    p1: '/portfolio/project/ecommerce',
-    p2: '/portfolio/project/customer-segmentation',
-    p3: '/portfolio/project/social-media-trend',
-    p4: '/portfolio/project/college-campaign',
-    p5: '/portfolio/project/my-portfolio'
+    p1: '/Portfolio-Karthik-K/project/ecommerce',
+    p2: '/Portfolio-Karthik-K/project/customer-segmentation',
+    p3: '/Portfolio-Karthik-K/project/social-media-trend',
+    p4: '/Portfolio-Karthik-K/project/college-campaign',
+    p5: '/Portfolio-Karthik-K/project/my-portfolio'
   };
 
   function updateUrl(path, replace) {
@@ -1371,7 +1371,7 @@
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     if (el) el.classList.add('active');
-    updateUrl(sectionRoutes[id] || '/portfolio', replaceUrl);
+    updateUrl(sectionRoutes[id] || '/Portfolio-Karthik-K/', replaceUrl);
     window.scrollTo(0, 0);
   }
 
@@ -1380,7 +1380,7 @@
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-links a')[1].classList.add('active');
-    updateUrl(projectRoutes[id] || '/portfolio/projects', replaceUrl);
+    updateUrl(projectRoutes[id] || '/Portfolio-Karthik-K/projects', replaceUrl);
     window.scrollTo(0, 0);
   }
 
@@ -1509,3 +1509,5 @@
 </script>
 </body>
 </html>
+
+
