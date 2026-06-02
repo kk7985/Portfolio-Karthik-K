@@ -505,7 +505,7 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-close" onclick="closeLightbox()">âœ•</div>
+  <div class="lightbox-close" onclick="closeLightbox()">•</div>
   <img id="lightbox-img" src="" alt=""/>
   <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
@@ -1345,26 +1345,26 @@
   }
 
   var sectionRoutes = {
-    home: '#/',
-    projects: '#/projects',
-    about: '#/about',
-    skills: '#/skills',
-    contact: '#/contact'
+    home: '/',
+    projects: '/projects',
+    about: '/about',
+    skills: '/skills',
+    contact: '/contact'
   };
 
   var projectRoutes = {
-    p1: '#/project/ecommerce',
-    p2: '#/project/customer-segmentation',
-    p3: '#/project/social-media-trend',
-    p4: '#/project/college-campaign',
-    p5: '#/project/my-portfolio'
+    p1: '/project/ecommerce',
+    p2: '/project/customer-segmentation',
+    p3: '/project/social-media-trend',
+    p4: '/project/college-campaign',
+    p5: '/project/my-portfolio'
   };
 
-  function updateUrl(path, replaceUrl) {
+  function updateHash(path, replaceUrl) {
     if (replaceUrl) {
-      history.replaceState(null, '', path);
+      history.replaceState(null, '', '#' + path);
     } else {
-      history.pushState(null, '', path);
+      window.location.hash = path;
     }
   }
 
@@ -1373,7 +1373,7 @@
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     if (el) el.classList.add('active');
-    updateUrl(sectionRoutes[id] || '#/', replaceUrl);
+    updateHash(sectionRoutes[id] || '/', replaceUrl);
     window.scrollTo(0, 0);
   }
 
@@ -1382,12 +1382,12 @@
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-links a')[1].classList.add('active');
-    updateUrl(projectRoutes[id] || '#/projects', replaceUrl);
+    updateHash(projectRoutes[id] || '/projects', replaceUrl);
     window.scrollTo(0, 0);
   }
 
   function loadRoute() {
-    var path = window.location.hash || '#/';
+    var path = window.location.hash.replace(/^#/, '') || '/';
     var projectId = Object.keys(projectRoutes).find(function(id) { return projectRoutes[id] === path; });
     if (projectId) {
       openProject(projectId, true);
@@ -1400,7 +1400,6 @@
     }
   }
 
-  window.addEventListener('popstate', loadRoute);
   window.addEventListener('hashchange', loadRoute);
   loadRoute();
 
@@ -1512,4 +1511,7 @@
 </script>
 </body>
 </html>
+
+
+
 
