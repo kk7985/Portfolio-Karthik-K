@@ -505,7 +505,7 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-close" onclick="closeLightbox()">•</div>
+  <div class="lightbox-close" onclick="closeLightbox()">âœ•</div>
   <img id="lightbox-img" src="" alt=""/>
   <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
@@ -570,7 +570,7 @@
     <div class="proj-list">
 
       <!-- PROJECT 1 CARD -->
-      <div class="proj" data-domain="data-analysis" onclick="openProject('p1')" data-route="/portfolio/project/ecommerce" style="cursor:pointer;">
+      <div class="proj" data-domain="data-analysis" onclick="openProject('p1')" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Data Analysis</div>
@@ -590,7 +590,7 @@
       </div>
 
       <!-- PROJECT 2 CARD -->
-      <div class="proj" data-domain="machine-learning" onclick="openProject('p2')" data-route="/portfolio/project/customer-segmentation" style="cursor:pointer;">
+      <div class="proj" data-domain="machine-learning" onclick="openProject('p2')" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Machine Learning</div>
@@ -611,7 +611,7 @@
 
 
       <!-- PROJECT 3 CARD -->
-      <div class="proj" data-domain="academic" onclick="openProject('p3')" data-route="/portfolio/project/social-media-trend" style="cursor:pointer;">
+      <div class="proj" data-domain="academic" onclick="openProject('p3')" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Academic</div>
@@ -631,7 +631,7 @@
       </div>
 
       <!-- PROJECT 4 CARD -->
-      <div class="proj" data-domain="data-analysis" onclick="openProject('p4')" data-route="/portfolio/project/college-campaign" style="cursor:pointer;">
+      <div class="proj" data-domain="data-analysis" onclick="openProject('p4')" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Data Analysis</div>
@@ -651,7 +651,7 @@
       </div>
 
        <!-- PROJECT 5 CARD -->
-      <div class="proj" data-domain="Web-domain" onclick="openProject('p5')" data-route="/portfolio/project/my-portfolio" style="cursor:pointer;">
+      <div class="proj" data-domain="Web-domain" onclick="openProject('p5')" style="cursor:pointer;">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Web Pages</div>
@@ -1362,6 +1362,13 @@
     p5: basePath + '/project/my-portfolio'
   };
 
+  var projectAliases = {
+    '/project/ecommerce': 'p1',
+    '/project/e-commerce': 'p1',
+    '/project/ecommerrce': 'p1',
+    '/project/ecommerce-sales-dashboard': 'p1'
+  };
+
   function updateUrl(path, replaceUrl) {
     if (replaceUrl) {
       history.replaceState(null, '', path);
@@ -1399,6 +1406,10 @@
     var projectId = Object.keys(projectRoutes).find(function(id) {
       return projectRoutes[id] === path;
     });
+
+    if (!projectId && path.indexOf(basePath) === 0) {
+      projectId = projectAliases[path.slice(basePath.length)];
+    }
 
     if (projectId) {
       openProject(projectId, true);
@@ -1526,6 +1537,7 @@
 </script>
 </body>
 </html>
+
 
 
 
