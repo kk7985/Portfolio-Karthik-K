@@ -7,111 +7,56 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; list-style: none; }
-
   :root {
     --bg: #0b0e1a; --s1: #111528; --s2: #161c35;
     --border: #1e2540; --border2: #2b3460;
     --tp: #eef0ff; --tm: #8892c8; --tf: #3a4270;
-    --accent: #7c6bff; --accent2: #a78bfa; --glow: rgba(124,107,255,0.18);
+    --accent: #7c6bff; --accent2: #a78bfa;
     --serif: 'Instrument Serif', serif; --sans: 'Space Grotesk', sans-serif;
   }
-
-  body {
-    background: var(--bg);
-    background-image:
-      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,80,220,0.22) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(124,107,255,0.15) 0%, transparent 55%),
-      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(167,139,250,0.05) 0%, transparent 70%);
-    color: var(--tp); font-family: var(--sans); min-height: 100vh; overflow-x: hidden;
-  }
+  body { background: var(--bg); background-image: radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,80,220,0.22) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 110%, rgba(124,107,255,0.15) 0%, transparent 55%); color: var(--tp); font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
   .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
-
-  nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 22px 0; border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; background: rgba(11,14,26,0.94);
-    backdrop-filter: blur(14px); z-index: 99;
-  }
-  .logo { font-family: var(--serif); font-size: 17px; color: var(--tp); display: flex; align-items: center; gap: 9px; cursor: pointer; }
-
-
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(11,14,26,0.94); backdrop-filter: blur(14px); z-index: 99; }
   @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.2} }
   @keyframes fadeUp { from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)} }
-
   .nav-links { display: flex; gap: 24px; }
   .nav-links a { font-size: 12px; font-weight: 500; color: var(--tm); text-decoration: none; cursor: pointer; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: var(--tp); }
-
+  .nav-links a:hover, .nav-links a.active { color: var(--accent2); }
   section { display: none; padding: 72px 28px 90px; animation: fadeUp 0.35s ease; }
   section.active { display: block; }
-
-  /* HOME */
   .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-  .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); background: rgba(124,107,255,0.1); border: 1px solid rgba(124,107,255,0.3); padding: 6px 14px; border-radius: 20px; margin-bottom: 28px; box-shadow: 0 0 16px rgba(124,107,255,0.12); }
+  .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); background: rgba(124,107,255,0.1); border: 1px solid rgba(124,107,255,0.3); padding: 6px 14px; border-radius: 20px; margin-bottom: 28px; }
+  .fdot { width: 7px; height: 7px; background: #7fffb2; border-radius: 50%; animation: blink 2.4s infinite; box-shadow: 0 0 8px #7fffb2; }
   .hero-h { font-family: var(--sans); font-size: clamp(36px,5vw,58px); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; color: var(--tp); margin-bottom: 20px; }
   .hero-h em { font-style: italic; background: linear-gradient(135deg, var(--accent2) 0%, #c4b5fd 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero-sub { font-size: 14px; font-weight: 300; color: var(--tm); line-height: 1.85; margin-bottom: 36px; }
   .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
   .btn-a { background: linear-gradient(135deg, var(--accent) 0%, #6d5bff 100%); color: #fff; border: none; padding: 13px 28px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; border-radius: 4px; transition: all 0.2s; text-transform: uppercase; box-shadow: 0 4px 24px rgba(124,107,255,0.3); }
-  .btn-a:hover { background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,107,255,0.4); }
-  .btn-b { background: transparent; color: var(--accent2); border: 1px solid rgba(124,107,255,0.4); padding: 13px 28px; font-family: var(--sans); font-size: 13px; font-weight: 400; letter-spacing: 0.04em; cursor: pointer; border-radius: 4px; transition: all 0.2s; text-transform: uppercase; }
+  .btn-a:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,107,255,0.4); }
+  .btn-b { background: transparent; color: var(--accent2); border: 1px solid rgba(124,107,255,0.4); padding: 13px 28px; font-family: var(--sans); font-size: 13px; font-weight: 400; letter-spacing: 0.04em; cursor: pointer; border-radius: 4px; transition: all 0.2s; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
   .btn-b:hover { border-color: var(--accent); color: var(--tp); background: rgba(124,107,255,0.08); transform: translateY(-2px); }
-
-  /* VIDEO */
   .video-side { display: flex; flex-direction: column; gap: 14px; }
   .video-frame { position: relative; width: 100%; aspect-ratio: 9/11; background: var(--s1); border: 1px solid var(--border2); border-radius: 12px; overflow: hidden; cursor: pointer; }
   .video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .video-frame::before, .video-frame::after { content: ''; position: absolute; width: 24px; height: 24px; z-index: 2; pointer-events: none; }
-  .video-frame::before { top: 12px; left: 12px; border-top: 1.5px solid var(--tp); border-left: 1.5px solid var(--tp); border-radius: 2px 0 0 0; }
-  .video-frame::after { bottom: 12px; right: 12px; border-bottom: 1.5px solid var(--tp); border-right: 1.5px solid var(--tp); border-radius: 0 0 2px 0; }
+  .video-frame::before { content:''; position:absolute; top:12px; left:12px; width:24px; height:24px; border-top:1.5px solid var(--tp); border-left:1.5px solid var(--tp); border-radius:2px 0 0 0; z-index:2; pointer-events:none; }
+  .video-frame::after { content:''; position:absolute; bottom:12px; right:12px; width:24px; height:24px; border-bottom:1.5px solid var(--tp); border-right:1.5px solid var(--tp); border-radius:0 0 2px 0; z-index:2; pointer-events:none; }
   .play-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(11,14,26,0.45); transition: background 0.3s; z-index: 1; border-radius: 12px; }
   .video-frame:hover .play-overlay { background: rgba(11,14,26,0.25); }
-  .play-btn { width: 56px; height: 56px; background: rgba(124,107,255,0.15); border: 1.5px solid rgba(124,107,255,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.25s; backdrop-filter: blur(6px); box-shadow: 0 0 20px rgba(124,107,255,0.2); }
-  .video-frame:hover .play-btn { background: rgba(124,107,255,0.28); border-color: var(--accent2); transform: scale(1.08); box-shadow: 0 0 30px rgba(124,107,255,0.4); }
-  .play-icon { width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 18px; border-color: transparent transparent transparent var(--tp); margin-left: 4px; }
+  .play-btn { width: 56px; height: 56px; background: rgba(124,107,255,0.15); border: 1.5px solid rgba(124,107,255,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.25s; backdrop-filter: blur(6px); }
+  .video-frame:hover .play-btn { background: rgba(124,107,255,0.28); border-color: var(--accent2); transform: scale(1.08); }
+  .play-icon { width:0; height:0; border-style:solid; border-width:9px 0 9px 18px; border-color:transparent transparent transparent var(--tp); margin-left:4px; }
   .play-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,245,245,0.7); }
   .play-overlay.hidden { opacity: 0; pointer-events: none; }
-  .video-hint { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--s1); border: 1px solid var(--border); border-radius: 7px; }
-  .hint-dot { width: 6px; height: 6px; background: var(--tm); border-radius: 50%; flex-shrink: 0; }
-  .hint-text { font-size: 11px; color: var(--tm); font-weight: 300; }
-  .hint-text span { color: var(--tp); font-weight: 500; }
-  .upload-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tp); background: transparent; border: 1px solid var(--border2); padding: 8px 16px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s; }
-  .upload-label:hover { border-color: var(--tp); }
-  .upload-label input { display: none; }
-
-  /* SECTION LABEL */
   .sec-label { display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tm); margin-bottom: 36px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
   .sec-label::before { content: ''; width: 20px; height: 2px; background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%); border-radius: 2px; }
-
-  /* DOMAIN FILTER TABS */
   .domain-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-  .domain-tab {
-    font-family: var(--sans); font-size: 12px; font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--tm); background: transparent;
-    border: 1px solid var(--border); padding: 8px 18px;
-    border-radius: 4px; cursor: pointer; transition: all 0.2s;
-  }
+  .domain-tab { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tm); background: transparent; border: 1px solid var(--border); padding: 8px 18px; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
   .domain-tab:hover { border-color: var(--border2); color: var(--tp); }
   .domain-tab.active { background: linear-gradient(135deg, var(--accent) 0%, #6d5bff 100%); color: #fff; border-color: var(--accent); box-shadow: 0 2px 16px rgba(124,107,255,0.3); }
-
-  /* DOMAIN BADGE on card */
-  .proj-domain-badge {
-    display: inline-block; font-size: 10px; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--tf); margin-bottom: 6px;
-  }
-
-  /* HIDDEN CARD */
+  .proj-domain-badge { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tf); margin-bottom: 6px; }
   .proj.hidden { display: none; }
-
-  /* PROJECTS LIST */
   .proj-list { display: flex; flex-direction: column; gap: 10px; }
-  .proj {
-    background: var(--s1); border: 1px solid var(--border); border-radius: 8px;
-    cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden;
-    padding: 0;
-  }
+  .proj { background: var(--s1); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; padding: 0; }
   .proj::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%); transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); border-radius: 2px 0 0 2px; }
   .proj:hover { background: var(--s2); border-color: var(--border2); }
   .proj:hover::after { transform: scaleY(1); }
@@ -119,111 +64,32 @@
   .proj-yr { font-size: 11px; color: var(--tf); margin-top: 4px; letter-spacing: 0.04em; }
   .proj-desc { font-size: 13px; color: var(--tm); line-height: 1.8; margin-bottom: 18px; font-weight: 300; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { font-size: 11px; font-weight: 500; color: var(--tm); background: rgba(255,255,255,0.04); border: 1px solid var(--border2); padding: 4px 10px; border-radius: 3px; letter-spacing: 0.03em; }
-
-  /* PROJECT CARD HORIZONTAL LAYOUT */
+  .tag { font-size: 11px; font-weight: 500; color: var(--accent2); background: rgba(124,107,255,0.07); border: 1px solid rgba(124,107,255,0.2); padding: 4px 10px; border-radius: 3px; letter-spacing: 0.03em; }
   .proj-inner { display: flex; align-items: stretch; min-height: 160px; }
   .proj-content { flex: 1; min-width: 0; padding: 28px 32px; }
-
-  /* PROJECT CARD IMAGE â€” full flush right */
-  .proj-img-wrap {
-    width: 260px; flex-shrink: 0;
-    position: relative; overflow: hidden;
-    background: var(--s2);
-    border-left: 1px solid var(--border);
-    border-radius: 0 8px 8px 0;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .proj-img-wrap { width: 260px; flex-shrink: 0; position: relative; overflow: hidden; background: var(--s2); border-left: 1px solid var(--border); border-radius: 0 8px 8px 0; display: flex; align-items: center; justify-content: center; }
   .proj-img-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-  .proj-img-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--tf); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 12px; text-align: center; position: relative; z-index: 1;
-  }
+  .proj-img-placeholder { display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--tf); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px; text-align: center; position: relative; z-index: 1; }
   .proj-img-placeholder svg { opacity: 0.3; }
-  @media (max-width: 640px) {
-    .proj-inner { flex-direction: column; }
-    .proj-content { padding: 20px; }
-    .proj-img-wrap { width: 100%; min-height: 160px; border-left: none; border-top: 1px solid var(--border); border-radius: 0 0 8px 8px; }
-  }
-  .proj-img-upload {
-    position: absolute; bottom: 10px; right: 10px;
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--tp); background: rgba(11,14,26,0.8); border: 1px solid var(--border2);
-    padding: 6px 12px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s;
-    backdrop-filter: blur(6px);
-  }
-  .proj-img-upload:hover { border-color: var(--tp); }
-  .proj-img-upload input { display: none; }
-
-  /* PROJECT CARD DEMO VIDEO */
-  .proj-demo-wrap {
-    margin-top: 16px;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-  }
-  .proj-demo-label {
-    font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--tf); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-  }
-  .proj-demo-label::before { content: ''; width: 14px; height: 1px; background: var(--border2); }
-  .proj-demo-video {
-    position: relative; width: 100%; aspect-ratio: 16/9;
-    background: var(--s2); border: 1px solid var(--border);
-    border-radius: 8px; overflow: hidden; cursor: pointer;
-  }
-  .proj-demo-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .proj-demo-overlay {
-    position: absolute; inset: 0; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    background: rgba(11,14,26,0.55); transition: background 0.3s; z-index: 1; border-radius: 8px;
-  }
-  .proj-demo-video:hover .proj-demo-overlay { background: rgba(11,14,26,0.3); }
-  .proj-demo-play {
-    width: 48px; height: 48px; background: rgba(245,245,245,0.1);
-    border: 1.5px solid rgba(245,245,245,0.35); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 10px; transition: all 0.25s; backdrop-filter: blur(6px);
-  }
-  .proj-demo-video:hover .proj-demo-play { background: rgba(245,245,245,0.2); border-color: var(--tp); transform: scale(1.08); }
-  .proj-demo-play-icon { width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 15px; border-color: transparent transparent transparent var(--tp); margin-left: 3px; }
-  .proj-demo-play-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,245,245,0.6); }
-  .proj-demo-overlay.hidden { opacity: 0; pointer-events: none; }
-  .proj-demo-upload {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--tp); background: transparent; border: 1px solid var(--border2);
-    padding: 7px 14px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s;
-    margin-top: 10px;
-  }
-  .proj-demo-upload:hover { border-color: var(--tp); }
-  .proj-demo-upload input { display: none; }
-
-  /* PROJECT DETAIL PAGE */
-  .proj-detail-header { margin-bottom: 48px; }
+  @media (max-width: 640px) { .proj-inner{flex-direction:column} .proj-content{padding:20px} .proj-img-wrap{width:100%;min-height:160px;border-left:none;border-top:1px solid var(--border);border-radius:0 0 8px 8px} }
   .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tm); cursor: pointer; margin-bottom: 36px; transition: color 0.2s; background: none; border: none; font-family: var(--sans); padding: 0; }
   .back-btn:hover { color: var(--tp); }
-  .back-arrow { font-size: 16px; }
-  .detail-num { font-family: var(--serif); font-size: 80px; font-style: italic; color: var(--border); line-height: 1; margin-bottom: -12px; }
   .detail-title { font-family: var(--sans); font-size: clamp(30px,5vw,48px); font-style: italic; color: var(--tp); line-height: 1.1; margin-bottom: 14px; }
   .detail-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
   .detail-type { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tm); }
   .detail-sep { width: 4px; height: 4px; background: var(--tf); border-radius: 50%; }
   .detail-year { font-size: 11px; color: var(--tf); letter-spacing: 0.06em; }
-  .detail-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .detail-body { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
   .detail-section-title { font-family: var(--sans); font-size: 16px; font-style: italic; color: var(--tp); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
   .detail-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
   .detail-text { font-size: 14px; font-weight: 300; color: var(--tm); line-height: 1.9; margin-bottom: 32px; }
   .detail-text strong { color: var(--tp); font-weight: 500; }
   .detail-highlights { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-  .highlight-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--s1); border: 1px solid var(--border); border-radius: 7px; }
+  .highlight-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--s1); border: 1px solid var(--border); border-radius: 7px; transition: border-color 0.2s; }
+  .highlight-item:hover { border-color: rgba(124,107,255,0.35); }
   .hl-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; min-width: 24px; text-align: center; }
   .hl-text { font-size: 13px; color: var(--tm); font-weight: 300; line-height: 1.6; }
   .hl-text strong { color: var(--tp); font-weight: 500; }
-
-  /* STEPS BULLET LIST */
   .steps-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; padding-left: 4px; }
   .step-item { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: var(--tm); font-weight: 300; line-height: 1.7; }
   .step-item::before { content: ''; width: 5px; height: 5px; background: var(--border2); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
@@ -231,71 +97,24 @@
   .info-card { background: var(--s1); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
   .info-row { display: flex; flex-direction: column; gap: 3px; padding: 14px 18px; border-bottom: 1px solid var(--border); }
   .info-row:last-child { border-bottom: none; }
-  .ilab { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tp); }
+  .ilab { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tm); }
   .ival { font-size: 13px; color: var(--tp); font-weight: 400; }
-
-  /* GITHUB LINK */
   .github-link-wrap { margin-top: 24px; }
-  .github-link {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 13px; font-weight: 500; color: var(--tp);
-    background: var(--s1); border: 1px solid var(--border2);
-    padding: 11px 20px; border-radius: 6px; text-decoration: none;
-    transition: all 0.2s; letter-spacing: 0.02em;
-  }
+  .github-link { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--tp); background: var(--s1); border: 1px solid var(--border2); padding: 11px 20px; border-radius: 6px; text-decoration: none; transition: all 0.2s; }
   .github-link:hover { border-color: var(--tp); background: var(--s2); transform: translateY(-2px); }
-  .github-link svg { opacity: 0.8; flex-shrink: 0; }
-
-  /* DETAIL PAGE SIDEBAR SCREENSHOTS */
-  .sidebar-screenshots {
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .sidebar-screenshots-label {
-    font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent2); margin-bottom: 4px; display: flex; align-items: center; gap: 8px;
-  }
+  .sidebar-screenshots { display: flex; flex-direction: column; gap: 10px; }
+  .sidebar-screenshots-label { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
   .sidebar-screenshots-label::before { content: ''; width: 14px; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; }
-  .detail-img-slot {
-    position: relative; width: 100%; aspect-ratio: 16/9;
-    background: var(--s1); border: 1px solid var(--border2);
-    border-radius: 8px; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color 0.2s;
-  }
+  .detail-img-slot { position: relative; width: 100%; aspect-ratio: 16/9; background: var(--s1); border: 1px solid var(--border2); border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; cursor: zoom-in; }
   .detail-img-slot:hover { border-color: rgba(124,107,255,0.4); }
-  .detail-img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .detail-img-placeholder {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-    color: var(--tf); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-  }
+  .detail-img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .detail-img-slot:hover img { transform: scale(1.03); }
+  .detail-img-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--tf); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
   .detail-img-placeholder svg { opacity: 0.2; }
-  .detail-img-upload {
-    position: absolute; bottom: 8px; right: 8px;
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--tp); background: rgba(11,14,26,0.82); border: 1px solid var(--border2);
-    padding: 5px 10px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s;
-    backdrop-filter: blur(8px);
-  }
-  .detail-img-upload:hover { border-color: var(--accent); }
-  .detail-img-upload input { display: none; }
-
-  /* OLD full-width images grid - keep hidden/removed */
-  .detail-images-grid { display: none; }
-  .detail-images-label { display: none; }
-  @media (max-width: 720px) {
-    .detail-images-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ABOUT */
   .about-wrap { display: grid; grid-template-columns: 3fr 2fr; gap: 52px; align-items: start; }
   .bio { font-size: 15px; font-weight: 300; color: var(--tm); line-height: 1.95; }
   .bio strong { color: var(--tp); font-weight: 500; }
   .bio p + p { margin-top: 18px; }
-  .bio-pull { font-family: var(--serif); font-size: 21px; font-style: italic; color: var(--tp); line-height: 1.4; border-left: 1px solid var(--border2); padding-left: 20px; margin: 28px 0; }
-
-  /* SKILLS */
   .skills-cats { display: flex; flex-direction: column; gap: 36px; }
   .scat-title { font-family: var(--sans); font-size: 16px; font-style: italic; color: var(--tp); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
   .scat-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
@@ -306,25 +125,18 @@
   .cdot.hi { background: var(--tp); } .cdot.md { background: var(--tm); } .cdot.lo { background: var(--tf); }
   .legend { display: flex; gap: 20px; margin-bottom: 28px; padding: 10px 16px; background: var(--s1); border: 1px solid var(--border); border-radius: 6px; }
   .li { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--tm); }
-
-  /* KNOWLEDGE BOX */
   .knowledge-box { margin-top: 52px; border-top: 1px solid var(--border); padding-top: 40px; }
   .kb-title { font-family: var(--sans); font-size: 22px; font-style: italic; color: var(--tp); margin-bottom: 6px; }
   .kb-subtitle { font-size: 13px; font-weight: 300; color: var(--tm); margin-bottom: 28px; }
   .kb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-  .kb-card {
-    background: var(--s1); border: 1px solid var(--border); border-radius: 10px;
-    padding: 22px 24px; transition: all 0.25s; position: relative; overflow: hidden;
-  }
+  .kb-card { background: var(--s1); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; transition: all 0.25s; position: relative; overflow: hidden; }
   .kb-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%); transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
   .kb-card:hover { background: var(--s2); border-color: var(--border2); transform: translateY(-3px); }
   .kb-card:hover::before { transform: scaleY(1); }
   .kb-card-icon { font-size: 22px; margin-bottom: 12px; }
-  .kb-card-title { font-size: 14px; font-weight: 600; color: var(--tp); margin-bottom: 8px; letter-spacing: 0.02em; }
+  .kb-card-title { font-size: 14px; font-weight: 600; color: var(--tp); margin-bottom: 8px; }
   .kb-card-text { font-size: 13px; font-weight: 300; color: var(--tm); line-height: 1.75; }
   .kb-card-text strong { color: var(--tp); font-weight: 500; }
-
-  /* CONTACT */
   .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
   .c-head { font-family: var(--sans); font-size: 28px; font-style: italic; color: var(--tp); line-height: 1.2; margin-bottom: 14px; }
   .c-sub { font-size: 14px; font-weight: 300; color: var(--tm); line-height: 1.85; margin-bottom: 28px; }
@@ -332,187 +144,52 @@
   .c-link { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--s1); border: 1px solid var(--border); border-radius: 7px; font-size: 13px; color: var(--tp); cursor: pointer; transition: all 0.2s; text-decoration: none; }
   .c-link:hover { border-color: rgba(124,107,255,0.4); background: var(--s2); transform: translateX(4px); }
   .c-link a { color: var(--tp); text-decoration: none; }
-  .cform { display: flex; flex-direction: column; gap: 14px; }
+  .cic { width: 32px; height: 32px; background: rgba(124,107,255,0.1); border: 1px solid rgba(124,107,255,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--accent2); font-weight: 600; flex-shrink: 0; }
+  .c-link:hover .cic { background: rgba(124,107,255,0.2); border-color: var(--accent); color: var(--tp); }
   .flabel { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tm); display: block; margin-bottom: 6px; }
   .finput, .fta { width: 100%; background: var(--s1); border: 1px solid var(--border); color: var(--tp); font-family: var(--sans); font-size: 13px; font-weight: 300; padding: 11px 14px; border-radius: 5px; outline: none; transition: border-color 0.2s; resize: none; }
   .finput:focus, .fta:focus { border-color: var(--border2); }
   .fta { min-height: 96px; }
-  .fsend { background: linear-gradient(135deg, var(--accent) 0%, #6d5bff 100%); color: #fff; border: none; padding: 13px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border-radius: 5px; transition: all 0.2s; margin-top: 2px; box-shadow: 0 4px 20px rgba(124,107,255,0.3); }
-  .fsend:hover { background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%); box-shadow: 0 6px 28px rgba(124,107,255,0.45); }
-  .sent-ok { display: none; font-size: 13px; color: var(--tp); text-align: center; padding: 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--border2); border-radius: 7px; }
-
-  /* DEMO VIDEO SECTION */
+  .fsend { background: linear-gradient(135deg, var(--accent) 0%, #6d5bff 100%); color: #fff; border: none; padding: 13px; width: 100%; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border-radius: 5px; transition: all 0.2s; box-shadow: 0 4px 20px rgba(124,107,255,0.3); }
+  .fsend:hover { box-shadow: 0 6px 28px rgba(124,107,255,0.45); }
+  .sent-ok { display: none; font-size: 13px; color: var(--tp); text-align: center; padding: 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--border2); border-radius: 7px; margin-top: 16px; }
   .demo-section { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
-  .demo-title { font-family: var(--sans); font-size: 22px; font-style: italic; color: var(--sans); margin-bottom: 6px; }
-  .demo-sub { font-size: 13px; font-weight: 300; color: var(--tm); margin-bottom: 28px; }
-  .demo-video-wrap {
-    position: relative; width: 100%; aspect-ratio: 16/9;
-    background: var(--s1); border: 1px solid var(--border2);
-    border-radius: 10px; overflow: hidden; cursor: pointer;
-  }
+  .demo-title { font-family: var(--sans); font-size: 22px; font-style: italic; color: var(--tp); margin-bottom: 16px; }
+  .demo-video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: var(--s1); border: 1px solid var(--border2); border-radius: 10px; overflow: hidden; cursor: pointer; }
   .demo-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .demo-video-wrap::before, .demo-video-wrap::after { content: ''; position: absolute; width: 28px; height: 28px; z-index: 2; pointer-events: none; }
-  .demo-video-wrap::before { top: 14px; left: 14px; border-top: 1.5px solid rgba(245,245,245,0.4); border-left: 1.5px solid rgba(245,245,245,0.4); border-radius: 2px 0 0 0; }
-  .demo-video-wrap::after { bottom: 14px; right: 14px; border-bottom: 1.5px solid rgba(245,245,245,0.4); border-right: 1.5px solid rgba(245,245,245,0.4); border-radius: 0 0 2px 0; }
-  .demo-overlay {
-    position: absolute; inset: 0; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    background: rgba(11,14,26,0.5); transition: background 0.3s; z-index: 1; border-radius: 10px;
-  }
+  .demo-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(11,14,26,0.5); transition: background 0.3s; z-index: 1; border-radius: 10px; }
   .demo-video-wrap:hover .demo-overlay { background: rgba(11,14,26,0.3); }
-  .demo-play-btn {
-    width: 64px; height: 64px; background: rgba(245,245,245,0.1);
-    border: 1.5px solid rgba(245,245,245,0.35); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 14px; transition: all 0.25s; backdrop-filter: blur(8px);
-  }
+  .demo-play-btn { width: 64px; height: 64px; background: rgba(245,245,245,0.1); border: 1.5px solid rgba(245,245,245,0.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; transition: all 0.25s; backdrop-filter: blur(8px); }
   .demo-video-wrap:hover .demo-play-btn { background: rgba(245,245,245,0.2); border-color: var(--tp); transform: scale(1.07); }
-  .demo-play-icon { width: 0; height: 0; border-style: solid; border-width: 11px 0 11px 20px; border-color: transparent transparent transparent var(--tp); margin-left: 5px; }
+  .demo-play-icon { width:0; height:0; border-style:solid; border-width:11px 0 11px 20px; border-color:transparent transparent transparent var(--tp); margin-left:5px; }
   .demo-play-label { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,245,245,0.65); }
   .demo-overlay.hidden { opacity: 0; pointer-events: none; }
-  .demo-controls { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
-  .demo-upload-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--tp); background: transparent; border: 1px solid var(--border2);
-    padding: 9px 18px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s;
-  }
-  .demo-upload-btn:hover { border-color: var(--tp); }
-  .demo-upload-btn input { display: none; }
-  .demo-filename { font-size: 11px; color: var(--tm); font-weight: 300; }
-
-  /* DETAIL PAGE PHOTO */
-  .detail-photo-wrap {
-    width: 100%; margin-bottom: 40px;
-    border-radius: 10px; overflow: hidden;
-    border: 1px solid var(--border2);
-    aspect-ratio: 16/9; background: var(--s1);
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-  }
-  .detail-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .detail-photo-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-    color: var(--tf); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-  }
-  .detail-photo-placeholder svg { opacity: 0.25; }
-  .detail-photo-upload {
-    position: absolute; bottom: 14px; right: 14px;
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--tp); background: rgba(11,14,26,0.82); border: 1px solid var(--border2);
-    padding: 8px 16px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s;
-    backdrop-filter: blur(8px);
-  }
-  .detail-photo-upload:hover { border-color: var(--tp); }
-  .detail-photo-upload input { display: none; }
-
-  /* DEMO VIDEO upload button */
-  .demo-upload-row { margin-top: 14px; display: flex; align-items: center; gap: 12px; }
-  .demo-upload-inline {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--tp); background: transparent; border: 1px solid var(--border2);
-    padding: 9px 18px; border-radius: 4px; cursor: pointer; transition: border-color 0.2s;
-  }
-  .demo-upload-inline:hover { border-color: var(--tp); }
-  .demo-upload-inline input { display: none; }
-  .demo-fname { font-size: 11px; color: var(--tm); font-weight: 300; } padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
-  .fmeta { font-size: 11px; color: var(--tf); }
-  .favail { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--tm); }
-
-  @media (max-width: 720px) {
-    .home-grid, .detail-body, .about-wrap, .contact-wrap { grid-template-columns: 1fr; gap: 32px; }
-    .video-side { order: -1; }
-    .hero-h { font-size: 36px; }
-    .nav-links { gap: 14px; }
-    .detail-num { font-size: 52px; }
-  }
-
-  /* Scrollbar */
+  .logo { font-family: var(--serif); font-size: 17px; color: var(--accent2); display: flex; align-items: center; gap: 9px; cursor: pointer; letter-spacing: 0.04em; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1000; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; }
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(5,7,15,0.95); backdrop-filter: blur(12px); align-items: center; justify-content: center; cursor: zoom-out; animation: fadeUp 0.2s ease; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 92vw; max-height: 88vh; object-fit: contain; border-radius: 10px; border: 1px solid var(--border2); box-shadow: 0 32px 80px rgba(0,0,0,0.7); pointer-events: none; }
+  .lightbox-close { position: fixed; top: 20px; right: 24px; width: 40px; height: 40px; background: rgba(11,14,26,0.9); border: 1px solid var(--border2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--tm); cursor: pointer; transition: all 0.2s; }
+  .lightbox-close:hover { border-color: var(--accent); color: var(--tp); }
+  .lightbox-caption { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--tm); letter-spacing: 0.06em; background: rgba(11,14,26,0.85); padding: 6px 18px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; }
+  @media (max-width: 720px) { .home-grid,.detail-body,.about-wrap,.contact-wrap{grid-template-columns:1fr;gap:32px} .video-side{order:-1} .hero-h{font-size:36px} .nav-links{gap:14px} }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-  /* Accent glow on availability dot */
-  .fdot { width: 7px; height: 7px; background: #7fffb2; border-radius: 50%; animation: blink 2.4s infinite; box-shadow: 0 0 8px #7fffb2; }
-
-  /* Contact icon circle accent */
-  .cic { width: 32px; height: 32px; background: rgba(124,107,255,0.1); border: 1px solid rgba(124,107,255,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--accent2); font-weight: 600; flex-shrink: 0; }
-  .c-link:hover .cic { background: rgba(124,107,255,0.2); border-color: var(--accent); color: var(--tp); }
-
-  /* Nav link active underline */
-  .nav-links a.active { color: var(--accent2); }
-  .nav-links a:hover { color: var(--accent2); }
-
-  /* Logo glow */
-  .logo { font-family: var(--serif); font-size: 17px; color: var(--accent2); display: flex; align-items: center; gap: 9px; cursor: pointer; letter-spacing: 0.04em; }
-
-  /* Detail num in purple */
-  .detail-num { font-family: var(--serif); font-size: 80px; font-style: italic; color: var(--border2); line-height: 1; margin-bottom: -12px; background: linear-gradient(135deg, var(--border2) 0%, rgba(124,107,255,0.3) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-  /* Highlight items accent left border on hover */
-  .highlight-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--s1); border: 1px solid var(--border); border-radius: 7px; transition: border-color 0.2s; }
-  .highlight-item:hover { border-color: rgba(124,107,255,0.35); }
-
-  /* Tags accent */
-  .tag { font-size: 11px; font-weight: 500; color: var(--accent2); background: rgba(124,107,255,0.07); border: 1px solid rgba(124,107,255,0.2); padding: 4px 10px; border-radius: 3px; letter-spacing: 0.03em; }
-  .detail-tags .tag { color: var(--accent2); background: rgba(124,107,255,0.08); border-color: rgba(124,107,255,0.22); }
-
-  /* Grain overlay on body */
-  body::before {
-    content: '';
-    position: fixed; inset: 0; pointer-events: none; z-index: 1000;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.025;
-  }
-
-  /* LIGHTBOX */
-  .lightbox {
-    display: none; position: fixed; inset: 0; z-index: 9999;
-    background: rgba(5,7,15,0.95); backdrop-filter: blur(12px);
-    align-items: center; justify-content: center;
-    cursor: zoom-out; animation: fadeUp 0.2s ease;
-  }
-  .lightbox.open { display: flex; }
-  .lightbox img {
-    max-width: 92vw; max-height: 88vh; object-fit: contain;
-    border-radius: 10px; border: 1px solid var(--border2);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(124,107,255,0.15);
-    pointer-events: none;
-  }
-  .lightbox-close {
-    position: fixed; top: 20px; right: 24px;
-    width: 40px; height: 40px; background: rgba(11,14,26,0.9);
-    border: 1px solid var(--border2); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; color: var(--tm); cursor: pointer; transition: all 0.2s;
-  }
-  .lightbox-close:hover { border-color: var(--accent); color: var(--tp); }
-  .lightbox-caption {
-    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
-    font-size: 12px; color: var(--tm); letter-spacing: 0.06em;
-    background: rgba(11,14,26,0.85); padding: 6px 18px; border-radius: 20px;
-    border: 1px solid var(--border); white-space: nowrap;
-  }
-  .detail-img-slot { cursor: zoom-in; }
-  .detail-img-slot img { transition: transform 0.3s ease; }
-  .detail-img-slot:hover img { transform: scale(1.03); }
 </style>
 </head>
 <body>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-close" onclick="closeLightbox()">âœ•</div>
+  <div class="lightbox-close" onclick="closeLightbox()">&#x2715;</div>
   <img id="lightbox-img" src="" alt=""/>
   <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
 
 <div class="wrap">
   <nav>
-    <div class="logo" onclick="go('home', document.querySelectorAll('.nav-links a')[0])"><div class="logo-dot"></div>KK</div>
+    <div class="logo" onclick="go('home', document.querySelectorAll('.nav-links a')[0])">KK</div>
     <div class="nav-links">
       <a class="active" onclick="go('home', this)">Home</a>
       <a onclick="go('projects', this)">Projects</a>
@@ -526,13 +203,13 @@
   <section id="home" class="active">
     <div class="home-grid">
       <div>
-        <div class="badge"><div class="badge-dot"></div>Open to full-time roles</div>
+        <div class="badge"><div class="fdot"></div>Open to full-time roles</div>
         <h1 class="hero-h">Hello,<br><em>I'm</em><br>Karthik K</h1>
-        <p class="hero-sub">Adaptable and motivated with a strong interest in data cleaning, analysis, visualization and machine learning. Skilled at interpreting complex datasets, building efficient solutions and presenting insights through clear visualization. Passionate about leveraging analytical and technical skills to solve challenging problems and drive results.</p>
+        <p class="hero-sub">Adaptable and motivated with a strong interest in data cleaning, analysis, visualization and machine learning. Skilled at interpreting complex datasets, building efficient solutions and presenting insights through clear visualization.</p>
         <div class="ctas">
           <button class="btn-a" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])">View Projects</button>
           <button class="btn-b" onclick="go('contact', document.querySelectorAll('.nav-links a')[4])">Contact Me</button>
-          <a class="btn-b" href="https://drive.google.com/file/d/164rWikXpy-ijXTjKs6TmLZCZuaXj5XFj/view?usp=sharing" target="_blank" download style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+          <a class="btn-b" href="https://drive.google.com/file/d/164rWikXpy-ijXTjKs6TmLZCZuaXj5XFj/view?usp=sharing" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Resume
           </a>
@@ -541,188 +218,138 @@
       <div class="video-side">
         <div class="video-frame" id="videoFrame" onclick="togglePlay()">
           <video id="introVideo" preload="metadata" playsinline>
-            <source id="videoSource" src="Image Folder/intro.mp4" type="video/mp4"/>
+            <source id="videoSource" src="Image%20Folder/intro.mp4" type="video/mp4"/>
           </video>
           <div class="play-overlay" id="playOverlay">
             <div class="play-btn"><div class="play-icon"></div></div>
             <div class="play-label">Watch Intro</div>
           </div>
         </div>
-        </div>
-        </div>
+      </div>
     </div>
   </section>
 
   <!-- PROJECTS LIST -->
   <section id="projects">
     <div class="sec-label">Selected Projects</div>
-
-    <!-- DOMAIN FILTER TABS -->
     <div class="domain-tabs">
-      <button class="domain-tab active" onclick="filterDomain('all', this)">All</button>
-      <button class="domain-tab" onclick="filterDomain('data-analysis', this)">Data Analysis</button>
-      <button class="domain-tab" onclick="filterDomain('machine-learning', this)">Machine Learning</button>
-      <button class="domain-tab" onclick="filterDomain('public-data', this)">Public Data</button>
-      <button class="domain-tab" onclick="filterDomain('academic', this)">Academic</button>
-      <button class="domain-tab" onclick="filterDomain('Web-domain',this)">Web Pages </button>
+      <button class="domain-tab active" onclick="filterDomain('all',this)">All</button>
+      <button class="domain-tab" onclick="filterDomain('data-analysis',this)">Data Analysis</button>
+      <button class="domain-tab" onclick="filterDomain('machine-learning',this)">Machine Learning</button>
+      <button class="domain-tab" onclick="filterDomain('public-data',this)">Public Data</button>
+      <button class="domain-tab" onclick="filterDomain('academic',this)">Academic</button>
+      <button class="domain-tab" onclick="filterDomain('Web-domain',this)">Web Pages</button>
     </div>
-
     <div class="proj-list">
-
-      <!-- PROJECT 1 CARD -->
-      <div class="proj" data-domain="data-analysis" onclick="openProject('p1')" style="cursor:pointer;">
+      <div class="proj" data-domain="data-analysis" onclick="openProject('p1')">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Data Analysis</div>
             <div class="proj-name">E-Commerce Sales Dashboard (Excel/Power BI)</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Excel · Power BI · 2025</div>
+            <div class="proj-yr" style="margin-bottom:10px;">Excel &middot; Power BI &middot; 2025</div>
             <div class="proj-desc">Built Excel and Power BI dashboards to analyze 3.5 years of sales data. Identified key KPIs based on monthly and yearly sales, sales by regions and product, and salesperson performance over time.</div>
             <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image Folder/Screenshot 2025-09-28 155837.png" alt="E-Commerce Dashboard Preview" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;">
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image
-            </div>
+            <img src="Image%20Folder/Screenshot%202025-09-28%20155837.png" alt="E-Commerce Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-
-      <!-- PROJECT 2 CARD -->
-      <div class="proj" data-domain="machine-learning" onclick="openProject('p2')" style="cursor:pointer;">
+      <div class="proj" data-domain="machine-learning" onclick="openProject('p2')">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Machine Learning</div>
             <div class="proj-name">Customer Segmentation using Clustering</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Machine Learning · 2025</div>
-            <div class="proj-desc">Applied K Means Clustering, Customer segmentation is the process of dividing customers into groups based on similar characteristics. In this project, clustering techniques are used to automatically identify these groups from data without predefined labels.</div>
-            <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">Matplolib</span><span class="tag">Seaborn</span></div>
+            <div class="proj-yr" style="margin-bottom:10px;">Machine Learning &middot; 2025</div>
+            <div class="proj-desc">Applied K-Means Clustering to divide customers into groups based on similar characteristics. Identifies customer groups from data without predefined labels to support targeted marketing strategies.</div>
+            <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image Folder/cluster label age vs spending score.png" alt="Customer Segmentation Preview" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;">
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image
-            </div>
+            <img src="Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png" alt="Customer Segmentation" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-
-
-      <!-- PROJECT 3 CARD -->
-      <div class="proj" data-domain="academic" onclick="openProject('p3')" style="cursor:pointer;">
+      <div class="proj" data-domain="academic" onclick="openProject('p3')">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Academic</div>
             <div class="proj-name">Social Media Trend Analyzing</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Academic Research · 2023</div>
-            <div class="proj-desc">Analyzed data from a specific Facebook account using NLP and machine learning to identify trends, sentiment and user behavior and helping improve decision making in marketing and related areas.</div>
-            <div class="tags"><span class="tag">Python</span><span class="tag">Facebook API</span><span class="tag">Pandas</span><span class="tag">Numpy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">TextBlob</span><span class="tag">WordCloud</span></div>
+            <div class="proj-yr" style="margin-bottom:10px;">Academic Research &middot; 2023</div>
+            <div class="proj-desc">Analyzed data from a specific Facebook account using NLP and machine learning to identify trends, sentiment and user behavior, helping improve decision making in marketing.</div>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Facebook API</span><span class="tag">TextBlob</span><span class="tag">WordCloud</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image Folder/Time Post.jpeg" alt="Social Media Trend Preview" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;">
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image
-            </div>
+            <img src="Image%20Folder/Time%20Post.jpeg" alt="Social Media Trend" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-
-      <!-- PROJECT 4 CARD -->
-      <div class="proj" data-domain="data-analysis" onclick="openProject('p4')" style="cursor:pointer;">
+      <div class="proj" data-domain="data-analysis" onclick="openProject('p4')">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Data Analysis</div>
             <div class="proj-name">College Campaign Data Analysis and Dashboard (SQL/Tableau)</div>
-            <div class="proj-yr" style="margin-bottom:10px;">SQL · Tableau · Excel · 2026</div>
-            <div class="proj-desc">Analyzed campaign data using SQL and created interactive dashboards using Tableau to track Conversion Rate, Return on Investment, Identify revenue performance based on cost to practical steps can take to boost user interaction and increase the chance of turning visitors into customers.</div>
+            <div class="proj-yr" style="margin-bottom:10px;">SQL &middot; Tableau &middot; Excel &middot; 2026</div>
+            <div class="proj-desc">Analyzed campaign data using SQL and created interactive Tableau dashboards to track Conversion Rate, ROI and revenue performance to boost user interaction and increase customer conversions.</div>
             <div class="tags"><span class="tag">Excel</span><span class="tag">SQL</span><span class="tag">Tableau</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image Folder/Screenshot 2026-04-05 013449.png" alt="Campaign Dashboard Preview" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;">
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image
-            </div>
+            <img src="Image%20Folder/Screenshot%202026-04-05%20013449.png" alt="Campaign Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-
-       <!-- PROJECT 5 CARD -->
-      <div class="proj" data-domain="Web-domain" onclick="openProject('p5')" style="cursor:pointer;">
+      <div class="proj" data-domain="Web-domain" onclick="openProject('p5')">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Web Pages</div>
             <div class="proj-name">My Portfolio</div>
-            <div class="proj-yr" style="margin-bottom:10px;">HTML · CSS · Javascript · 2025</div>
+            <div class="proj-yr" style="margin-bottom:10px;">HTML &middot; CSS &middot; Javascript &middot; 2025</div>
             <div class="proj-desc">Personal Portfolio Website Development using HTML, CSS and Javascript.</div>
             <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Javascript</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image Folder/Screenshot 2026-04-05 015716.png" alt="Portfolio Preview" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;">
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image
-            </div>
+            <img src="Image%20Folder/Screenshot%202026-04-05%20015716.png" alt="Portfolio" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-
-
     </div>
   </section>
 
   <!-- PROJECT 1 DETAIL -->
   <section id="p1">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
-      <div class="detail-num"></div>
-      <div class="detail-title">E-Commerce Sales Dashboard(Excel/Power BI)</div>
-      <div class="detail-meta">
-        <span class="detail-type"></span>
-        <span class="detail-year"></span>
-      </div>
-      <div class="detail-tags tags">
-        <span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span>
-      </div>
+      <div class="detail-title">E-Commerce Sales Dashboard (Excel/Power BI)</div>
+      <div class="detail-meta"><span class="detail-type">Data Analysis</span><div class="detail-sep"></div><span class="detail-year">2025</span></div>
+      <div class="detail-tags tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span></div>
     </div>
-    <!-- PROJECT DETAIL BODY -->
     <div class="detail-body">
       <div>
         <div class="detail-section-title">Overview</div>
-        <div class="detail-text">
-          <p>Build an Power BI dashboards to analyze <strong>3.5 years of retail sales data </strong>using Excel and Power BI. Excel was used for data cleaning and preprocessing and develop KPIs, while Power BI was used to create visualization to identify trends, regional performance and product-level insights. it was completed as my first project at Infotact Solutions. </p>
-        </div>
-
+        <div class="detail-text"><p>Built Power BI dashboards to analyze <strong>3.5 years of retail sales data</strong> using Excel and Power BI. Excel was used for data cleaning and preprocessing, while Power BI was used to create visualizations identifying trends, regional performance and product-level insights. Completed as my first project at Infotact Solutions.</p></div>
         <div class="detail-section-title">Problem Statement</div>
-        <div class="detail-text">
-          <p>The Company collects large volumes of retail sales data, but the raw data does not provide clear insights into trends, product performance or revenue growth. Inconsistent time periods furhter compliance performance analysis. This Project aims to transform the data into meaningful visual insights to support better business decisions.</p>
-        </div>
-
+        <div class="detail-text"><p>The company collects large volumes of retail sales data but raw data does not provide clear insights into trends, product performance or revenue growth. This project aims to transform data into meaningful visual insights to support better business decisions.</p></div>
         <div class="detail-section-title">Project Objective</div>
-        <div class="detail-text">
-          <p>The objective of this project is to clean and preprocess sales data, perform analysis to identify key metrics such as monthly and yearly trends and evaluate product performance. It also compares partial years data (6 months) with previous years to assess potential profit or loss. the final goal is to develop interactive dashboards in excel and Power BI to deliver actionable insights for decision making.</p>
-        </div>
-
+        <div class="detail-text"><p>Clean and preprocess sales data, perform analysis to identify key metrics such as monthly and yearly trends, evaluate product performance, and develop interactive dashboards in Excel and Power BI to deliver actionable insights for decision making.</p></div>
         <div class="detail-section-title">Steps in Process</div>
         <div class="steps-list">
-          <div class="step-item">Collected and workded with retail product sales data from excel spanning multiple periods.</div>
+          <div class="step-item">Collected and worked with retail product sales data from Excel spanning multiple periods.</div>
           <div class="step-item">Cleaned and transformed raw data by removing duplicates, handling missing values and standardizing formats.</div>
           <div class="step-item">Structured the cleaned data into organized tables to enable efficient analysis and reporting.</div>
-          <div class="step-item">Developed Key performance indicators (KPIs) including total sales, monthly and yearly trends and core business metrics.</div>
-          <div class="step-item">Built interactive dashboards in Excel and Power BI using effective visualizations to communicate insgihts clearly.</div>
+          <div class="step-item">Developed KPIs including total sales, monthly and yearly trends and core business metrics.</div>
+          <div class="step-item">Built interactive dashboards in Excel and Power BI using effective visualizations to communicate insights clearly.</div>
         </div>
-
         <div class="detail-section-title">What I Did</div>
         <div class="detail-highlights">
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Designed 6 interactive report pages</strong> covering Monthly Sales, product, Total Sales by Year, Sales by Regions & Products, Yearly Sales Performance in Individual and Product Sales Data Analysis and Dashboard.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Develop KPI</strong> to measure Sales performance including revenue trends, product performance and regional contribution and Salesperson trends efficiency.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Identified key trends in retail sales: </strong>2024 grew 4.4% over 2023. In the frst half, 2024 increased by 0.96%, while 2025 shows a slight decline of 0.2% indicating slower early growth. Final 2025 revenue will depend on second half performance and cost management.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Highlighed top-performing products contributing the highest revenue.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128202;</div><div class="hl-text"><strong>Designed 6 interactive report pages</strong> covering Monthly Sales, Product, Total Sales by Year, Sales by Regions &amp; Products, Yearly Sales Performance and Product Sales Data Analysis Dashboard.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128200;</div><div class="hl-text"><strong>Developed KPIs</strong> to measure sales performance including revenue trends, product performance, regional contribution and salesperson efficiency.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128269;</div><div class="hl-text"><strong>Identified key trends:</strong> 2024 grew 4.4% over 2023. In the first half, 2024 increased by 0.96%, while 2025 shows a slight decline of 0.2% indicating slower early growth.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#127942;</div><div class="hl-text">Highlighted top-performing products contributing the highest revenue.</div></div>
         </div>
-
         <div class="detail-section-title">Outcome</div>
         <div class="detail-text">The dashboard reduced hypothetical reporting effort significantly and gave stakeholders real-time visibility into sales performance without needing to open a single spreadsheet.</div>
         <div class="github-link-wrap">
@@ -734,102 +361,69 @@
       </div>
       <div class="detail-sidebar">
         <div class="info-card">
-          <div class="info-row"><div class="ilab">Category</div><div class="ival">Data Analysis & Business Intelligence</div></div>
+          <div class="info-row"><div class="ilab">Category</div><div class="ival">Data Analysis &amp; Business Intelligence</div></div>
           <div class="info-row"><div class="ilab">Tools</div><div class="ival">Power BI, Excel, DAX</div></div>
           <div class="info-row"><div class="ilab">Dataset</div><div class="ival">Retail Sales dataset</div></div>
           <div class="info-row"><div class="ilab">Duration</div><div class="ival">3 weeks</div></div>
           <div class="info-row"><div class="ilab">Year</div><div class="ival">2025</div></div>
-          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K, Abhishek Kumar Singh-Infotact Solutions</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K, Abhishek Kumar Singh &mdash; Infotact Solutions</div></div>
         </div>
-        <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2025-09-28 155837.png', 'E-Commerce Dashboard-Screenshot 1')">
-            <img src="Image Folder/Screenshot 2025-09-28 155837.png" alt="E-Commerce Dashboard Screenshot 1" onerror="this.style.display='none';document.getElementById('p1-sa-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p1-sa-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202025-09-28%20155837.png','E-Commerce Dashboard - Screenshot 1')">
+            <img src="Image%20Folder/Screenshot%202025-09-28%20155837.png" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-02 153303.png', 'E-Commerce Dashboard-Screenshot 2')">
-            <img src="Image Folder/Screenshot 2026-04-02 153303.png" alt="E-Commerce Dashboard Screenshot 2" onerror="this.style.display='none';document.getElementById('p1-sb-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p1-sb-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202026-04-02%20153303.png','E-Commerce Dashboard - Screenshot 2')">
+            <img src="Image%20Folder/Screenshot%202026-04-02%20153303.png" alt="Screenshot 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
-    <!-- DEMO VIDEO -->
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
       <div class="demo-video-wrap" id="dv1" onclick="demoPlay('dv1-vid','do1')">
-        <video id="dv1-vid" preload="metadata" playsinline controls>
-          <source src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/videos/project1.mp4" type="video/mp4"/>
-          Your browser does not support the video tag.
-        </video>
-        <div class="demo-overlay" id="do1">
-          <div class="demo-play-btn"><div class="demo-play-icon"></div></div>
-          <div class="demo-play-label">Play Demo</div>
-        </div>
+        <video id="dv1-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo1.mp4" type="video/mp4"/></video>
+        <div class="demo-overlay" id="do1"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
     </div>
   </section>
 
   <!-- PROJECT 2 DETAIL -->
   <section id="p2">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
-      <div class="detail-num"></div>
       <div class="detail-title">Customer Segmentation using Clustering</div>
-      <div class="detail-meta">
-        <span class="detail-type">Machine Learning</span>
-        <div class="detail-sep"></div>
-        <span class="detail-year">2025</span>
-      </div>
-      <div class="detail-tags tags">
-        <span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
-      </div>
+      <div class="detail-meta"><span class="detail-type">Machine Learning</span><div class="detail-sep"></div><span class="detail-year">2025</span></div>
+      <div class="detail-tags tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span></div>
     </div>
-    <!-- PROJECT DETAIL BODY -->
     <div class="detail-body">
       <div>
         <div class="detail-section-title">Overview</div>
-        <div class="detail-text">
-          <p><strong>Used a Retail & Product Categorization Datasets </strong>, Clustering is applied to group customers based on their behavior, helping businesses identify patterns and drive actionable insights.it was completed as my second project at Infotact Solutions.</p>
-        </div>
-
+        <div class="detail-text"><p>Used a <strong>Retail &amp; Product Categorization Dataset</strong>. Clustering is applied to group customers based on their behavior, helping businesses identify patterns and drive actionable insights. Completed as my second project at Infotact Solutions.</p></div>
         <div class="detail-section-title">Problem Statement</div>
-        <div class="detail-text">
-          <p>The dataset has a large base but lacks insights into customer behavior, value and purchasing patterns without segmentation, marketing and retention strategies are generic, leading to missed opportunities for targeted promotions, higher sales and improved customer loyalty.</p>
-        </div>
-
+        <div class="detail-text"><p>The dataset has a large customer base but lacks insights into behavior, value and purchasing patterns. Without segmentation, marketing and retention strategies are generic, leading to missed opportunities for targeted promotions and improved customer loyalty.</p></div>
         <div class="detail-section-title">Project Objective</div>
-        <div class="detail-text">
-          <p>The objective of this project is to clean and preprocess customer transaction data, analyze purchasing behavior using metrics like Income, age, spending score and apply clustering techniques to segment customers based on their patterns and value, enabling better insights through visualization of customer groups.</p>
-        </div>
-
+        <div class="detail-text"><p>Clean and preprocess customer transaction data, analyze purchasing behavior using metrics like income, age and spending score, and apply clustering techniques to segment customers, enabling better insights through visualization of customer groups.</p></div>
         <div class="detail-section-title">Steps in Process</div>
         <div class="steps-list">
-          <div class="step-item">Used a Retail & Product Categorization Datasets (200 records) containing demographics, purchase behavior and transactional details for analysis and segmentation.</div>
-          <div class="step-item">Performed EDA (univariate and Bivariate) to understand data patterns, relationships and feature distributions.</div>
-          <div class="step-item">Identified Annual Income vs Spending Score and Age vs Spending Score as strong features for clustering, while Purchase Frequency vs Loyalty Score was not suitable</div>
+          <div class="step-item">Used a Retail &amp; Product Categorization Dataset (200 records) containing demographics, purchase behavior and transactional details.</div>
+          <div class="step-item">Performed EDA (univariate and bivariate) to understand data patterns, relationships and feature distributions.</div>
+          <div class="step-item">Identified Annual Income vs Spending Score and Age vs Spending Score as strong features for clustering.</div>
           <div class="step-item">Applied the Elbow Method to find optimal clusters (k=5) and performed K-Means Clustering, achieving a Silhouette Score of 71%.</div>
           <div class="step-item">Segmented customers into five distinct groups and interpreted each cluster to derive meaningful business insights.</div>
         </div>
-
         <div class="detail-section-title">What I Did</div>
         <div class="detail-highlights">
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Analyzed sport retail data to understand purchasing behavior and engagement patterns.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Conducted<strong> EDA</strong> to examine distributions and relationship between key varaibles.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Determined the optimal number of<strong> clusters (k=5)</strong> using the Elbow Method.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Applied K-Means clustering to segment customers into five distinct groups and validated results using <strong>Sihouette Score (0.71)-Excellent Clustering</strong>.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Profiled each customer segment to derive actionable business insights.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128722;</div><div class="hl-text">Analyzed sport retail data to understand purchasing behavior and engagement patterns.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128300;</div><div class="hl-text">Conducted <strong>EDA</strong> to examine distributions and relationships between key variables.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128208;</div><div class="hl-text">Determined the optimal number of <strong>clusters (k=5)</strong> using the Elbow Method.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#9989;</div><div class="hl-text">Applied K-Means clustering and validated results using <strong>Silhouette Score (0.71) &#8212; Excellent Clustering</strong>.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128161;</div><div class="hl-text">Profiled each customer segment to derive actionable business insights.</div></div>
         </div>
-
         <div class="detail-section-title">Outcome</div>
-        <div class="detail-text">The customer segmentation divided customer based on their transaction behavior and engagement patterns, identifying high value, frequent and occasional groups. The insights from these segments helped guide targeted marketing, personalized offers and startegies for improving customer retention.</div>
+        <div class="detail-text">The customer segmentation divided customers based on transaction behavior and engagement patterns, identifying high value, frequent and occasional groups. The insights helped guide targeted marketing, personalized offers and strategies for improving customer retention.</div>
         <div class="github-link-wrap">
           <a class="github-link" href="https://github.com/kk7985/Customer-Segmentation-using-Clustering" target="_blank">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -840,103 +434,70 @@
       <div class="detail-sidebar">
         <div class="info-card">
           <div class="info-row"><div class="ilab">Category</div><div class="ival">Machine Learning</div></div>
-          <div class="info-row"><div class="ilab">Tools</div><div class="ival">Python, scikit-learn, Pandas, Matplotlib, Seaborn </div></div>
-          <div class="info-row"><div class="ilab">Dataset</div><div class="ival">Retail & Product Categorization Datasets</div></div>
+          <div class="info-row"><div class="ilab">Tools</div><div class="ival">Python, scikit-learn, Pandas, Matplotlib, Seaborn</div></div>
+          <div class="info-row"><div class="ilab">Dataset</div><div class="ival">Retail &amp; Product Categorization Dataset</div></div>
           <div class="info-row"><div class="ilab">Duration</div><div class="ival">2 weeks</div></div>
           <div class="info-row"><div class="ilab">Year</div><div class="ival">2025</div></div>
-          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K, Abhishek Kumar Singh-Infotact Solutions</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K, Abhishek Kumar Singh &mdash; Infotact Solutions</div></div>
         </div>
-        <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/cluster label age vs spending score.png', 'Customer Segmentation-Screenshot 1')">
-            <img src="Image Folder/cluster label age vs spending score.png" alt="Customer Segmentation Screenshot 1" onerror="this.style.display='none';document.getElementById('p2-sa-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p2-sa-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png','Customer Segmentation - Screenshot 1')">
+            <img src="Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Age vs spending score table.png', 'Customer Segmentation-Screenshot 2')">
-            <img src="Image Folder/Age vs spending score table.png" alt="Customer Segmentation Screenshot 2" onerror="this.style.display='none';document.getElementById('p2-sb-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p2-sb-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Age%20vs%20spending%20score%20table.png','Customer Segmentation - Screenshot 2')">
+            <img src="Image%20Folder/Age%20vs%20spending%20score%20table.png" alt="Screenshot 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
-    <!-- DEMO VIDEO -->
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
       <div class="demo-video-wrap" id="dv2" onclick="demoPlay('dv2-vid','do2')">
-        <video id="dv2-vid" preload="metadata" playsinline controls>
-          <source src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/videos/project2.mp4" type="video/mp4"/>
-          Your browser does not support the video tag.
-        </video>
-        <div class="demo-overlay" id="do2">
-          <div class="demo-play-btn"><div class="demo-play-icon"></div></div>
-          <div class="demo-play-label">Play Demo</div>
-        </div>
+        <video id="dv2-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo2.mp4" type="video/mp4"/></video>
+        <div class="demo-overlay" id="do2"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
     </div>
   </section>
 
   <!-- PROJECT 3 DETAIL -->
   <section id="p3">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
-      <div class="detail-num"></div>
       <div class="detail-title">Social Media Trend Analyzing</div>
-      <div class="detail-meta">
-        <span class="detail-type">Academic Research</span>
-        <div class="detail-sep"></div>
-        <span class="detail-year">2023</span>
-      </div>
-      <div class="detail-tags tags">
-        <span class="tag">Python</span><span class="tag">Facebook API</span><span class="tag">Pandas</span><span class="tag">Numpy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">TextBlob</span><span class="tag">WordCLoud</span>
-      </div>
+      <div class="detail-meta"><span class="detail-type">Academic Research</span><div class="detail-sep"></div><span class="detail-year">2023</span></div>
+      <div class="detail-tags tags"><span class="tag">Python</span><span class="tag">Facebook API</span><span class="tag">Pandas</span><span class="tag">Numpy</span><span class="tag">TextBlob</span><span class="tag">WordCloud</span></div>
     </div>
-    <!-- PROJECT DETAIL BODY -->
     <div class="detail-body">
       <div>
         <div class="detail-section-title">Overview</div>
-        <div class="detail-text">
-          <p>Used a <strong>Specific facebook account data by generating an API access token and extracting post data</strong> and Applied NLP and Machine Learning to identify trends, sentiment and user behavior through keywords, hashtags and engagement metrics.The insights help improve decision making in marketing, product development and public relations.it was my final year mini project.</p>
-        </div>
-
+        <div class="detail-text"><p>Used <strong>specific Facebook account data by generating an API access token and extracting post data</strong>. Applied NLP and Machine Learning to identify trends, sentiment and user behavior through keywords, hashtags and engagement metrics. This was my final year mini project.</p></div>
         <div class="detail-section-title">Problem Statement</div>
-        <div class="detail-text">
-          <p>Platforms like Facebook generate large volumes of unstructured user data, making analysis difficult. This project focuses on collecting and processing such data to extract insights like trends, sentiment and user engagement patterns, enabling better decision making for businesses and researchers.</p>
-        </div>
-
+        <div class="detail-text"><p>Platforms like Facebook generate large volumes of unstructured user data, making analysis difficult. This project focuses on collecting and processing such data to extract insights like trends, sentiment and user engagement patterns, enabling better decision making.</p></div>
         <div class="detail-section-title">Project Objective</div>
-        <div class="detail-text">
-          <p>The Objective of this project is to develop a system for collecting and analyzing data from Facebook using the Graph API. It focuses on keyword and hashtag trends, sentiment analysis, topic modeling and time based analysis to uncover insights and support better decision making.</p>
-        </div>
-
+        <div class="detail-text"><p>Develop a system for collecting and analyzing data from Facebook using the Graph API. Focus on keyword and hashtag trends, sentiment analysis, topic modeling and time-based analysis to uncover insights and support better decision making.</p></div>
         <div class="detail-section-title">Steps in Process</div>
         <div class="steps-list">
-          <div class="step-item">Collected data from Specific Social media Facebook Account using the Graph API by generating an access token. Extracted post-level data such as captions, hashtags, likes, comments, shares and timestamps and stored it in CSV Format.</div>
-          <div class="step-item">Cleaned and prepared data by removing duplicates, normalizing text, handling missing values and reducing words to base forms using numpy and pandas</div>
+          <div class="step-item">Collected data from a specific Facebook account using the Graph API by generating an access token. Extracted post-level data (captions, hashtags, likes, comments, shares, timestamps) and stored it in CSV format.</div>
+          <div class="step-item">Cleaned and prepared data by removing duplicates, normalizing text, handling missing values and reducing words to base forms using NumPy and Pandas.</div>
           <div class="step-item">Analyzed data using statistics and visualization to identify patterns, trends and relationships.</div>
-          <div class="step-item">Analyzed keywords and hashtags in post captions by measuring their frequency and tracking trends over time to identify recurring themes and infer marketing focus using regular expression and collections.counter </div>
-          <div class="step-item">Classified text as positive, negative or neutral to understand opinions in post comments related to product announcement or sales using the TextBlob library .</div>
-          <div class="step-item">Used Gensim LDA to discover hidden topics and group related content into meaningful themes(just topics under sentences).</div>
-          <div class="step-item">Analyzed changes in posts, posting activity across different time frames (daily, weeklly or monthly) to identify pattern and trends in content over time.</div>
+          <div class="step-item">Analyzed keywords and hashtags in post captions by measuring frequency and tracking trends over time using regular expressions and collections.Counter.</div>
+          <div class="step-item">Classified text as positive, negative or neutral to understand opinions in post comments using the TextBlob library.</div>
+          <div class="step-item">Used Gensim LDA to discover hidden topics and group related content into meaningful themes.</div>
+          <div class="step-item">Analyzed changes in posting activity across different time frames (daily, weekly or monthly) to identify patterns.</div>
           <div class="step-item">Presented results using graphs and charts to make insights clear and support decision making.</div>
         </div>
-
         <div class="detail-section-title">What I Did</div>
         <div class="detail-highlights">
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Collected post level data from a specific Facebook account using the Graph API </strong> with an access token and stored it in CSV format.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Preprocessed the data and performed keyword,hashtag and sentiment analysis using NLP to identify trends and user opinions.</strong>chi-square, correlation analysis, and regression to identify significant predictors of placement.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Applied topic modeling (LDA)</strong> to uncover hidden themes and time series analysis to track posting patterns over daily, weekly and monthly intervals.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Visualized results with charts and graphs to extract actionable insights for marketing, content strategy and decision making.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128225;</div><div class="hl-text"><strong>Collected post-level data from a specific Facebook account using the Graph API</strong> with an access token and stored it in CSV format.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#129504;</div><div class="hl-text"><strong>Preprocessed the data and performed keyword, hashtag and sentiment analysis using NLP</strong> to identify trends and user opinions.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128193;</div><div class="hl-text"><strong>Applied topic modeling (LDA)</strong> to uncover hidden themes and time series analysis to track posting patterns over daily, weekly and monthly intervals.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128201;</div><div class="hl-text">Visualized results with charts and graphs to extract actionable insights for marketing, content strategy and decision making.</div></div>
         </div>
-
         <div class="detail-section-title">Outcome</div>
-        <div class="detail-text">The report was submitted as my final year project and based on Visualization and insights from social media post data, it highlighted actionable trends and patterns and I may extend this work to make predictions (perform machine learning algorithms) on social media data .</div>
+        <div class="detail-text">The report was submitted as my final year project. Based on visualization and insights from social media post data, it highlighted actionable trends and patterns. I may extend this work to perform machine learning predictions on social media data.</div>
         <div class="github-link-wrap">
           <a class="github-link" href="https://github.com/kk7985/Social-Media-Trend-Analysing" target="_blank">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -947,110 +508,73 @@
       <div class="detail-sidebar">
         <div class="info-card">
           <div class="info-row"><div class="ilab">Category</div><div class="ival">Academic Research</div></div>
-          <div class="info-row"><div class="ilab">Tools</div><div class="ival">Python, Facebook API, Pandas, Numpy, Matplotlib, Seaborn, Textblob and WordCloud </div></div>
+          <div class="info-row"><div class="ilab">Tools</div><div class="ival">Python, Facebook API, Pandas, Numpy, Matplotlib, Seaborn, TextBlob, WordCloud</div></div>
           <div class="info-row"><div class="ilab">Dataset</div><div class="ival">Social Media post data</div></div>
           <div class="info-row"><div class="ilab">Duration</div><div class="ival">6 weeks</div></div>
           <div class="info-row"><div class="ilab">Year</div><div class="ival">2023</div></div>
-         <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K</div></div>
         </div>
-        <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Graph API.jpeg', 'Social Media Trend Analyzing-Screenshot 1')">
-            <img src="Image Folder/Graph API.jpeg" alt="Social Media Trend Analyzing Screenshot 1" onerror="this.style.display='none';document.getElementById('p4-sa-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p4-sa-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Graph%20API.jpeg','Social Media - Screenshot 1')">
+            <img src="Image%20Folder/Graph%20API.jpeg" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Sentiment Analysis.jpeg', 'Social Media Trend Analyzing-Screenshot 2')">
-            <img src="Image Folder/Sentiment Analysis.jpeg" alt="Social Media Trend Analyzing Screenshot 2" onerror="this.style.display='none';document.getElementById('p4-sb-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p4-sb-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Sentiment%20Analysis.jpeg','Social Media - Screenshot 2')">
+            <img src="Image%20Folder/Sentiment%20Analysis.jpeg" alt="Screenshot 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-         <div class="detail-img-slot" onclick="openLightbox('Image Folder/Time Post.jpeg', 'Social Media Trend Analyzing-Screenshot 3')">
-            <img src="Image Folder/Time Post.jpeg" alt="Social Media Trend Analyzing Screenshot 3" onerror="this.style.display='none';document.getElementById('p4-sb-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p4-sb-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Time%20Post.jpeg','Social Media - Screenshot 3')">
+            <img src="Image%20Folder/Time%20Post.jpeg" alt="Screenshot 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
-    <!-- DEMO VIDEO -->
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
-      <div class="demo-video-wrap" id="dv4" onclick="demoPlay('dv4-vid','do4')">
-        <video id="dv4-vid" preload="metadata" playsinline controls>
-          <source src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/videos/project4.mp4" type="video/mp4"/>
-          Your browser does not support the video tag.
-        </video>
-        <div class="demo-overlay" id="do4">
-          <div class="demo-play-btn"><div class="demo-play-icon"></div></div>
-          <div class="demo-play-label">Play Demo</div>
-        </div>
+      <div class="demo-video-wrap" id="dv3" onclick="demoPlay('dv3-vid','do3')">
+        <video id="dv3-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo3.mp4" type="video/mp4"/></video>
+        <div class="demo-overlay" id="do3"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
     </div>
   </section>
 
   <!-- PROJECT 4 DETAIL -->
   <section id="p4">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
-      <div class="detail-num"></div>
-      <div class="detail-title">College Campaign Data Analysis and Dashboard (SQL/Tableau) </div>
-      <div class="detail-meta">
-        <span class="detail-type"></span>
-        <span class="detail-year"></span>
-      </div>
-      <div class="detail-tags tags">
-        <span class="tag">SQL</span><span class="tag">Tableau</span><span class="tag">Excel</span>
-      </div>
+      <div class="detail-title">College Campaign Data Analysis and Dashboard (SQL/Tableau)</div>
+      <div class="detail-meta"><span class="detail-type">Data Analysis</span><div class="detail-sep"></div><span class="detail-year">2026</span></div>
+      <div class="detail-tags tags"><span class="tag">SQL</span><span class="tag">Tableau</span><span class="tag">Excel</span></div>
     </div>
-    <!-- PROJECT DETAIL BODY -->
     <div class="detail-body">
       <div>
         <div class="detail-section-title">Overview</div>
-        <div class="detail-text">
-          <p>Analyzing <strong>College Marketing Campaign dataset with 764 records</strong>using SQL and Tableau. The goal was to evaluate campaign performance, understand user engagement and provide insights for improving college marketing strategies should cover the entire student journey from admissions to placements, While being more cost effective than before. Metrics such as impression to enrollments based on conversion rate and cost and revenue difference and ROI were analyzed across campaigns. </p>
-        </div>
-
+        <div class="detail-text"><p>Analyzed a <strong>College Marketing Campaign dataset with 764 records</strong> using SQL and Tableau. The goal was to evaluate campaign performance, understand user engagement and provide insights for improving college marketing strategies. Metrics such as conversion rate, cost, revenue and ROI were analyzed across campaigns.</p></div>
         <div class="detail-section-title">Problem Statement</div>
-        <div class="detail-text">
-          <p>Marketing Campaigns generate large amounts of data if the college hold central marketing for campaign but not proper analysis, it is difficult to identify effective campaigns, optimize ROI. This Project focuses on analyzing and visualizing campaign data to deliver insights for improving engagement and performance.</p>
-        </div>
-
+        <div class="detail-text"><p>Marketing campaigns generate large amounts of data but without proper analysis it is difficult to identify effective campaigns or optimize ROI. This project focuses on analyzing and visualizing campaign data to deliver insights for improving engagement and performance.</p></div>
         <div class="detail-section-title">Project Objective</div>
-        <div class="detail-text">
-          <p>To analyze campaign performance using key metrics like revenue generated, Return on Investment and conversion rate. Revenue helped measure the total income generated from each campaign, while ROI was used to determine the profitability by comparing returns with the cost invested. Conversion rates were analyzed to understand how user interaction (clicks or leads) were turned into actual outcomes like applications or enrollments. By combining these metrics, the Project aim to provide data driven recommendations to improve future marketing strategies.</p>
-        </div>
-
+        <div class="detail-text"><p>Analyze campaign performance using key metrics like revenue generated, Return on Investment and conversion rate to provide data-driven recommendations to improve future marketing strategies.</p></div>
         <div class="detail-section-title">Steps in Process</div>
         <div class="steps-list">
-          <div class="step-item">Imported the dataset into PostgreSQL for Data storage and Processing.</div>
+          <div class="step-item">Imported the dataset into PostgreSQL for data storage and processing.</div>
           <div class="step-item">Performed data inspection and cleaning by handling missing values, duplicates and inconsistencies.</div>
-          <div class="step-item">Connected the cleaned data to Tableau for Visualization.</div>
-          <div class="step-item">Created Dashboards and calculated key metrics like ROI and conversion rates.</div>
-          <div class="step-item">ROI=Revenue-Cost/Cost*100.</div>
-          <div class="step-item">Conversion rate=Conversions/Total Clicks*100.</div>
+          <div class="step-item">Connected the cleaned data to Tableau for visualization.</div>
+          <div class="step-item">Created dashboards and calculated key metrics: ROI = (Revenue - Cost) / Cost x 100</div>
+          <div class="step-item">Conversion Rate = Conversions / Total Clicks x 100</div>
           <div class="step-item">Generated insights and recommendations to improve future campaign performances.</div>
         </div>
-
         <div class="detail-section-title">What I Did</div>
         <div class="detail-highlights">
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Analyzed and processed data</strong> using SQL.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>Built Interactive dashboards</strong> for campaign performance.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Analyzed ROI and conversion rate, Provided clear visualization to improve conversion user interaction.</div></div>
-         <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">The analysis revealed that <strong>Placement campaigns delvered the highest ROI (24.4%)</strong>,making them the most profitable.</div></div> 
-         <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text"><strong>MBA and UG Admission campaigns showed strong conversion rates which is above 23% </strong>indicating effective targeting and lead quality.</div></div>
-         <div class="highlight-item"><div class="h1-icon"></div><div class="hl-text"><strong>Hackathon campaigns underperformed all key metrics with Low ROI(21.1%), low conversion rate (11.82%) and low revenue contribution</strong>, which suggest need to optimize or reconsider investment in underperforming campaigns.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128451;</div><div class="hl-text"><strong>Analyzed and processed data</strong> using SQL.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128202;</div><div class="hl-text"><strong>Built interactive dashboards</strong> for campaign performance in Tableau.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#127942;</div><div class="hl-text"><strong>Placement campaigns delivered the highest ROI (24.4%)</strong>, making them the most profitable.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128200;</div><div class="hl-text"><strong>MBA and UG Admission campaigns showed strong conversion rates above 23%</strong>, indicating effective targeting and lead quality.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#9888;</div><div class="hl-text"><strong>Hackathon campaigns underperformed</strong> with low ROI (21.1%), low conversion rate (11.82%) and low revenue, suggesting a need to optimize or reconsider investment.</div></div>
         </div>
-
         <div class="detail-section-title">Outcome</div>
-        <div class="detail-text">Evaluated campaign performance by analyzing ROI, revenue and conversion metrics. It revealed the top performing campaign name and channel contributing to higher engagement and results. It also delivered data driven insights through Tableau dashboards  to enhance strategy and maximize overall performance.</div>
+        <div class="detail-text">Evaluated campaign performance by analyzing ROI, revenue and conversion metrics. Delivered data-driven insights through Tableau dashboards to enhance strategy and maximize overall performance.</div>
         <div class="github-link-wrap">
           <a class="github-link" href="https://github.com/kk7985/College-Marketing-Campaign-using-SQL-Tableau" target="_blank">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -1060,82 +584,59 @@
       </div>
       <div class="detail-sidebar">
         <div class="info-card">
-          <div class="info-row"><div class="ilab">Category</div><div class="ival">Data Analysis & Business Intelligence</div></div>
+          <div class="info-row"><div class="ilab">Category</div><div class="ival">Data Analysis &amp; Business Intelligence</div></div>
           <div class="info-row"><div class="ilab">Tools</div><div class="ival">Tableau, Excel, SQL</div></div>
           <div class="info-row"><div class="ilab">Dataset</div><div class="ival">College Marketing Campaign dataset</div></div>
           <div class="info-row"><div class="ilab">Duration</div><div class="ival">3 weeks</div></div>
-          <div class="info-row"><div class="ilab">Year</div><div class="ival">2025</div></div>
+          <div class="info-row"><div class="ilab">Year</div><div class="ival">2026</div></div>
           <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K</div></div>
         </div>
-        <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 013449.png', 'College Campaign Data Analysis and Dashboard (SQL/Tableau)-Screenshot 1')">
-            <img src="Image Folder/Screenshot 2026-04-05 013449.png" alt="College Campaign Data Analysis and Dashboard Screenshot 1" onerror="this.style.display='none';document.getElementById('p1-sa-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p1-sa-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202026-04-05%20013449.png','College Campaign Dashboard - Screenshot 1')">
+            <img src="Image%20Folder/Screenshot%202026-04-05%20013449.png" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
-    <!-- DEMO VIDEO -->
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
-      <div class="demo-video-wrap" id="dv1" onclick="demoPlay('dv1-vid','do1')">
-        <video id="dv1-vid" preload="metadata" playsinline controls>
-          <source src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/videos/project1.mp4" type="video/mp4"/>
-          Your browser does not support the video tag.
-        </video>
-        <div class="demo-overlay" id="do1">
-          <div class="demo-play-btn"><div class="demo-play-icon"></div></div>
-          <div class="demo-play-label">Play Demo</div>
-        </div>
+      <div class="demo-video-wrap" id="dv4" onclick="demoPlay('dv4-vid','do4')">
+        <video id="dv4-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo4.mp4" type="video/mp4"/></video>
+        <div class="demo-overlay" id="do4"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
     </div>
   </section>
 
   <!-- PROJECT 5 DETAIL -->
   <section id="p5">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">←</span> Back to Projects</button>
+    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
-      <div class="detail-num"></div>
       <div class="detail-title">My Portfolio</div>
-      <div class="detail-meta">
-        <span class="detail-type"></span>
-        <span class="detail-year"></span>
-      </div>
-      <div class="detail-tags tags">
-        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Javascript</span>
-      </div>
+      <div class="detail-meta"><span class="detail-type">Web Development</span><div class="detail-sep"></div><span class="detail-year">2025</span></div>
+      <div class="detail-tags tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Javascript</span></div>
     </div>
-    <!-- PROJECT DETAIL BODY -->
     <div class="detail-body">
       <div>
         <div class="detail-section-title">Overview</div>
-        <div class="detail-text">
-          <p>This Project involves <strong>designing and developing a personal portfolio website using HTML, CSS and Javascript </strong> to showcase my projects, skill and contact. The website provides a structured platform to present data analysis, machine learning, web page, academic with detailed description, screenshots, Video Explanation. </p>
-        </div>
-
+        <div class="detail-text"><p>This project involves <strong>designing and developing a personal portfolio website using HTML, CSS and Javascript</strong> to showcase my projects, skills and contact. The website provides a structured platform to present data analysis, machine learning, web page and academic projects with detailed descriptions, screenshots and video explanations.</p></div>
         <div class="detail-section-title">Steps in Process</div>
         <div class="steps-list">
-          <div class="step-item">The layout and structure of the website were planned, including sections like home, projects, about, skills and contact.</div>
-          <div class="step-item">The website was developed using HTML for structure, CSS for styling and Javascript for interactivity such as filtering projects.</div>
-          <div class="step-item">After that, project pages were created to display detailed information including overview, problem statement, objectives and outcomes.</div>
-          <div class="step-item">About, skills and contact Sections were created to display additional profiling about me.</div>
+          <div class="step-item">Planned the layout and structure including sections like Home, Projects, About, Skills and Contact.</div>
+          <div class="step-item">Developed using HTML for structure, CSS for styling and Javascript for interactivity such as filtering projects.</div>
+          <div class="step-item">Created project pages to display detailed information including overview, problem statement, objectives and outcomes.</div>
+          <div class="step-item">Added About, Skills and Contact sections to provide a complete profile.</div>
         </div>
-
         <div class="detail-section-title">What I Did</div>
         <div class="detail-highlights">
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Developed Portfolio Website using HTML, CSS and Javascript.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Implemented a responsive home section with an introduction and video, created categorized project sections.</div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Built detailed project pages with structured information and Added Sections </div></div>
-          <div class="highlight-item"><div class="hl-icon"></div><div class="hl-text">Skills, About, Contact to provide a complete profile.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#127760;</div><div class="hl-text">Developed a portfolio website using HTML, CSS and Javascript.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128241;</div><div class="hl-text">Implemented a responsive home section with an introduction and video, and created categorized project sections.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128196;</div><div class="hl-text">Built detailed project pages with structured information and navigation.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128100;</div><div class="hl-text">Added Skills, About and Contact sections to provide a complete profile.</div></div>
         </div>
-
         <div class="detail-section-title">Outcome</div>
-        <div class="detail-text">Responsive portfolio website that showcase my projects and skills and provided a clear and organized way to present work with detailed explanation.</div>
+        <div class="detail-text">Responsive portfolio website that showcases my projects and skills, providing a clear and organized way to present work with detailed explanations.</div>
         <div class="github-link-wrap">
           <a class="github-link" href="https://github.com/kk7985/Portfolio-Website" target="_blank">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -1145,44 +646,30 @@
       </div>
       <div class="detail-sidebar">
         <div class="info-card">
-          <div class="info-row"><div class="ilab">Category</div><div class="ival">Responsive web pages</div></div>
+          <div class="info-row"><div class="ilab">Category</div><div class="ival">Responsive Web Pages</div></div>
           <div class="info-row"><div class="ilab">Tools</div><div class="ival">HTML, CSS, Javascript</div></div>
           <div class="info-row"><div class="ilab">Duration</div><div class="ival">4 weeks</div></div>
           <div class="info-row"><div class="ilab">Year</div><div class="ival">2025</div></div>
           <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K</div></div>
         </div>
-        <!-- SCREENSHOTS IN SIDEBAR -->
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 015716.png', 'My Portfolio-Screenshot 1')">
-            <img src="Image Folder/Screenshot 2026-04-05 015716.png" alt="My Portfolio Screenshot 1" onerror="this.style.display='none';document.getElementById('p1-sa-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p1-sa-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202026-04-05%20015716.png','My Portfolio - Screenshot 1')">
+            <img src="Image%20Folder/Screenshot%202026-04-05%20015716.png" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image Folder/Screenshot 2026-04-05 015730.png', 'My Portfolio-Screenshot 2')">
-            <img src="Image Folder/Screenshot 2026-04-05 015730.png" alt="My Portfolio Screenshot 2" onerror="this.style.display='none';document.getElementById('p1-sb-ph').style.display='flex'"/>
-            <div class="detail-img-placeholder" id="p1-sb-ph" style="display:none;">
-              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-              Add image URL in src
-            </div>
+          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202026-04-05%20015730.png','My Portfolio - Screenshot 2')">
+            <img src="Image%20Folder/Screenshot%202026-04-05%20015730.png" alt="Screenshot 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
-    <!-- DEMO VIDEO -->
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
-      <div class="demo-video-wrap" id="dv1" onclick="demoPlay('dv1-vid','do1')">
-        <video id="dv1-vid" preload="metadata" playsinline controls>
-          <source src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/videos/project1.mp4" type="video/mp4"/>
-          Your browser does not support the video tag.
-        </video>
-        <div class="demo-overlay" id="do1">
-          <div class="demo-play-btn"><div class="demo-play-icon"></div></div>
-          <div class="demo-play-label">Play Demo</div>
-        </div>
+      <div class="demo-video-wrap" id="dv5" onclick="demoPlay('dv5-vid','do5')">
+        <video id="dv5-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo5.mp4" type="video/mp4"/></video>
+        <div class="demo-overlay" id="do5"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
     </div>
   </section>
@@ -1193,18 +680,18 @@
     <div class="about-wrap">
       <div>
         <div class="bio">
-          <p>I'm Karthik, a <strong>B.Tech Computer Science and Engineering graduate</strong> from SRMIST, Ramapuram, Chennai. Passionate about understanding <em>why</em> I specialize in turning data into actionable insights through data analysis, visualization and machine learning.</p>
-          <p>I've experience building dashboards, training ML models and cleaning complex datasets into actionable insights. I learn quickly, communicate effectively and approach every problem with genuine curiosity.</p>
-          <p>Now I'm looking to join a company and work with teams where i can <strong>contribute early, grow rapidly and make meaningful impact</strong> with data.</p>
+          <p>I'm Karthik, a <strong>B.Tech Computer Science and Engineering graduate</strong> from SRMIST, Ramapuram, Chennai. Passionate about understanding <em>why</em> &mdash; I specialize in turning data into actionable insights through data analysis, visualization and machine learning.</p>
+          <p>I've built dashboards, trained ML models and cleaned complex datasets into actionable insights. I learn quickly, communicate effectively and approach every problem with genuine curiosity.</p>
+          <p>Now I'm looking to join a company and work with teams where I can <strong>contribute early, grow rapidly and make meaningful impact</strong> with data.</p>
         </div>
       </div>
       <div>
         <div class="info-card">
           <div class="info-row"><div class="ilab">Education</div><div class="ival">B.Tech. Computer Science and Engineering</div></div>
-          <div class="info-row"><div class="ilab">College</div><div class="ival">SRMIST,Ramapuram,Chennai</div></div>
+          <div class="info-row"><div class="ilab">College</div><div class="ival">SRMIST, Ramapuram, Chennai</div></div>
           <div class="info-row"><div class="ilab">Graduated</div><div class="ival">May 2025</div></div>
           <div class="info-row"><div class="ilab">Location</div><div class="ival">Chennai, Tamil Nadu</div></div>
-          <div class="info-row"><div class="ilab">Availability</div><div class="ival">Immediate · Full-time</div></div>
+          <div class="info-row"><div class="ilab">Availability</div><div class="ival">Immediate &middot; Full-time</div></div>
           <div class="info-row"><div class="ilab">Languages</div><div class="ival">English, Tamil</div></div>
         </div>
       </div>
@@ -1213,7 +700,7 @@
 
   <!-- SKILLS -->
   <section id="skills">
-    <div class="sec-label">Skills & Tools</div>
+    <div class="sec-label">Skills &amp; Tools</div>
     <div class="legend">
       <div class="li"><div class="cdot hi"></div>Proficient</div>
       <div class="li"><div class="cdot md"></div>Familiar</div>
@@ -1221,7 +708,7 @@
     </div>
     <div class="skills-cats">
       <div>
-        <div class="scat-title">Data & Analysis</div>
+        <div class="scat-title">Data &amp; Analysis</div>
         <div class="chips">
           <div class="chip"><div class="cdot hi"></div>Python</div>
           <div class="chip"><div class="cdot hi"></div>Pandas</div>
@@ -1242,7 +729,7 @@
         </div>
       </div>
       <div>
-        <div class="scat-title">Machine Learning & Other</div>
+        <div class="scat-title">Machine Learning &amp; Other</div>
         <div class="chips">
           <div class="chip"><div class="cdot md"></div>scikit-learn</div>
           <div class="chip"><div class="cdot md"></div>Regression Models</div>
@@ -1252,58 +739,19 @@
         </div>
       </div>
     </div>
-
-    <!-- DOMAIN KNOWLEDGE BOX -->
     <div class="knowledge-box">
       <div class="kb-title">Domain Knowledge &amp; Insights</div>
       <div class="kb-subtitle">What I know, how I think, and where I go deep.</div>
       <div class="kb-grid">
-
-        <div class="kb-card">
-          <div class="kb-card-icon"></div>
-          <div class="kb-card-title"></div>
-          <div class="kb-card-text">I approach every dataset with a question first. I use <strong>EDA, descriptive statistics and visual summaries</strong> to find patterns before jumping to models. I believe a clean chart communicates more than a complex algorithm.</div>
-        </div>
-
-        <div class="kb-card">
-          <div class="kb-card-icon"></div>
-          <div class="kb-card-title"></div>
-          <div class="kb-card-text">Comfortable with <strong>supervised learning</strong> pipelines using scikit-learn. I focus on understanding model assumptions, handling imbalanced data and interpreting results for non-technical stakeholders.</div>
-        </div>
-
-        <div class="kb-card">
-          <div class="kb-card-icon"></div>
-          <div class="kb-card-title"></div>
-          <div class="kb-card-text">The question is based <strong>multi-table SQL queries</strong> including joins, CTEs, and window functions. I know how to clean, reshape and validate messy real-world datasets before any analysis begins.</div>
-        </div>
-
-        <div class="kb-card">
-          <div class="kb-card-icon"></div>
-          <div class="kb-card-title"></div>
-          <div class="kb-card-text">Built dashboards in <strong>Power BI and Tableau</strong> that non-technical teams actually use. I understand KPIs, DAX measures and how to design for clarity over complexity.</div>
-        </div>
-
-        <div class="kb-card">
-          <div class="kb-card-icon"></div>
-          <div class="kb-card-title"></div>
-          <div class="kb-card-text">My statistics degree shapes how I think about <strong>correlation vs causation, sampling bias and hypothesis testing</strong>. I apply chi-square tests, ANOVA and regression diagnostics as real tools, not black boxes.</div>
-        </div>
-
-        <div class="kb-card">
-          <div class="kb-card-icon"></div>
-          <div class="kb-card-title"></div>
-          <div class="kb-card-text">Deepening knowledge in <strong>time-series forecasting, NLP basics and cloud data tools</strong> like BigQuery. Currently working through advanced Pandas and Plotly Dash projects.</div>
-        </div>
-
-        <div class="kb-card">
-          <div class="kb-card-icon"></div>
-          <div class="kb-card-title"></div>
-          <div class="kb-card-text">I recently attended an interview where i was asked a simple question <strong>If a column in a dataset has 40% to 50% missing values. what would you do? </strong> the option were to fill it with mean or remove the column. I said it was follow up in depends on the column importance. With 40% missing data, I'd drop the column if it is not useful for prediction based on noisy or has weak correlation (or) insights and filling it if the column is important for prediction or insights and missing values are not random.</div>
-        </div>
-
+        <div class="kb-card"><div class="kb-card-icon">&#128269;</div><div class="kb-card-title">Exploratory Analysis</div><div class="kb-card-text">I approach every dataset with a question first. I use <strong>EDA, descriptive statistics and visual summaries</strong> to find patterns before jumping to models. A clean chart communicates more than a complex algorithm.</div></div>
+        <div class="kb-card"><div class="kb-card-icon">&#129302;</div><div class="kb-card-title">Machine Learning</div><div class="kb-card-text">Comfortable with <strong>supervised learning</strong> pipelines using scikit-learn. I focus on understanding model assumptions, handling imbalanced data and interpreting results for non-technical stakeholders.</div></div>
+        <div class="kb-card"><div class="kb-card-icon">&#128451;</div><div class="kb-card-title">SQL &amp; Data Wrangling</div><div class="kb-card-text">Comfortable with <strong>multi-table SQL queries</strong> including joins, CTEs and window functions. I know how to clean, reshape and validate messy real-world datasets before any analysis begins.</div></div>
+        <div class="kb-card"><div class="kb-card-icon">&#128202;</div><div class="kb-card-title">BI Dashboards</div><div class="kb-card-text">Built dashboards in <strong>Power BI and Tableau</strong> that non-technical teams actually use. I understand KPIs, DAX measures and how to design for clarity over complexity.</div></div>
+        <div class="kb-card"><div class="kb-card-icon">&#128208;</div><div class="kb-card-title">Statistical Thinking</div><div class="kb-card-text">I think carefully about <strong>correlation vs causation, sampling bias and hypothesis testing</strong>. I apply chi-square tests, ANOVA and regression diagnostics as real tools, not black boxes.</div></div>
+        <div class="kb-card"><div class="kb-card-icon">&#128640;</div><div class="kb-card-title">Currently Learning</div><div class="kb-card-text">Deepening knowledge in <strong>time-series forecasting, NLP basics and cloud data tools</strong> like BigQuery. Currently working through advanced Pandas and Plotly Dash projects.</div></div>
+        <div class="kb-card"><div class="kb-card-icon">&#128172;</div><div class="kb-card-title">Real Interview Insight</div><div class="kb-card-text">When asked about a column with 40-50% missing values: I said it <strong>depends on column importance</strong>. Drop if it's noisy or weakly correlated; fill it if it's important for prediction and missingness is not random.</div></div>
       </div>
     </div>
-
   </section>
 
   <!-- CONTACT -->
@@ -1314,236 +762,171 @@
         <div class="c-head">Let's build something great together.</div>
         <div class="c-sub">I'm actively looking for roles based on my skillset. Whether you're hiring or just want to talk data, I'd love to connect. Usually reply within 24 hours.</div>
         <div class="c-links">
-          <div class="c-link"><div class="cic">@</div><a href="https://mail.google.com/mail/?view=cm&fs=1&to=karthikk7985@gmail.com">[email&#160;protected]</a></div>
-          <div class="c-link"><div class="cic">in</div><a href="http://www.linkedin.com/in/karthikk-k">linkedin</a></div>
-          <div class="c-link"><div class="cic">gh</div><a href="https://github.com/kk7985">Github</a></div>
-          <div class="c-link"><div class="cic">Ph</div><a href="">8248609986</a></div>
+          <div class="c-link"><div class="cic">@</div><a href="https://mail.google.com/mail/?view=cm&fs=1&to=karthikk7985@gmail.com" target="_blank">karthikk7985@gmail.com</a></div>
+          <div class="c-link"><div class="cic">in</div><a href="http://www.linkedin.com/in/karthikk-k" target="_blank">linkedin.com/in/karthikk-k</a></div>
+          <div class="c-link"><div class="cic">gh</div><a href="https://github.com/kk7985" target="_blank">github.com/kk7985</a></div>
+          <div class="c-link"><div class="cic">&#128222;</div><a href="tel:8248609986">8248609986</a></div>
         </div>
       </div>
-      
-        <div class="sent-ok" id="sentok"> Message received! I'll get back to you soon.</div>
+      <div>
+        <div class="c-head" style="font-size:20px;">Send a Message</div>
+        <div id="cform" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
+          <div><label class="flabel" for="fn">Name</label><input class="finput" id="fn" type="text" placeholder="Your name"/></div>
+          <div><label class="flabel" for="fe">Email</label><input class="finput" id="fe" type="email" placeholder="your@email.com"/></div>
+          <div><label class="flabel" for="fm">Message</label><textarea class="fta finput" id="fm" placeholder="What's on your mind?"></textarea></div>
+          <button class="fsend" onclick="handleSend()">Send Message</button>
+        </div>
+        <div class="sent-ok" id="sentok">&#10003; Message received! I'll get back to you soon.</div>
       </div>
     </div>
   </section>
-
-  <footer>
-    <div class="fmeta"></div>
-  </footer>
 </div>
 
 <script>
+  /* DOMAIN FILTER */
   function filterDomain(domain, el) {
-    document.querySelectorAll('.domain-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.domain-tab').forEach(function(t){t.classList.remove('active');});
     el.classList.add('active');
-    document.querySelectorAll('.proj-list .proj').forEach(function(card) {
-      if (domain === 'all' || card.dataset.domain === domain) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
+    document.querySelectorAll('.proj-list .proj').forEach(function(card){
+      if(domain==='all'||card.dataset.domain===domain){card.classList.remove('hidden');}
+      else{card.classList.add('hidden');}
     });
   }
 
-  var basePath = '/Portfolio-Karthik-K';
+  /* ROUTING */
+  var basePath='/Portfolio-Karthik-K';
+  var sectionRoutes={home:'/',projects:'/projects',about:'/about',skills:'/skills',contact:'/contact'};
+  var projectRoutes={p1:'/project/ecommerce',p2:'/project/customer-segmentation',p3:'/project/social-media-trend',p4:'/project/college-campaign',p5:'/project/my-portfolio'};
+  var routeProjects={'/project/ecommerce':'p1','/project/customer-segmentation':'p2','/project/social-media-trend':'p3','/project/college-campaign':'p4','/project/my-portfolio':'p5'};
+  var routeSections={'/':'home','/projects':'projects','/about':'about','/skills':'skills','/contact':'contact'};
 
-  var sectionRoutes = {
-    home: '/',
-    projects: '/projects',
-    about: '/about',
-    skills: '/skills',
-    contact: '/contact'
-  };
-
-  var projectRoutes = {
-    p1: '/project/ecommerce',
-    p2: '/project/customer-segmentation',
-    p3: '/project/social-media-trend',
-    p4: '/project/college-campaign',
-    p5: '/project/my-portfolio'
-  };
-
-  var routeProjects = {
-    '/project/ecommerce': 'p1',
-    '/project/e-commerce': 'p1',
-    '/project/ecommerrce': 'p1',
-    '/project/ecommerce-sales-dashboard': 'p1',
-    '/project/customer-segmentation': 'p2',
-    '/project/social-media-trend': 'p3',
-    '/project/college-campaign': 'p4',
-    '/project/my-portfolio': 'p5'
-  };
-
-  var routeSections = {
-    '/': 'home',
-    '/projects': 'projects',
-    '/about': 'about',
-    '/skills': 'skills',
-    '/contact': 'contact'
-  };
-
-  function updateUrl(path, replaceUrl) {
-    var nextUrl = window.location.protocol === 'file:' ? '#' + path : basePath + path;
-    if (replaceUrl) history.replaceState(null, '', nextUrl);
-    else history.pushState(null, '', nextUrl);
+  function updateUrl(path,replaceUrl){
+    var nextUrl=window.location.protocol==='file:'?'#'+path:basePath+path;
+    if(replaceUrl)history.replaceState(null,'',nextUrl);
+    else history.pushState(null,'',nextUrl);
   }
 
-  function go(id, el, replaceUrl) {
-    document.querySelectorAll('section').forEach(function(s) { s.classList.remove('active'); });
-    document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+  function go(id,el,replaceUrl){
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('active');});
+    document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
     document.getElementById(id).classList.add('active');
-    if (el) el.classList.add('active');
-    updateUrl(sectionRoutes[id] || '/', replaceUrl);
-    window.scrollTo(0, 0);
+    if(el)el.classList.add('active');
+    updateUrl(sectionRoutes[id]||'/',replaceUrl);
+    window.scrollTo(0,0);
   }
 
-  function openProject(id, replaceUrl) {
-    document.querySelectorAll('section').forEach(function(s) { s.classList.remove('active'); });
-    document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+  function openProject(id,replaceUrl){
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('active');});
+    document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
     document.getElementById(id).classList.add('active');
     document.querySelectorAll('.nav-links a')[1].classList.add('active');
-    updateUrl(projectRoutes[id] || '/projects', replaceUrl);
-    window.scrollTo(0, 0);
+    updateUrl(projectRoutes[id]||'/projects',replaceUrl);
+    window.scrollTo(0,0);
   }
 
-  function loadRoute() {
+  function loadRoute(){
     var path;
-    if (window.location.protocol === 'file:') {
-      path = (window.location.hash || '#/').substring(1) || '/';
-    } else {
-      path = window.location.pathname;
-      if (path.indexOf(basePath) === 0) path = path.substring(basePath.length) || '/';
-      if (path.length > 1 && path.charAt(path.length - 1) === '/') path = path.slice(0, -1);
+    if(window.location.protocol==='file:'){
+      path=(window.location.hash||'#/').substring(1)||'/';
+    }else{
+      path=window.location.pathname;
+      if(path.indexOf(basePath)===0)path=path.substring(basePath.length)||'/';
+      if(path.length>1&&path.charAt(path.length-1)==='/')path=path.slice(0,-1);
     }
-
-    if (routeProjects[path]) {
-      openProject(routeProjects[path], true);
-      return;
-    }
-
-    if (routeSections[path]) {
-      var sectionId = routeSections[path];
-      var navIndex = ['home', 'projects', 'about', 'skills', 'contact'].indexOf(sectionId);
-      go(sectionId, document.querySelectorAll('.nav-links a')[navIndex], true);
+    if(routeProjects[path]){openProject(routeProjects[path],true);return;}
+    if(routeSections[path]){
+      var sectionId=routeSections[path];
+      var navIndex=['home','projects','about','skills','contact'].indexOf(sectionId);
+      go(sectionId,document.querySelectorAll('.nav-links a')[navIndex],true);
     }
   }
-
-  window.addEventListener('popstate', loadRoute);
+  window.addEventListener('popstate',loadRoute);
   loadRoute();
 
-  function loadDetailPhoto(input, imgId, phId) {
-    if (input.files && input.files[0]) {
-      var img = document.getElementById(imgId);
-      var ph = document.getElementById(phId);
-      img.src = URL.createObjectURL(input.files[0]);
-      img.style.display = 'block';
-      ph.style.display = 'none';
-    }
-  }
+  /* INTRO VIDEO - FIXED */
+  function togglePlay(){
+    var video=document.getElementById('introVideo');
+    var overlay=document.getElementById('playOverlay');
+    var source=document.getElementById('videoSource');
+    var srcAttr=source.getAttribute('src');
+    if(!srcAttr||srcAttr==='')return;
 
-  function loadDetailVideo(input, vidId, overlayId, fnId) {
-    if (input.files && input.files[0]) {
-      var video = document.getElementById(vidId);
-      video.src = URL.createObjectURL(input.files[0]);
+    if(video.readyState===0){
       video.load();
-      document.getElementById(overlayId).classList.remove('hidden');
-      if (fnId) document.getElementById(fnId).textContent = input.files[0].name;
+      video.addEventListener('canplay',function onCan(){
+        video.removeEventListener('canplay',onCan);
+        video.play().catch(function(){});
+        overlay.classList.add('hidden');
+      });
+      return;
+    }
+    if(video.paused){
+      video.play().catch(function(){});
+      overlay.classList.add('hidden');
+    }else{
+      video.pause();
+      overlay.classList.remove('hidden');
     }
   }
-
-  function projDemoPlay(vidId, overlayId) {
-    var video = document.getElementById(vidId);
-    var overlay = document.getElementById(overlayId);
-    if (video.paused) { video.play(); overlay.classList.add('hidden'); }
-    else { video.pause(); overlay.classList.remove('hidden'); }
-    video.addEventListener('ended', function() { overlay.classList.remove('hidden'); });
-  }
-
-  function loadProjImg(input, imgId, placeholderId) {
-    if (input.files && input.files[0]) {
-      var img = document.getElementById(imgId);
-      var ph = document.getElementById(placeholderId);
-      img.src = URL.createObjectURL(input.files[0]);
-      img.style.display = 'block';
-      ph.style.display = 'none';
-    }
-  }
-
-  function loadProjVideo(input, vidId, overlayId) {
-    if (input.files && input.files[0]) {
-      var video = document.getElementById(vidId);
-      video.src = URL.createObjectURL(input.files[0]);
-      video.load();
-      document.getElementById(overlayId).classList.remove('hidden');
-    }
-  }
-
-
-  function togglePlay() {
-    var video = document.getElementById('introVideo');
-    var overlay = document.getElementById('playOverlay');
-    if (video.src && video.src !== window.location.href) {
-      if (video.paused) { video.play(); overlay.classList.add('hidden'); }
-      else { video.pause(); overlay.classList.remove('hidden'); }
-    }
-  }
-
-  document.getElementById('introVideo').addEventListener('ended', function() {
+  document.getElementById('introVideo').addEventListener('ended',function(){
     document.getElementById('playOverlay').classList.remove('hidden');
   });
 
-  function loadVideo(input) {
-    if (input.files && input.files[0]) {
-      var video = document.getElementById('introVideo');
-      video.src = URL.createObjectURL(input.files[0]);
+  /* PROJECT DEMO VIDEOS - FIXED */
+  function demoPlay(vidId,overlayId){
+    var video=document.getElementById(vidId);
+    var overlay=document.getElementById(overlayId);
+    if(!video)return;
+
+    if(video.readyState===0){
       video.load();
-    }
-  }
-
-  function handleSend() {
-    var n = document.getElementById('fn').value.trim();
-    var e = document.getElementById('fe').value.trim();
-    var m = document.getElementById('fm').value.trim();
-    if (!n || !e || !m) {
-      alert('Please fill in all fields before sending.');
+      video.addEventListener('canplay',function onCan(){
+        video.removeEventListener('canplay',onCan);
+        video.play().catch(function(){});
+        overlay.classList.add('hidden');
+      });
       return;
     }
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(e)) {
-      alert('Please enter a valid email address.');
-      return;
+    if(video.paused){
+      video.play().catch(function(){});
+      overlay.classList.add('hidden');
+    }else{
+      video.pause();
+      overlay.classList.remove('hidden');
     }
-    document.getElementById('cform').style.display = 'none';
-    document.getElementById('sentok').style.display = 'block';
+    video.addEventListener('ended',function(){overlay.classList.remove('hidden');});
   }
 
-  function openLightbox(src, caption) {
-    var lb = document.getElementById('lightbox');
-    var img = document.getElementById('lightbox-img');
-    var cap = document.getElementById('lightbox-caption');
-    img.src = src;
-    cap.textContent = caption || '';
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
+  /* CONTACT FORM */
+  function handleSend(){
+    var n=document.getElementById('fn').value.trim();
+    var e=document.getElementById('fe').value.trim();
+    var m=document.getElementById('fm').value.trim();
+    if(!n||!e||!m){alert('Please fill in all fields before sending.');return;}
+    var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRegex.test(e)){alert('Please enter a valid email address.');return;}
+    document.getElementById('cform').style.display='none';
+    document.getElementById('sentok').style.display='block';
   }
 
-  function closeLightbox() {
+  /* LIGHTBOX */
+  function openLightbox(src,caption){
+    document.getElementById('lightbox-img').src=src;
+    document.getElementById('lightbox-caption').textContent=caption||'';
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){
     document.getElementById('lightbox').classList.remove('open');
-    document.getElementById('lightbox-img').src = '';
-    document.body.style.overflow = '';
+    document.getElementById('lightbox-img').src='';
+    document.body.style.overflow='';
   }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeLightbox();
-  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
 </script>
 </body>
 </html>
+i need a file
 
+3:19 PM
 
-
-
-
-
-
-
-
+You are out of free messages until 8:00 PM
