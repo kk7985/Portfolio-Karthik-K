@@ -217,12 +217,12 @@
       </div>
       <div class="video-side">
         <div class="video-frame" id="videoFrame" onclick="togglePlay()">
-          <video id="introVideo" preload="metadata" playsinline>
+          <video id="introVideo" preload="metadata" playsinline controls>
             <source id="videoSource" src="Image%20Folder/intro.mp4" type="video/mp4"/>
           </video>
           <div class="play-overlay" id="playOverlay">
             <div class="play-btn"><div class="play-icon"></div></div>
-            <div class="play-label">Watch Intro</div>
+            <div class="play-label" id="playLabel">Watch Intro</div>
           </div>
         </div>
       </div>
@@ -843,34 +843,42 @@
   window.addEventListener('popstate',loadRoute);
   loadRoute();
 
-  /* INTRO VIDEO - FIXED */
-  function togglePlay(){
-    var video=document.getElementById('introVideo');
-    var overlay=document.getElementById('playOverlay');
-    var source=document.getElementById('videoSource');
-    var srcAttr=source.getAttribute('src');
-    if(!srcAttr||srcAttr==='')return;
+  /* INTRO VIDEO */
+  var introVideo=document.getElementById('introVideo');
+  var introOverlay=document.getElementById('playOverlay');
+  var introLabel=document.getElementById('playLabel');
 
-    if(video.readyState===0){
-      video.load();
-      video.addEventListener('canplay',function onCan(){
-        video.removeEventListener('canplay',onCan);
-        video.play().catch(function(){});
-        overlay.classList.add('hidden');
-      });
-      return;
-    }
-    if(video.paused){
-      video.play().catch(function(){});
-      overlay.classList.add('hidden');
+  function setIntroOverlay(show,label){
+    if(!introOverlay)return;
+    introOverlay.classList.toggle('hidden',!show);
+    if(introLabel&&label)introLabel.textContent=label;
+  }
+
+  function togglePlay(){
+    if(!introVideo)return;
+
+    if(introVideo.paused){
+      introVideo.load();
+      var playAttempt=introVideo.play();
+      if(playAttempt&&typeof playAttempt.then==='function'){
+        playAttempt.then(function(){setIntroOverlay(false);}).catch(function(){
+          setIntroOverlay(true,'Use Video Controls');
+        });
+      }else{
+        setIntroOverlay(false);
+      }
     }else{
-      video.pause();
-      overlay.classList.remove('hidden');
+      introVideo.pause();
+      setIntroOverlay(true,'Resume Intro');
     }
   }
-  document.getElementById('introVideo').addEventListener('ended',function(){
-    document.getElementById('playOverlay').classList.remove('hidden');
-  });
+
+  if(introVideo){
+    introVideo.addEventListener('play',function(){setIntroOverlay(false);});
+    introVideo.addEventListener('pause',function(){if(!introVideo.ended)setIntroOverlay(true,'Resume Intro');});
+    introVideo.addEventListener('ended',function(){setIntroOverlay(true,'Replay Intro');});
+    introVideo.addEventListener('error',function(){setIntroOverlay(true,'Add Image Folder/intro.mp4');});
+  }
 
   /* PROJECT DEMO VIDEOS - FIXED */
   function demoPlay(vidId,overlayId){
@@ -925,8 +933,3 @@
 </script>
 </body>
 </html>
-i need a file
-
-3:19 PM
-
-You are out of free messages until 8:00 PM
