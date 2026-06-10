@@ -906,16 +906,37 @@
   }
 
   /* CONTACT FORM */
-  function handleSend(){
-    var n=document.getElementById('fn').value.trim();
-    var e=document.getElementById('fe').value.trim();
-    var m=document.getElementById('fm').value.trim();
-    if(!n||!e||!m){alert('Please fill in all fields before sending.');return;}
-    var emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!emailRegex.test(e)){alert('Please enter a valid email address.');return;}
-    document.getElementById('cform').style.display='none';
-    document.getElementById('sentok').style.display='block';
-  }
+  async function handleSend() {
+  var n = document.getElementById('fn').value.trim();
+  var e = document.getElementById('fe').value.trim();
+  var m = document.getElementById('fm').value.trim();
+  if (!n || !e || !m) { alert('Please fill in all fields.'); return; }
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(e)) { alert('Please enter a valid email.'); return; }
+  var btn = document.querySelector('.fsend');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    var res = await fetch('http://localhost:5000/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: n, email: e, message: m })
+    });
+    var result = await res.json();
+    if (result.success) {
+      document.getElementById('cform').style.display = 'none';
+      document.getElementById('sentok').style.display = 'block';
+    } else {
+      alert('Error: ' + result.error);
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+    }
+  } catch (err) {
+    alert('Cannot connect to server. Make sure Flask is running.');
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+  }}
+  
 
   /* LIGHTBOX */
   function openLightbox(src,caption){
