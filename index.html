@@ -32,7 +32,7 @@
   .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
   .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); background: rgba(0,224,143,0.08); border: 1px solid rgba(0,224,143,0.3); padding: 6px 14px; border-radius: 20px; margin-bottom: 28px; font-family: var(--mono); }
   .fdot { width: 7px; height: 7px; background: var(--accent2); border-radius: 50%; animation: blink 2.4s infinite; box-shadow: 0 0 8px var(--accent2); }
-  .hero-h { font-family: var(--sans); font-size: clamp(36px,5.6vw,62px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; color: var(--tp); margin-bottom: 20px; text-transform: uppercase; }
+  .hero-h { font-family: var(--sans); font-size: clamp(32px,4.4vw,50px); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; color: var(--tp); margin-bottom: 16px; text-transform: uppercase; }
   .hero-h em { font-style: normal; background: var(--highlight); color: #fff; padding: 0 4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .hero-sub { font-size: 14px; font-weight: 300; color: var(--tm); line-height: 1.85; margin-bottom: 36px; }
   .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -41,7 +41,7 @@
   .btn-b { background: transparent; color: var(--tp); border: 1px solid var(--border2); padding: 13px 28px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; border-radius: 999px; transition: all 0.2s; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
   .btn-b:hover { border-color: var(--accent2); color: var(--accent2); background: rgba(0,224,143,0.06); transform: translateY(-2px); }
   .video-side { display: flex; flex-direction: column; gap: 14px; }
-  .video-frame { position: relative; width: 100%; aspect-ratio: 9/11; background: var(--s1); border: 1px solid var(--border2); border-radius: 14px; overflow: hidden; cursor: pointer; }
+  .video-frame { position: relative; width: 100%; aspect-ratio: 9/9; background: var(--s1); border: 1px solid var(--border2); border-radius: 14px; overflow: hidden; cursor: pointer; }
   .video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
   .video-frame::before { content:''; position:absolute; top:14px; left:14px; width:10px; height:10px; border-radius:50%; background:#ff5f56; box-shadow: 18px 0 0 #ffbd2e, 36px 0 0 #27c93f; z-index:2; pointer-events:none; }
   .video-frame::after { content:''; position:absolute; bottom:12px; right:12px; width:24px; height:24px; border-bottom:1.5px solid var(--tp); border-right:1.5px solid var(--tp); border-radius:0 0 2px 0; z-index:2; pointer-events:none; opacity:0.4; }
@@ -211,7 +211,7 @@
     <div class="home-grid">
       <div>
         <div class="badge"><div class="fdot"></div>Open to full-time roles</div>
-        <h1 class="hero-h"><em>Hello,</em><br>I'm<br>Karthik K</h1>
+        <h1 class="hero-h"><em>Data &amp; ML</em><br>Portfolio,<br>made simple.</h1>
         <p class="hero-sub">Adaptable and motivated with a strong interest in data cleaning, analysis, visualization and machine learning. Skilled at interpreting complex datasets, building efficient solutions and presenting insights through clear visualization. &mdash; Karthik K</p>
         <div class="ctas">
           <button class="btn-a" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])">View Projects</button>
