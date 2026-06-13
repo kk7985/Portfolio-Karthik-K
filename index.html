@@ -17,8 +17,9 @@
     --mono: 'JetBrains Mono', monospace;
   }
   body { background: var(--bg); background-image: radial-gradient(ellipse 70% 45% at 85% 0%, rgba(139,92,246,0.16) 0%, transparent 55%), radial-gradient(ellipse 55% 35% at 95% 95%, rgba(0,224,143,0.10) 0%, transparent 55%); color: var(--tp); font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
-  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(10,10,10,0.94); backdrop-filter: blur(14px); z-index: 99; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 60px; }
+  nav { padding-right: 0; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0 28px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(10,10,10,0.94); backdrop-filter: blur(14px); z-index: 99; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding-left: calc(50vw - 50%); padding-right: calc(50vw - 50%); }
   @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.2} }
   @keyframes fadeUp { from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)} }
   .nav-links { display: flex; gap: 24px; }
@@ -208,7 +209,7 @@
     <div class="home-grid">
       <div>
         <div class="badge"><div class="fdot"></div>Open to full-time roles</div>
-        <h1 class="hero-h"><em>Hello,</em><br>I'm<br>Karthik K</h1>
+        <h1 class="hero-h"><em>Data &amp; ML</em><br>Portfolio,<br>made simple.</h1>
         <p class="hero-sub">Adaptable and motivated with a strong interest in data cleaning, analysis, visualization and machine learning. Skilled at interpreting complex datasets, building efficient solutions and presenting insights through clear visualization. &mdash; Karthik K</p>
         <div class="ctas">
           <button class="btn-a" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])">View Projects</button>
