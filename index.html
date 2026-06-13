@@ -27,6 +27,8 @@
   .nav-links a:hover, .nav-links a.active { color: var(--accent2); }
   section { display: none; padding: 72px 28px 90px; animation: fadeUp 0.35s ease; }
   section.active { display: block; }
+  #home.active { min-height: calc(100vh - 90px); display: flex; align-items: center; padding-top: 32px; padding-bottom: 32px; }
+  #home .home-grid { width: 100%; }
   .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
   .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); background: rgba(0,224,143,0.08); border: 1px solid rgba(0,224,143,0.3); padding: 6px 14px; border-radius: 20px; margin-bottom: 28px; font-family: var(--mono); }
   .fdot { width: 7px; height: 7px; background: var(--accent2); border-radius: 50%; animation: blink 2.4s infinite; box-shadow: 0 0 8px var(--accent2); }
@@ -209,7 +211,7 @@
     <div class="home-grid">
       <div>
         <div class="badge"><div class="fdot"></div>Open to full-time roles</div>
-        <h1 class="hero-h"><em>Data &amp; ML</em><br>Portfolio,<br>made simple.</h1>
+        <h1 class="hero-h"><em>Hello,</em><br>I'm<br>Karthik K</h1>
         <p class="hero-sub">Adaptable and motivated with a strong interest in data cleaning, analysis, visualization and machine learning. Skilled at interpreting complex datasets, building efficient solutions and presenting insights through clear visualization. &mdash; Karthik K</p>
         <div class="ctas">
           <button class="btn-a" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])">View Projects</button>
