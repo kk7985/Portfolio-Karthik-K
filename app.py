@@ -7,7 +7,7 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://kk7985.github.io"])
 
 DB_CONFIG = {
     "host": os.getenv("DB_HOST"),
