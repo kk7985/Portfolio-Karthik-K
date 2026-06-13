@@ -145,7 +145,7 @@
   .kb-card-title { font-size: 14px; font-weight: 700; color: var(--tp); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em; }
   .kb-card-text { font-size: 13px; font-weight: 300; color: var(--tm); line-height: 1.75; }
   .kb-card-text strong { color: var(--tp); font-weight: 600; }
-  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .contact-wrap { max-width: 620px; }
   .c-head { font-family: var(--sans); font-size: 28px; font-weight: 800; color: var(--tp); line-height: 1.2; margin-bottom: 14px; text-transform: uppercase; }
   .c-sub { font-size: 14px; font-weight: 300; color: var(--tm); line-height: 1.85; margin-bottom: 28px; }
   .c-links { display: flex; flex-direction: column; gap: 10px; }
@@ -783,6 +783,9 @@
           <div class="c-link"><div class="cic">&#128222;</div><a href="tel:8248609986">8248609986</a></div>
         </div>
       </div>
+    </div>
+  </section>
+</div>
 
 <script>
 /* DOMAIN FILTER */
@@ -907,39 +910,6 @@
     video.addEventListener('ended',function(){overlay.classList.remove('hidden');});
   }
 
-  /* CONTACT FORM */
-  async function handleSend() {
-  var n = document.getElementById('fn').value.trim();
-  var e = document.getElementById('fe').value.trim();
-  var m = document.getElementById('fm').value.trim();
-  if (!n || !e || !m) { alert('Please fill in all fields.'); return; }
-  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(e)) { alert('Please enter a valid email.'); return; }
-  var btn = document.querySelector('.fsend');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  try {
-    var res = await fetch('https://portfolio-karthik-k.onrender.com/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: n, email: e, message: m })
-    });
-    var result = await res.json();
-    if (result.success) {
-      document.getElementById('cform').style.display = 'none';
-      document.getElementById('sentok').style.display = 'block';
-    } else {
-      alert('Error: ' + result.error);
-      btn.textContent = 'Send Message';
-      btn.disabled = false;
-    }
-  } catch (err) {
-    alert('Cannot connect to server. Make sure Flask is running.');
-    btn.textContent = 'Send Message';
-    btn.disabled = false;
-  }}
-  
-
   /* LIGHTBOX */
   function openLightbox(src,caption){
     document.getElementById('lightbox-img').src=src;
@@ -1007,10 +977,6 @@ function bindExternalHandlers() {
       return;
     }
 
-    var sendTarget = e.target.closest('[data-action="send-message"]');
-    if (sendTarget) {
-      handleSend();
-    }
   });
 
   document.querySelectorAll('img').forEach(function(img) {
