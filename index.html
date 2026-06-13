@@ -6,7 +6,7 @@
 <title>Karthik K Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; list-style: none; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; list-style: none; }
   :root {
     --bg: #0a0a0a; --s1: #131313; --s2: #1a1a1a;
     --border: #2a2a2a; --border2: #3a3a3a;
@@ -70,6 +70,7 @@
   .proj-desc { font-size: 13px; color: var(--tm); line-height: 1.8; margin-bottom: 18px; font-weight: 300; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag { font-size: 11px; font-weight: 600; color: var(--accent2); background: rgba(0,224,143,0.07); border: 1px solid rgba(0,224,143,0.2); padding: 4px 10px; border-radius: 3px; letter-spacing: 0.03em; font-family: var(--mono); }
+  .detail-tags { margin-bottom: 34px; }
   .proj-inner { display: flex; align-items: stretch; min-height: 160px; }
   .proj-content { flex: 1; min-width: 0; padding: 28px 32px; }
   .proj-img-wrap { width: 260px; flex-shrink: 0; position: relative; overflow: hidden; background: var(--s2); border-left: 1px solid var(--border); border-radius: 0 10px 10px 0; display: flex; align-items: center; justify-content: center; }
@@ -84,7 +85,8 @@
   .detail-type { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tm); font-family: var(--mono); }
   .detail-sep { width: 4px; height: 4px; background: var(--tf); border-radius: 50%; }
   .detail-year { font-size: 11px; color: var(--tf); letter-spacing: 0.06em; font-family: var(--mono); }
-  .detail-body { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
+  .detail-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); column-gap: 80px; row-gap: 48px; align-items: start; }
+  .detail-main { min-width: 0; padding-right: 12px; }
   .detail-section-title { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--tp); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
   .detail-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
   .detail-text { font-size: 14px; font-weight: 300; color: var(--tm); line-height: 1.9; margin-bottom: 32px; }
@@ -98,7 +100,7 @@
   .steps-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; padding-left: 4px; }
   .step-item { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: var(--tm); font-weight: 300; line-height: 1.7; }
   .step-item::before { content: ''; width: 5px; height: 5px; background: var(--accent2); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
-  .detail-sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .detail-sidebar { display: flex; flex-direction: column; gap: 16px; min-width: 0; padding-left: 12px; }
   .info-card { background: var(--s1); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
   .info-row { display: flex; flex-direction: column; gap: 3px; padding: 14px 18px; border-bottom: 1px solid var(--border); }
   .info-row:last-child { border-bottom: none; }
@@ -179,30 +181,36 @@
   .lightbox-close { position: fixed; top: 20px; right: 24px; width: 40px; height: 40px; background: rgba(10,10,10,0.9); border: 1px solid var(--border2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--tm); cursor: pointer; transition: all 0.2s; }
   .lightbox-close:hover { border-color: var(--accent2); color: var(--accent2); }
   .lightbox-caption { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--tm); letter-spacing: 0.06em; background: rgba(10,10,10,0.85); padding: 6px 18px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; font-family: var(--mono); }
-  @media (max-width: 720px) { .home-grid,.detail-body,.about-wrap,.contact-wrap{grid-template-columns:1fr;gap:32px} .video-side{order:-1} .hero-h{font-size:36px} .nav-links{gap:14px} }
+  @media (max-width: 720px) { .home-grid,.detail-body,.about-wrap,.contact-wrap{grid-template-columns:1fr;gap:32px} .detail-main{padding-right:0} .detail-sidebar{padding-left:0} .video-side{order:-1} .hero-h{font-size:36px} .nav-links{gap:14px} }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent2); }
+
+
+.proj-tools { margin-bottom: 10px; }
+.is-hidden { display: none; }
+.c-head-small { font-size: 20px; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
 </style>
 </head>
 <body>
 
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-close" onclick="closeLightbox()">&#x2715;</div>
+<div class="lightbox" id="lightbox" data-action="close-lightbox">
+  <div class="lightbox-close" data-action="close-lightbox">&#x2715;</div>
   <img id="lightbox-img" src="" alt=""/>
   <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
 
 <div class="wrap">
   <nav>
-    <div class="logo" onclick="go('home', document.querySelectorAll('.nav-links a')[0])">KK</div>
+    <div class="logo" data-section="home">KK</div>
     <div class="nav-links">
-      <a class="active" onclick="go('home', this)">Home</a>
-      <a onclick="go('projects', this)">Projects</a>
-      <a onclick="go('about', this)">About</a>
-      <a onclick="go('skills', this)">Skills</a>
-      <a onclick="go('contact', this)">Contact</a>
+      <a class="active" data-section="home">Home</a>
+      <a data-section="projects">Projects</a>
+      <a data-section="about">About</a>
+      <a data-section="skills">Skills</a>
+      <a data-section="contact">Contact</a>
     </div>
   </nav>
 
@@ -211,11 +219,11 @@
     <div class="home-grid">
       <div>
         <div class="badge"><div class="fdot"></div>Open to full-time roles</div>
-        <h1 class="hero-h"><em>Hello,</em><br>I'm<br>Karthik K</h1>
+        <h1 class="hero-h"><em>Data &amp; ML</em><br>Portfolio,<br>made simple.</h1>
         <p class="hero-sub">Adaptable and motivated with a strong interest in data cleaning, analysis, visualization and machine learning. Skilled at interpreting complex datasets, building efficient solutions and presenting insights through clear visualization. &mdash; Karthik K</p>
         <div class="ctas">
-          <button class="btn-a" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])">View Projects</button>
-          <button class="btn-b" onclick="go('contact', document.querySelectorAll('.nav-links a')[4])">Contact Me</button>
+          <button class="btn-a" data-section="projects">View Projects</button>
+          <button class="btn-b" data-section="contact">Contact Me</button>
           <a class="btn-b" href="https://drive.google.com/file/d/164rWikXpy-ijXTjKs6TmLZCZuaXj5XFj/view?usp=sharing" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Resume
@@ -223,7 +231,7 @@
         </div>
       </div>
       <div class="video-side">
-        <div class="video-frame" id="videoFrame" onclick="togglePlay()">
+        <div class="video-frame" id="videoFrame" data-action="toggle-intro">
           <video id="introVideo" preload="metadata" playsinline controls>
             <source id="videoSource" src="Image%20Folder/intro.mp4" type="video/mp4"/>
           </video>
@@ -240,86 +248,86 @@
   <section id="projects">
     <div class="sec-label">Selected Projects</div>
     <div class="domain-tabs">
-      <button class="domain-tab active" onclick="filterDomain('all',this)">All</button>
-      <button class="domain-tab" onclick="filterDomain('data-analysis',this)">Data Analysis</button>
-      <button class="domain-tab" onclick="filterDomain('machine-learning',this)">Machine Learning</button>
-      <button class="domain-tab" onclick="filterDomain('public-data',this)">Public Data</button>
-      <button class="domain-tab" onclick="filterDomain('academic',this)">Academic</button>
-      <button class="domain-tab" onclick="filterDomain('Web-domain',this)">Web Pages</button>
+      <button class="domain-tab active" data-domain-filter="all">All</button>
+      <button class="domain-tab" data-domain-filter="data-analysis">Data Analysis</button>
+      <button class="domain-tab" data-domain-filter="machine-learning">Machine Learning</button>
+      <button class="domain-tab" data-domain-filter="public-data">Public Data</button>
+      <button class="domain-tab" data-domain-filter="academic">Academic</button>
+      <button class="domain-tab" data-domain-filter="Web-domain">Web Pages</button>
     </div>
     <div class="proj-list">
-      <div class="proj" data-domain="data-analysis" onclick="openProject('p1')">
+      <div class="proj" data-domain="data-analysis" data-project="p1">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Data Analysis</div>
             <div class="proj-name">E-Commerce Sales Dashboard (Excel/Power BI)</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Excel &middot; Power BI &middot; 2025</div>
+            <div class="proj-yr" class="proj-tools">Excel &middot; Power BI &middot; 2025</div>
             <div class="proj-desc">Built Excel and Power BI dashboards to analyze 3.5 years of sales data. Identified key KPIs based on monthly and yearly sales, sales by regions and product, and salesperson performance over time.</div>
             <div class="tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image%20Folder/Screenshot%202025-09-28%20155837.png" alt="E-Commerce Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+            <img src="Image%20Folder/Screenshot%202025-09-28%20155837.png" alt="E-Commerce Dashboard"/>
+            <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-      <div class="proj" data-domain="machine-learning" onclick="openProject('p2')">
+      <div class="proj" data-domain="machine-learning" data-project="p2">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Machine Learning</div>
             <div class="proj-name">Customer Segmentation using Clustering</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Machine Learning &middot; 2025</div>
+            <div class="proj-yr" class="proj-tools">Machine Learning &middot; 2025</div>
             <div class="proj-desc">Applied K-Means Clustering to divide customers into groups based on similar characteristics. Identifies customer groups from data without predefined labels to support targeted marketing strategies.</div>
             <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png" alt="Customer Segmentation" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+            <img src="Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png" alt="Customer Segmentation"/>
+            <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-      <div class="proj" data-domain="academic" onclick="openProject('p3')">
+      <div class="proj" data-domain="academic" data-project="p3">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Academic</div>
             <div class="proj-name">Social Media Trend Analyzing</div>
-            <div class="proj-yr" style="margin-bottom:10px;">Academic Research &middot; 2023</div>
+            <div class="proj-yr" class="proj-tools">Academic Research &middot; 2023</div>
             <div class="proj-desc">Analyzed data from a specific Facebook account using NLP and machine learning to identify trends, sentiment and user behavior, helping improve decision making in marketing.</div>
             <div class="tags"><span class="tag">Python</span><span class="tag">Facebook API</span><span class="tag">TextBlob</span><span class="tag">WordCloud</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image%20Folder/Time%20Post.jpeg" alt="Social Media Trend" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+            <img src="Image%20Folder/Time%20Post.jpeg" alt="Social Media Trend"/>
+            <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-      <div class="proj" data-domain="data-analysis" onclick="openProject('p4')">
+      <div class="proj" data-domain="data-analysis" data-project="p4">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Data Analysis</div>
             <div class="proj-name">College Campaign Data Analysis and Dashboard (SQL/Tableau)</div>
-            <div class="proj-yr" style="margin-bottom:10px;">SQL &middot; Tableau &middot; Excel &middot; 2026</div>
+            <div class="proj-yr" class="proj-tools">SQL &middot; Tableau &middot; Excel &middot; 2026</div>
             <div class="proj-desc">Analyzed campaign data using SQL and created interactive Tableau dashboards to track Conversion Rate, ROI and revenue performance to boost user interaction and increase customer conversions.</div>
             <div class="tags"><span class="tag">Excel</span><span class="tag">SQL</span><span class="tag">Tableau</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image%20Folder/Screenshot%202026-04-05%20013449.png" alt="Campaign Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+            <img src="Image%20Folder/Screenshot%202026-04-05%20013449.png" alt="Campaign Dashboard"/>
+            <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
-      <div class="proj" data-domain="Web-domain" onclick="openProject('p5')">
+      <div class="proj" data-domain="Web-domain" data-project="p5">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Web Pages</div>
             <div class="proj-name">My Portfolio</div>
-            <div class="proj-yr" style="margin-bottom:10px;">HTML &middot; CSS &middot; Javascript &middot; 2025</div>
+            <div class="proj-yr" class="proj-tools">HTML &middot; CSS &middot; Javascript &middot; 2025</div>
             <div class="proj-desc">Personal Portfolio Website Development using HTML, CSS and Javascript.</div>
             <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Javascript</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src="Image%20Folder/Screenshot%202026-04-05%20015716.png" alt="Portfolio" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="proj-img-placeholder" style="display:none;"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+            <img src="Image%20Folder/Screenshot%202026-04-05%20015716.png" alt="Portfolio"/>
+            <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
@@ -328,14 +336,14 @@
 
   <!-- PROJECT 1 DETAIL -->
   <section id="p1">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-title">E-Commerce Sales Dashboard (Excel/Power BI)</div>
       <div class="detail-meta"><span class="detail-type">Data Analysis</span><div class="detail-sep"></div><span class="detail-year">2025</span></div>
       <div class="detail-tags tags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span></div>
     </div>
     <div class="detail-body">
-      <div>
+      <div class="detail-main">
         <div class="detail-section-title">Overview</div>
         <div class="detail-text"><p>Built Power BI dashboards to analyze <strong>3.5 years of retail sales data</strong> using Excel and Power BI. Excel was used for data cleaning and preprocessing, while Power BI was used to create visualizations identifying trends, regional performance and product-level insights. Completed as my first project at Infotact Solutions.</p></div>
         <div class="detail-section-title">Problem Statement</div>
@@ -377,20 +385,20 @@
         </div>
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202025-09-28%20155837.png','E-Commerce Dashboard - Screenshot 1')">
-            <img src="Image%20Folder/Screenshot%202025-09-28%20155837.png" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Screenshot%202025-09-28%20155837.png" data-lightbox-caption="E-Commerce Dashboard - Screenshot 1">
+            <img src="Image%20Folder/Screenshot%202025-09-28%20155837.png" alt="Screenshot 1"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202026-04-02%20153303.png','E-Commerce Dashboard - Screenshot 2')">
-            <img src="Image%20Folder/Screenshot%202026-04-02%20153303.png" alt="Screenshot 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Screenshot%202026-04-02%20153303.png" data-lightbox-caption="E-Commerce Dashboard - Screenshot 2">
+            <img src="Image%20Folder/Screenshot%202026-04-02%20153303.png" alt="Screenshot 2"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
-      <div class="demo-video-wrap" id="dv1" onclick="demoPlay('dv1-vid','do1')">
+      <div class="demo-video-wrap" id="dv1" data-demo-video="dv1-vid" data-demo-overlay="do1">
         <video id="dv1-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo1.mp4" type="video/mp4"/></video>
         <div class="demo-overlay" id="do1"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
@@ -399,14 +407,14 @@
 
   <!-- PROJECT 2 DETAIL -->
   <section id="p2">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-title">Customer Segmentation using Clustering</div>
       <div class="detail-meta"><span class="detail-type">Machine Learning</span><div class="detail-sep"></div><span class="detail-year">2025</span></div>
       <div class="detail-tags tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span></div>
     </div>
     <div class="detail-body">
-      <div>
+      <div class="detail-main">
         <div class="detail-section-title">Overview</div>
         <div class="detail-text"><p>Used a <strong>Retail &amp; Product Categorization Dataset</strong>. Clustering is applied to group customers based on their behavior, helping businesses identify patterns and drive actionable insights. Completed as my second project at Infotact Solutions.</p></div>
         <div class="detail-section-title">Problem Statement</div>
@@ -449,20 +457,20 @@
         </div>
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png','Customer Segmentation - Screenshot 1')">
-            <img src="Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png" data-lightbox-caption="Customer Segmentation - Screenshot 1">
+            <img src="Image%20Folder/cluster%20label%20age%20vs%20spending%20score.png" alt="Screenshot 1"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Age%20vs%20spending%20score%20table.png','Customer Segmentation - Screenshot 2')">
-            <img src="Image%20Folder/Age%20vs%20spending%20score%20table.png" alt="Screenshot 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Age%20vs%20spending%20score%20table.png" data-lightbox-caption="Customer Segmentation - Screenshot 2">
+            <img src="Image%20Folder/Age%20vs%20spending%20score%20table.png" alt="Screenshot 2"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
-      <div class="demo-video-wrap" id="dv2" onclick="demoPlay('dv2-vid','do2')">
+      <div class="demo-video-wrap" id="dv2" data-demo-video="dv2-vid" data-demo-overlay="do2">
         <video id="dv2-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo2.mp4" type="video/mp4"/></video>
         <div class="demo-overlay" id="do2"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
@@ -471,14 +479,14 @@
 
   <!-- PROJECT 3 DETAIL -->
   <section id="p3">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-title">Social Media Trend Analyzing</div>
       <div class="detail-meta"><span class="detail-type">Academic Research</span><div class="detail-sep"></div><span class="detail-year">2023</span></div>
       <div class="detail-tags tags"><span class="tag">Python</span><span class="tag">Facebook API</span><span class="tag">Pandas</span><span class="tag">Numpy</span><span class="tag">TextBlob</span><span class="tag">WordCloud</span></div>
     </div>
     <div class="detail-body">
-      <div>
+      <div class="detail-main">
         <div class="detail-section-title">Overview</div>
         <div class="detail-text"><p>Used <strong>specific Facebook account data by generating an API access token and extracting post data</strong>. Applied NLP and Machine Learning to identify trends, sentiment and user behavior through keywords, hashtags and engagement metrics. This was my final year mini project.</p></div>
         <div class="detail-section-title">Problem Statement</div>
@@ -523,24 +531,24 @@
         </div>
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Graph%20API.jpeg','Social Media - Screenshot 1')">
-            <img src="Image%20Folder/Graph%20API.jpeg" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Graph%20API.jpeg" data-lightbox-caption="Social Media - Screenshot 1">
+            <img src="Image%20Folder/Graph%20API.jpeg" alt="Screenshot 1"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Sentiment%20Analysis.jpeg','Social Media - Screenshot 2')">
-            <img src="Image%20Folder/Sentiment%20Analysis.jpeg" alt="Screenshot 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Sentiment%20Analysis.jpeg" data-lightbox-caption="Social Media - Screenshot 2">
+            <img src="Image%20Folder/Sentiment%20Analysis.jpeg" alt="Screenshot 2"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Time%20Post.jpeg','Social Media - Screenshot 3')">
-            <img src="Image%20Folder/Time%20Post.jpeg" alt="Screenshot 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Time%20Post.jpeg" data-lightbox-caption="Social Media - Screenshot 3">
+            <img src="Image%20Folder/Time%20Post.jpeg" alt="Screenshot 3"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
-      <div class="demo-video-wrap" id="dv3" onclick="demoPlay('dv3-vid','do3')">
+      <div class="demo-video-wrap" id="dv3" data-demo-video="dv3-vid" data-demo-overlay="do3">
         <video id="dv3-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo3.mp4" type="video/mp4"/></video>
         <div class="demo-overlay" id="do3"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
@@ -549,14 +557,14 @@
 
   <!-- PROJECT 4 DETAIL -->
   <section id="p4">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-title">College Campaign Data Analysis and Dashboard (SQL/Tableau)</div>
       <div class="detail-meta"><span class="detail-type">Data Analysis</span><div class="detail-sep"></div><span class="detail-year">2026</span></div>
       <div class="detail-tags tags"><span class="tag">SQL</span><span class="tag">Tableau</span><span class="tag">Excel</span></div>
     </div>
     <div class="detail-body">
-      <div>
+      <div class="detail-main">
         <div class="detail-section-title">Overview</div>
         <div class="detail-text"><p>Analyzed a <strong>College Marketing Campaign dataset with 764 records</strong> using SQL and Tableau. The goal was to evaluate campaign performance, understand user engagement and provide insights for improving college marketing strategies. Metrics such as conversion rate, cost, revenue and ROI were analyzed across campaigns.</p></div>
         <div class="detail-section-title">Problem Statement</div>
@@ -600,16 +608,16 @@
         </div>
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202026-04-05%20013449.png','College Campaign Dashboard - Screenshot 1')">
-            <img src="Image%20Folder/Screenshot%202026-04-05%20013449.png" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Screenshot%202026-04-05%20013449.png" data-lightbox-caption="College Campaign Dashboard - Screenshot 1">
+            <img src="Image%20Folder/Screenshot%202026-04-05%20013449.png" alt="Screenshot 1"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
-      <div class="demo-video-wrap" id="dv4" onclick="demoPlay('dv4-vid','do4')">
+      <div class="demo-video-wrap" id="dv4" data-demo-video="dv4-vid" data-demo-overlay="do4">
         <video id="dv4-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo4.mp4" type="video/mp4"/></video>
         <div class="demo-overlay" id="do4"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
@@ -618,14 +626,14 @@
 
   <!-- PROJECT 5 DETAIL -->
   <section id="p5">
-    <button class="back-btn" onclick="go('projects', document.querySelectorAll('.nav-links a')[1])"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-title">My Portfolio</div>
       <div class="detail-meta"><span class="detail-type">Web Development</span><div class="detail-sep"></div><span class="detail-year">2025</span></div>
       <div class="detail-tags tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Javascript</span></div>
     </div>
     <div class="detail-body">
-      <div>
+      <div class="detail-main">
         <div class="detail-section-title">Overview</div>
         <div class="detail-text"><p>This project involves <strong>designing and developing a personal portfolio website using HTML, CSS and Javascript</strong> to showcase my projects, skills and contact. The website provides a structured platform to present data analysis, machine learning, web page and academic projects with detailed descriptions, screenshots and video explanations.</p></div>
         <div class="detail-section-title">Steps in Process</div>
@@ -661,20 +669,20 @@
         </div>
         <div class="sidebar-screenshots">
           <div class="sidebar-screenshots-label">Screenshots</div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202026-04-05%20015716.png','My Portfolio - Screenshot 1')">
-            <img src="Image%20Folder/Screenshot%202026-04-05%20015716.png" alt="Screenshot 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Screenshot%202026-04-05%20015716.png" data-lightbox-caption="My Portfolio - Screenshot 1">
+            <img src="Image%20Folder/Screenshot%202026-04-05%20015716.png" alt="Screenshot 1"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
-          <div class="detail-img-slot" onclick="openLightbox('Image%20Folder/Screenshot%202026-04-05%20015730.png','My Portfolio - Screenshot 2')">
-            <img src="Image%20Folder/Screenshot%202026-04-05%20015730.png" alt="Screenshot 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-            <div class="detail-img-placeholder" style="display:none;"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/Screenshot%202026-04-05%20015730.png" data-lightbox-caption="My Portfolio - Screenshot 2">
+            <img src="Image%20Folder/Screenshot%202026-04-05%20015730.png" alt="Screenshot 2"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
       </div>
     </div>
     <div class="demo-section">
       <div class="demo-title">Project Demo</div>
-      <div class="demo-video-wrap" id="dv5" onclick="demoPlay('dv5-vid','do5')">
+      <div class="demo-video-wrap" id="dv5" data-demo-video="dv5-vid" data-demo-overlay="do5">
         <video id="dv5-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo5.mp4" type="video/mp4"/></video>
         <div class="demo-overlay" id="do5"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
@@ -776,12 +784,12 @@
         </div>
       </div>
       <div>
-        <div class="c-head" style="font-size:20px;">Send a Message</div>
-        <div id="cform" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
+        <div class="c-head c-head-small">Send a Message</div>
+        <div id="cform" class="contact-form">
           <div><label class="flabel" for="fn">Name</label><input class="finput" id="fn" type="text" placeholder="Your name"/></div>
           <div><label class="flabel" for="fe">Email</label><input class="finput" id="fe" type="email" placeholder="your@email.com"/></div>
           <div><label class="flabel" for="fm">Message</label><textarea class="fta finput" id="fm" placeholder="What's on your mind?"></textarea></div>
-          <button class="fsend" onclick="handleSend()">Send Message</button>
+          <button class="fsend" data-action="send-message">Send Message</button>
         </div>
         <div class="sent-ok" id="sentok">&#10003; Message received! I'll get back to you soon.</div>
       </div>
@@ -790,7 +798,7 @@
 </div>
 
 <script>
-  /* DOMAIN FILTER */
+/* DOMAIN FILTER */
   function filterDomain(domain, el) {
     document.querySelectorAll('.domain-tab').forEach(function(t){t.classList.remove('active');});
     el.classList.add('active');
@@ -958,6 +966,76 @@
     document.body.style.overflow='';
   }
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+
+
+/* EXTERNAL EVENT HANDLERS */
+function getNavLink(sectionId) {
+  var sectionOrder = ['home', 'projects', 'about', 'skills', 'contact'];
+  var navIndex = sectionOrder.indexOf(sectionId);
+  return navIndex >= 0 ? document.querySelectorAll('.nav-links a')[navIndex] : null;
+}
+
+function bindExternalHandlers() {
+  document.addEventListener('click', function(e) {
+    var closeTarget = e.target.closest('[data-action="close-lightbox"]');
+    if (closeTarget) {
+      closeLightbox();
+      return;
+    }
+
+    var sectionTarget = e.target.closest('[data-section]');
+    if (sectionTarget) {
+      var sectionId = sectionTarget.dataset.section;
+      go(sectionId, getNavLink(sectionId));
+      return;
+    }
+
+    var domainTarget = e.target.closest('[data-domain-filter]');
+    if (domainTarget) {
+      filterDomain(domainTarget.dataset.domainFilter, domainTarget);
+      return;
+    }
+
+    var projectTarget = e.target.closest('[data-project]');
+    if (projectTarget) {
+      openProject(projectTarget.dataset.project);
+      return;
+    }
+
+    var lightboxTarget = e.target.closest('[data-lightbox-src]');
+    if (lightboxTarget) {
+      openLightbox(lightboxTarget.dataset.lightboxSrc, lightboxTarget.dataset.lightboxCaption || '');
+      return;
+    }
+
+    var demoTarget = e.target.closest('[data-demo-video]');
+    if (demoTarget) {
+      demoPlay(demoTarget.dataset.demoVideo, demoTarget.dataset.demoOverlay);
+      return;
+    }
+
+    var introTarget = e.target.closest('[data-action="toggle-intro"]');
+    if (introTarget) {
+      togglePlay();
+      return;
+    }
+
+    var sendTarget = e.target.closest('[data-action="send-message"]');
+    if (sendTarget) {
+      handleSend();
+    }
+  });
+
+  document.querySelectorAll('img').forEach(function(img) {
+    img.addEventListener('error', function() {
+      img.style.display = 'none';
+      if (img.nextElementSibling) img.nextElementSibling.classList.remove('is-hidden');
+    });
+  });
+}
+
+bindExternalHandlers();
 </script>
 </body>
 </html>
+
