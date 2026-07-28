@@ -5,15 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <base id="site-base" href="/"/>
 <script>
+  /* Auto-detect the site's base path so this works no matter what the
+     GitHub repo is named — no hardcoding needed. On a github.io project
+     site the first path segment IS the repo name (e.g. /My-Repo/...).
+     window.__basePath is reused below by the router. */
   (function () {
     var base = document.getElementById('site-base');
     if (location.protocol === 'file:') {
       base.href = location.href.substring(0, location.href.lastIndexOf('/') + 1);
-    } else if (location.hostname.indexOf('github.io') !== -1) {
-      base.href = location.origin + '/Portfolio-Karthik-K/';
-    } else {
-      base.href = location.origin + '/';
+      window.__basePath = '';
+      return;
     }
+    var parts = location.pathname.split('/').filter(Boolean);
+    var isGithubIoProjectSite = location.hostname.indexOf('github.io') !== -1 && parts.length > 0;
+    window.__basePath = isGithubIoProjectSite ? ('/' + parts[0]) : '';
+    base.href = location.origin + window.__basePath + '/';
   })();
 </script>
 <title>Karthik K Portfolio</title> 
@@ -797,7 +803,7 @@
   }
 
   /* ROUTING */
-  var basePath='/Portfolio-Karthik-K';
+  var basePath = (typeof window.__basePath === 'string') ? window.__basePath : '';
   var sectionRoutes={home:'/',projects:'/projects',about:'/about',skills:'/skills',contact:'/contact'};
   var projectRoutes={p1:'/project/ecommerce',p2:'/project/customer-segmentation',p3:'/project/social-media-trend',p4:'/project/college-campaign',p5:'/project/my-portfolio'};
   var routeProjects={'/project/ecommerce':'p1','/project/customer-segmentation':'p2','/project/social-media-trend':'p3','/project/college-campaign':'p4','/project/my-portfolio':'p5'};
