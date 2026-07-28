@@ -761,6 +761,18 @@
 </div>
 
 <script>
+  /* GITHUB PAGES REFRESH/DEEP-LINK FIX
+     Must run before loadRoute(). If 404.html redirected here after a
+     hard refresh on a route like /project/ecommerce, this restores
+     that path so loadRoute() below can pick it up correctly. */
+  (function () {
+    var redirect = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirect && redirect !== location.href) {
+      history.replaceState(null, null, redirect);
+    }
+  })();
+
 /* DOMAIN FILTER */
   function filterDomain(domain, el) {
     document.querySelectorAll('.domain-tab').forEach(function(t){t.classList.remove('active');});
