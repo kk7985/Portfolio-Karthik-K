@@ -3,6 +3,19 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<base id="site-base" href="/"/>
+<script>
+  (function () {
+    var base = document.getElementById('site-base');
+    if (location.protocol === 'file:') {
+      base.href = location.href.substring(0, location.href.lastIndexOf('/') + 1);
+    } else if (location.hostname.indexOf('github.io') !== -1) {
+      base.href = location.origin + '/Portfolio-Karthik-K/';
+    } else {
+      base.href = location.origin + '/';
+    }
+  })();
+</script>
 <title>Karthik K Portfolio</title> 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
