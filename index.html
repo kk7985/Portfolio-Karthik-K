@@ -189,6 +189,12 @@
   .lightbox-close { position: fixed; top: 20px; right: 24px; width: 40px; height: 40px; background: rgba(10,10,10,0.9); border: 1px solid var(--border2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--tm); cursor: pointer; transition: all 0.2s; }
   .lightbox-close:hover { border-color: var(--accent2); color: var(--accent2); }
   .lightbox-caption { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--tm); letter-spacing: 0.06em; background: rgba(10,10,10,0.85); padding: 6px 18px; border-radius: 20px; border: 1px solid var(--border); white-space: nowrap; font-family: var(--mono); }
+  .lightbox-state { display: none; flex-direction: column; align-items: center; gap: 14px; color: var(--tm); font-size: 13px; letter-spacing: 0.04em; font-family: var(--mono); text-align: center; }
+  .lightbox-state.show { display: flex; }
+  .lightbox-spinner { width: 30px; height: 30px; border: 2px solid var(--border2); border-top-color: var(--accent2); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .lightbox-retry-btn { margin-top: 4px; background: transparent; color: var(--accent2); border: 1px solid rgba(0,224,143,0.4); padding: 8px 18px; border-radius: 999px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .lightbox-retry-btn:hover { background: rgba(0,224,143,0.1); border-color: var(--accent2); }
   @media (max-width: 720px) { .detail-body,.about-wrap,.contact-wrap{grid-template-columns:1fr;gap:32px} .detail-main{padding-right:0} .detail-sidebar{padding-left:0} .hero-h{font-size:36px} .nav-links{gap:14px} }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -206,7 +212,9 @@
 
 <div class="lightbox" id="lightbox" data-action="close-lightbox">
   <div class="lightbox-close" data-action="close-lightbox">&#x2715;</div>
-  <img id="lightbox-img" src="" alt=""/>
+  <img id="lightbox-img" src="" alt="" style="display:none;"/>
+  <div class="lightbox-state" id="lightbox-loading"><div class="lightbox-spinner"></div><div>Loading image&hellip;</div></div>
+  <div class="lightbox-state" id="lightbox-error"><div>Image couldn&#8217;t load. It may still be syncing on GitHub&#8217;s CDN.</div><button class="lightbox-retry-btn" id="lightbox-retry-btn" type="button">Retry</button></div>
   <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
 
@@ -878,18 +886,64 @@
   }
 
   /* LIGHTBOX */
+  var lightboxSrc='';
+  var lightboxAttempt=0;
+  var LIGHTBOX_MAX_AUTO_RETRIES=2;
+  var lightboxRetryTimer=null;
+
+  function lightboxSetState(state){
+    var img=document.getElementById('lightbox-img');
+    var loading=document.getElementById('lightbox-loading');
+    var error=document.getElementById('lightbox-error');
+    img.style.display = state==='loaded' ? '' : 'none';
+    loading.classList.toggle('show', state==='loading');
+    error.classList.toggle('show', state==='error');
+  }
+
+  function lightboxLoad(src){
+    var img=document.getElementById('lightbox-img');
+    lightboxSetState('loading');
+    // Cache-bust each retry attempt so we don't just re-hit a cached 404.
+    var attemptSrc = lightboxAttempt===0 ? src : src + (src.indexOf('?')>-1?'&':'?') + 'retry=' + Date.now();
+    img.onload=function(){
+      lightboxSetState('loaded');
+    };
+    img.onerror=function(){
+      if(lightboxAttempt<LIGHTBOX_MAX_AUTO_RETRIES){
+        lightboxAttempt++;
+        lightboxRetryTimer=setTimeout(function(){ lightboxLoad(src); }, 1200);
+      }else{
+        lightboxSetState('error');
+      }
+    };
+    img.src=attemptSrc;
+  }
+
   function openLightbox(src,caption){
-    document.getElementById('lightbox-img').src=src;
+    lightboxSrc=src;
+    lightboxAttempt=0;
     document.getElementById('lightbox-caption').textContent=caption||'';
     document.getElementById('lightbox').classList.add('open');
     document.body.style.overflow='hidden';
+    lightboxLoad(src);
   }
   function closeLightbox(){
+    if(lightboxRetryTimer){clearTimeout(lightboxRetryTimer);lightboxRetryTimer=null;}
     document.getElementById('lightbox').classList.remove('open');
-    document.getElementById('lightbox-img').src='';
+    var img=document.getElementById('lightbox-img');
+    img.onload=null;
+    img.onerror=null;
+    img.src='';
     document.body.style.overflow='';
   }
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+  var lightboxRetryBtn=document.getElementById('lightbox-retry-btn');
+  if(lightboxRetryBtn){
+    lightboxRetryBtn.addEventListener('click',function(){
+      lightboxAttempt=0;
+      lightboxLoad(lightboxSrc);
+    });
+  }
 
 
 /* EXTERNAL EVENT HANDLERS */
