@@ -4,11 +4,16 @@
 <meta charset="utf-8">
 <title>Redirecting…</title>
 <script>
-  // Save the URL the user actually tried to visit (e.g. /Portfolio-Karthik-K/project/ecommerce)
+  // Save the URL the user actually tried to visit (e.g. /My-Repo/project/ecommerce)
   // so index.html's router can restore it after GitHub Pages sends us here.
   sessionStorage.redirect = location.href;
+
+  // Auto-detect the site root without needing to know the repo name:
+  // on a github.io project site, the first path segment IS the repo name.
+  var parts = location.pathname.split('/').filter(Boolean);
+  var target = parts.length ? ('/' + parts[0] + '/') : '/';
+  location.replace(location.origin + target);
 </script>
-<meta http-equiv="refresh" content="0;URL='/Portfolio-Karthik-K/'">
 </head>
 <body>
   <p>Redirecting…</p>
