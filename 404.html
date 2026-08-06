@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Redirecting…</title>
+<meta charset="UTF-8"/>
+<title>Redirecting&hellip;</title>
 <script>
-  // Save the URL the user actually tried to visit (e.g. /My-Repo/project/ecommerce)
-  // so index.html's router can restore it after GitHub Pages sends us here.
+  // GitHub Pages serves this file for any path it doesn't recognize
+  // (e.g. a refresh on /projects or a direct link to /project/ecommerce).
+  // We stash the URL the visitor actually wanted, then send them to the
+  // site root. index.html's own script reads sessionStorage.redirect
+  // and restores that path via history.replaceState, so the SPA router
+  // picks up right where it should.
   sessionStorage.redirect = location.href;
 
-  // Auto-detect the site root without needing to know the repo name:
-  // on a github.io project site, the first path segment IS the repo name.
-  var parts = location.pathname.split('/').filter(Boolean);
-  var target = parts.length ? ('/' + parts[0] + '/') : '/';
-  location.replace(location.origin + target);
+  (function () {
+    var parts = location.pathname.split('/').filter(Boolean);
+    var isGithubIoProjectSite = location.hostname.indexOf('github.io') !== -1 && parts.length > 0;
+    var base = isGithubIoProjectSite ? ('/' + parts[0] + '/') : '/';
+    location.replace(location.origin + base);
+  })();
 </script>
 </head>
-<body>
-  <p>Redirecting…</p>
-</body>
+<body></body>
 </html>
