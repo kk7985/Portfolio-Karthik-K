@@ -65,8 +65,8 @@
   .btn-b:hover { border-color: var(--accent2); color: var(--accent2); background: rgba(37,99,235,0.06); transform: translateY(-2px); }
   .sec-label { display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tm); margin-bottom: 36px; padding-bottom: 16px; border-bottom: 1px solid var(--border); font-family: var(--mono); }
   .sec-label::before { content: ''; width: 20px; height: 2px; background: var(--accent2); border-radius: 2px; }
-  .domain-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
-  .domain-tab { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tm); background: transparent; border: 1px solid var(--border); padding: 8px 18px; border-radius: 999px; cursor: pointer; transition: all 0.2s; }
+  .domain-tabs { display: flex; flex-wrap: nowrap; gap: 8px; margin-bottom: 32px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding-bottom: 4px; }
+  .domain-tab { flex-shrink: 0; font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tm); background: transparent; border: 1px solid var(--border); padding: 8px 18px; border-radius: 999px; cursor: pointer; transition: all 0.2s; }
   .domain-tab:hover { border-color: var(--border2); color: var(--tp); }
   .domain-tab.active { background: var(--accent2); color: #ffffff; border-color: var(--accent2); box-shadow: 0 2px 16px rgba(37,99,235,0.25); }
   .proj-domain-badge { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tf); margin-bottom: 6px; font-family: var(--mono); }
@@ -254,12 +254,12 @@
   <section id="projects">
     <div class="sec-label">Selected Projects</div>
     <div class="domain-tabs">
-      <button class="domain-tab" data-domain-filter="data-analysis">Data Analysis</button>
+      <button class="domain-tab active" data-domain-filter="data-analysis">Data Analysis</button>
       <button class="domain-tab" data-domain-filter="machine-learning">Machine Learning</button>
       <button class="domain-tab" data-domain-filter="public-data">Public Data</button>
       <button class="domain-tab" data-domain-filter="academic">Academic</button>
       <button class="domain-tab" data-domain-filter="Web-domain">Web Pages</button>
-      <button class="domain-tab active" data-domain-filter="all">All</button>
+      <button class="domain-tab" data-domain-filter="all">All</button>
     </div>
     <div class="proj-list">
       <div class="proj" data-domain="data-analysis" data-project="p1">
@@ -277,7 +277,7 @@
           </div>
         </div>
       </div>
-      <div class="proj" data-domain="machine-learning" data-project="p2">
+      <div class="proj hidden" data-domain="machine-learning" data-project="p2">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Machine Learning</div>
@@ -292,7 +292,7 @@
           </div>
         </div>
       </div>
-      <div class="proj" data-domain="academic" data-project="p3">
+      <div class="proj hidden" data-domain="academic" data-project="p3">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Academic</div>
@@ -322,7 +322,7 @@
           </div>
         </div>
       </div>
-      <div class="proj" data-domain="Web-domain" data-project="p5">
+      <div class="proj hidden" data-domain="Web-domain" data-project="p5">
         <div class="proj-inner">
           <div class="proj-content">
             <div class="proj-domain-badge">Web Pages</div>
