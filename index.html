@@ -8,10 +8,6 @@
 <meta http-equiv="Expires" content="0"/>
 <base id="site-base" href="/"/>
 <script>
-  /* Auto-detect the site's base path so this works no matter what the
-     GitHub repo is named — no hardcoding needed. On a github.io project
-     site the first path segment IS the repo name (e.g. /My-Repo/...).
-     window.__basePath is reused below by the router. */
   (function () {
     var base = document.getElementById('site-base');
     if (location.protocol === 'file:') {
@@ -317,7 +313,7 @@
             <div class="tags"><span class="tag">Excel</span><span class="tag">Power BI</span></div>
           </div>
           <div class="proj-img-wrap">
-            <img src=""/>
+            <img src="Image%20Folder/dengue-medicine-dashboard.png?v=1" alt="Dengue and Medicine Sales Dashboard"/>
             <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
@@ -349,6 +345,68 @@
           </div>
           <div class="proj-img-wrap">
             <img src="Image%20Folder/Screenshot%202026-04-05%20015716.png?v=1" alt="Portfolio"/>
+            <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj" data-domain="data-analysis" data-project="p7">
+        <div class="proj-inner">
+          <div class="proj-content">
+            <div class="proj-domain-badge">Data Analysis</div>
+            <div class="proj-name">[Your Project Title 1]</div>
+            <div class="proj-yr proj-tools">[Tool 1] &middot; [Tool 2] &middot; 2026</div>
+            <div class="proj-desc">[2-3 sentence description of what the project does and what tools were used.]</div>
+            <div class="tags"><span class="tag">[Tool 1]</span><span class="tag">[Tool 2]</span></div>
+          </div>
+          <div class="proj-img-wrap">
+            <img src="Image%20Folder/p7-thumbnail.png?v=1" alt="[Project Title 1]"/>
+            <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+        </div>
+      </div>
+      <div class="proj" data-domain="data-analysis" data-project="p8">
+        <div class="proj-inner">
+          <div class="proj-content">
+            <div class="proj-domain-badge">Data Analysis</div>
+            <div class="proj-name">[Your Project Title 2]</div>
+            <div class="proj-yr proj-tools">[Tool 1] &middot; [Tool 2] &middot; 2026</div>
+            <div class="proj-desc">[2-3 sentence description of what the project does and what tools were used.]</div>
+            <div class="tags"><span class="tag">[Tool 1]</span><span class="tag">[Tool 2]</span></div>
+          </div>
+          <div class="proj-img-wrap">
+            <img src="Image%20Folder/p8-thumbnail.png?v=1" alt="[Project Title 2]"/>
+            <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           TEMPLATE PROJECT CARD — reuse this for every new project.
+           HOW TO USE:
+           1. Copy this whole <div class="proj ...">...</div> block.
+           2. Remove the "hidden" class so it shows up in the list.
+           3. Change data-project="ptemplate" to a new unique id, e.g. "p7".
+           4. Change data-domain to one of: data-analysis, machine-learning,
+              public-data, academic, Web-domain.
+           5. Replace every "Unknown" placeholder below with real info.
+           6. Do the same for the matching <section id="ptemplate"> detail
+              block further down (also copy + rename + fill in).
+           7. Add the new id to projectRoutes / routeProjects in the
+              <script> at the bottom of this file (route path can be
+              anything, e.g. '/project/new-project-name').
+           ============================================================ -->
+      <div class="proj hidden" data-domain="Unknown" data-project="ptemplate">
+        <div class="proj-inner">
+          <div class="proj-content">
+            <div class="proj-domain-badge">Unknown</div>
+            <div class="proj-name">Unknown Project Title</div>
+            <div class="proj-yr proj-tools">Unknown &middot; Unknown</div>
+            <div class="proj-desc">Unknown project description. Replace this with a 2-3 sentence summary of what the project does and what tools were used.</div>
+            <div class="tags"><span class="tag">Unknown</span></div>
+          </div>
+          <div class="proj-img-wrap">
+            <img src="Image%20Folder/unknown-project-thumbnail.png?v=1" alt="Unknown Project"/>
             <div class="proj-img-placeholder is-hidden"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
           </div>
         </div>
@@ -507,8 +565,8 @@
     </div>
   </section>
 
-  <!-- PROJECT 3 DETAIL -->
-     <section id="p3">
+  <!-- PROJECT 3 DETAIL (College Campaign) -->
+  <section id="p3">
     <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-title">College Campaign Data Analysis and Dashboard (SQL/Tableau)</div>
@@ -579,8 +637,81 @@
       </div>
     </div>
   </section>
-  <!-- PROJECT 4 DETAIL -->
-    <section id="p4">
+
+  <!-- PROJECT 4 DETAIL (Dengue Outbreak & Medicine Sales) -->
+  <section id="p4">
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <div class="proj-detail-header">
+      <div class="detail-title">Dengue Outbreak &amp; Medicine Sales Analysis Dashboard (Excel/Power BI)</div>
+      <div class="detail-meta"><span class="detail-type">Data Analysis</span><div class="detail-sep"></div><span class="detail-year">2026</span></div>
+      <div class="detail-tags tags"><span class="tag">Excel</span><span class="tag">Power BI</span></div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-main">
+        <div class="detail-section-title">Overview</div>
+        <div class="detail-text"><p>Analyzed <strong>dengue case data and medicine sales data</strong> using Excel for cleaning and preprocessing, and Power BI for visualization. Built a two-page dashboard &mdash; one page tracking total dengue cases across the country, and a second page tracking medicine sales performance across the country &mdash; to help surface patterns between disease outbreaks and medicine demand.</p></div>
+        <div class="detail-section-title">Problem Statement</div>
+        <div class="detail-text"><p>Dengue case data and medicine sales data are typically tracked separately, making it difficult to see how outbreaks relate to medicine demand across regions. This project brings both datasets into a single dashboard to support faster, more informed public health and supply planning decisions.</p></div>
+        <div class="detail-section-title">Project Objective</div>
+        <div class="detail-text"><p>Clean and structure dengue case records and medicine sales records in Excel, then build Power BI dashboards to track total dengue cases and medicine sales performance across the country, making both trends easy to monitor at a glance.</p></div>
+        <div class="detail-section-title">Steps in Process</div>
+        <div class="steps-list">
+          <div class="step-item">Collected dengue case data and medicine sales data covering multiple regions of the country.</div>
+          <div class="step-item">Cleaned and prepared both datasets in Excel by removing duplicates, handling missing values and standardizing formats.</div>
+          <div class="step-item">Structured the cleaned data into organized tables suited for dashboard reporting.</div>
+          <div class="step-item">Built a Power BI report page to track total dengue cases across the country.</div>
+          <div class="step-item">Built a second Power BI report page to track medicine sales performance across the country.</div>
+          <div class="step-item">Reviewed both pages together to identify patterns between case trends and medicine sales trends.</div>
+        </div>
+        <div class="detail-section-title">What I Did</div>
+        <div class="detail-highlights">
+          <div class="highlight-item"><div class="hl-icon">&#128202;</div><div class="hl-text"><strong>Built the "Dengue Cases in the World" dashboard page</strong> to track total dengue cases across the country.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128138;</div><div class="hl-text"><strong>Built the "Medicine Sales Report" dashboard page</strong> to track medicine sales performance across the country.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#129504;</div><div class="hl-text">Cleaned and structured both the dengue and medicine sales datasets in Excel before visualization.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128269;</div><div class="hl-text">Compared trends across both dashboard pages to surface patterns between dengue cases and medicine demand.</div></div>
+        </div>
+        <div class="detail-section-title">Outcome</div>
+        <div class="detail-text">Delivered a two-page Power BI dashboard that makes it easy to monitor dengue case trends and medicine sales performance side by side, supporting quicker public health and supply-planning decisions.</div>
+        <!-- Add your GitHub repo and report links here once ready, e.g.:
+        <div class="github-link-wrap">
+          <a class="github-link" href="YOUR_GITHUB_URL" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <a class="report-link" href="YOUR_REPORT_URL" target="_blank" rel="noopener noreferrer">View Report</a>
+        </div>
+        -->
+      </div>
+      <div class="detail-sidebar">
+        <div class="info-card">
+          <div class="info-row"><div class="ilab">Category</div><div class="ival">Data Analysis &amp; Public Health</div></div>
+          <div class="info-row"><div class="ilab">Tools</div><div class="ival">Power BI, Excel</div></div>
+          <div class="info-row"><div class="ilab">Dataset</div><div class="ival">Dengue Cases &amp; Medicine Sales dataset</div></div>
+          <div class="info-row"><div class="ilab">Duration</div><div class="ival">2 weeks</div></div>
+          <div class="info-row"><div class="ilab">Year</div><div class="ival">2026</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K</div></div>
+        </div>
+        <div class="sidebar-screenshots">
+          <div class="sidebar-screenshots-label">Screenshots</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/dengue-cases-dashboard.png?v=1" data-lightbox-caption="Dengue Cases in the World - Screenshot">
+            <img src="Image%20Folder/dengue-cases-dashboard.png?v=1" alt="Dengue Cases Dashboard"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/medicine-sales-dashboard.png?v=1" data-lightbox-caption="Medicine Sales Report - Screenshot">
+            <img src="Image%20Folder/medicine-sales-dashboard.png?v=1" alt="Medicine Sales Dashboard"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-section">
+      <div class="demo-title">Project Demo</div>
+      <div class="demo-video-wrap" id="dv6" data-demo-video="dv6-vid" data-demo-overlay="do6">
+        <video id="dv6-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo6.mp4?v=1" type="video/mp4"/></video>
+        <div class="demo-overlay" id="do6"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT 5 DETAIL (Social Media Trend Analyzing) -->
+  <section id="p5">
     <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-title">Social Media Trend Analyzing</div>
@@ -657,8 +788,8 @@
     </div>
   </section>
 
-  <!-- PROJECT 5 DETAIL -->
-  <section id="p5">
+  <!-- PROJECT 6 DETAIL (My Portfolio) -->
+  <section id="p6">
     <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
     <div class="proj-detail-header">
       <div class="detail-title">My Portfolio</div>
@@ -718,6 +849,213 @@
       <div class="demo-video-wrap" id="dv5" data-demo-video="dv5-vid" data-demo-overlay="do5">
         <video id="dv5-vid" preload="metadata" playsinline controls><source src="Image%20Folder/demo5.mp4?v=1" type="video/mp4"/></video>
         <div class="demo-overlay" id="do5"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT 7 DETAIL — NEW PROJECT, EDIT ME -->
+  <section id="p7">
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <div class="proj-detail-header">
+      <div class="detail-title">[Your Project Title 1]</div>
+      <div class="detail-meta"><span class="detail-type">Data Analysis</span><div class="detail-sep"></div><span class="detail-year">2026</span></div>
+      <div class="detail-tags tags"><span class="tag">[Tool 1]</span><span class="tag">[Tool 2]</span></div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-main">
+        <div class="detail-section-title">Overview</div>
+        <div class="detail-text"><p>[What the project is, what data/tools were used, overall goal.]</p></div>
+        <div class="detail-section-title">Problem Statement</div>
+        <div class="detail-text"><p>[The problem this project set out to solve.]</p></div>
+        <div class="detail-section-title">Project Objective</div>
+        <div class="detail-text"><p>[The specific goals of the project.]</p></div>
+        <div class="detail-section-title">Steps in Process</div>
+        <div class="steps-list">
+          <div class="step-item">[Step 1 — data collection]</div>
+          <div class="step-item">[Step 2 — cleaning/preprocessing]</div>
+          <div class="step-item">[Step 3 — analysis or modeling]</div>
+          <div class="step-item">[Step 4 — visualization/delivery]</div>
+        </div>
+        <div class="detail-section-title">What I Did</div>
+        <div class="detail-highlights">
+          <div class="highlight-item"><div class="hl-icon">&#128202;</div><div class="hl-text"><strong>[Highlight 1]</strong> &mdash; key contribution.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128269;</div><div class="hl-text"><strong>[Highlight 2]</strong> &mdash; key contribution.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#127942;</div><div class="hl-text"><strong>[Highlight 3]</strong> &mdash; key result or insight.</div></div>
+        </div>
+        <div class="detail-section-title">Outcome</div>
+        <div class="detail-text">[Final result or impact of the project.]</div>
+        <div class="github-link-wrap">
+          <a class="github-link" href="[YOUR_GITHUB_URL]" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub
+          </a>
+          <a class="report-link" href="[YOUR_REPORT_URL]" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/><path d="M9 9h1"/></svg>
+            View Report
+          </a>
+        </div>
+      </div>
+      <div class="detail-sidebar">
+        <div class="info-card">
+          <div class="info-row"><div class="ilab">Category</div><div class="ival">[Category]</div></div>
+          <div class="info-row"><div class="ilab">Tools</div><div class="ival">[Tool 1, Tool 2]</div></div>
+          <div class="info-row"><div class="ilab">Dataset</div><div class="ival">[Dataset name]</div></div>
+          <div class="info-row"><div class="ilab">Duration</div><div class="ival">[e.g. 2 weeks]</div></div>
+          <div class="info-row"><div class="ilab">Year</div><div class="ival">2026</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K</div></div>
+        </div>
+        <div class="sidebar-screenshots">
+          <div class="sidebar-screenshots-label">Screenshots</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/p7-screenshot-1.png?v=1" data-lightbox-caption="[Project Title] - Screenshot 1">
+            <img src="Image%20Folder/p7-screenshot-1.png?v=1" alt="Screenshot 1"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- PROJECT 8 DETAIL — NEW PROJECT, EDIT ME -->
+  <section id="p8">
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <div class="proj-detail-header">
+      <div class="detail-title">[Your Project Title 2]</div>
+      <div class="detail-meta"><span class="detail-type">Data Analysis</span><div class="detail-sep"></div><span class="detail-year">2026</span></div>
+      <div class="detail-tags tags"><span class="tag">[Tool 1]</span><span class="tag">[Tool 2]</span></div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-main">
+        <div class="detail-section-title">Overview</div>
+        <div class="detail-text"><p>[What the project is, what data/tools were used, overall goal.]</p></div>
+        <div class="detail-section-title">Problem Statement</div>
+        <div class="detail-text"><p>[The problem this project set out to solve.]</p></div>
+        <div class="detail-section-title">Project Objective</div>
+        <div class="detail-text"><p>[The specific goals of the project.]</p></div>
+        <div class="detail-section-title">Steps in Process</div>
+        <div class="steps-list">
+          <div class="step-item">[Step 1 — data collection]</div>
+          <div class="step-item">[Step 2 — cleaning/preprocessing]</div>
+          <div class="step-item">[Step 3 — analysis or modeling]</div>
+          <div class="step-item">[Step 4 — visualization/delivery]</div>
+        </div>
+        <div class="detail-section-title">What I Did</div>
+        <div class="detail-highlights">
+          <div class="highlight-item"><div class="hl-icon">&#128202;</div><div class="hl-text"><strong>[Highlight 1]</strong> &mdash; key contribution.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#128269;</div><div class="hl-text"><strong>[Highlight 2]</strong> &mdash; key contribution.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#127942;</div><div class="hl-text"><strong>[Highlight 3]</strong> &mdash; key result or insight.</div></div>
+        </div>
+        <div class="detail-section-title">Outcome</div>
+        <div class="detail-text">[Final result or impact of the project.]</div>
+        <div class="github-link-wrap">
+          <a class="github-link" href="[YOUR_GITHUB_URL]" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub
+          </a>
+          <a class="report-link" href="[YOUR_REPORT_URL]" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/><path d="M9 9h1"/></svg>
+            View Report
+          </a>
+        </div>
+      </div>
+      <div class="detail-sidebar">
+        <div class="info-card">
+          <div class="info-row"><div class="ilab">Category</div><div class="ival">[Category]</div></div>
+          <div class="info-row"><div class="ilab">Tools</div><div class="ival">[Tool 1, Tool 2]</div></div>
+          <div class="info-row"><div class="ilab">Dataset</div><div class="ival">[Dataset name]</div></div>
+          <div class="info-row"><div class="ilab">Duration</div><div class="ival">[e.g. 2 weeks]</div></div>
+          <div class="info-row"><div class="ilab">Year</div><div class="ival">2026</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Karthik K</div></div>
+        </div>
+        <div class="sidebar-screenshots">
+          <div class="sidebar-screenshots-label">Screenshots</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/p7-screenshot-1.png?v=1" data-lightbox-caption="[Project Title] - Screenshot 1">
+            <img src="Image%20Folder/p7-screenshot-1.png?v=1" alt="Screenshot 1"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TEMPLATE PROJECT DETAIL PAGE — reuse this for every new project.
+       HOW TO USE:
+       1. Copy this whole <section id="ptemplate">...</section> block.
+       2. Change id="ptemplate" to match the id you used on the new
+          project card above (e.g. id="p8").
+       3. Replace every "Unknown" placeholder with real content.
+       4. Remove or fill in the GitHub / report links.
+       5. Give the demo video a unique id pair, e.g. dv8 / do8 / demo8.mp4.
+       6. Add the new id + a route path to projectRoutes / routeProjects
+          in the <script> at the bottom of this file.
+       ============================================================ -->
+  <section id="ptemplate">
+    <button class="back-btn" data-section="projects"><span class="back-arrow">&#8592;</span> Back to Projects</button>
+    <div class="proj-detail-header">
+      <div class="detail-title">Unknown Project Title</div>
+      <div class="detail-meta"><span class="detail-type">Unknown</span><div class="detail-sep"></div><span class="detail-year">Unknown</span></div>
+      <div class="detail-tags tags"><span class="tag">Unknown</span></div>
+    </div>
+    <div class="detail-body">
+      <div class="detail-main">
+        <div class="detail-section-title">Overview</div>
+        <div class="detail-text"><p>Unknown &mdash; replace with a short paragraph describing what the project is, what data or tools were used, and the overall goal.</p></div>
+        <div class="detail-section-title">Problem Statement</div>
+        <div class="detail-text"><p>Unknown &mdash; replace with the problem this project set out to solve.</p></div>
+        <div class="detail-section-title">Project Objective</div>
+        <div class="detail-text"><p>Unknown &mdash; replace with the specific goals of the project.</p></div>
+        <div class="detail-section-title">Steps in Process</div>
+        <div class="steps-list">
+          <div class="step-item">Unknown step 1 &mdash; describe how data was collected.</div>
+          <div class="step-item">Unknown step 2 &mdash; describe cleaning/preprocessing.</div>
+          <div class="step-item">Unknown step 3 &mdash; describe analysis or modeling.</div>
+          <div class="step-item">Unknown step 4 &mdash; describe how results were visualized or delivered.</div>
+        </div>
+        <div class="detail-section-title">What I Did</div>
+        <div class="detail-highlights">
+          <div class="highlight-item"><div class="hl-icon">&#10067;</div><div class="hl-text"><strong>Unknown highlight 1</strong> &mdash; replace with a key contribution.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#10067;</div><div class="hl-text"><strong>Unknown highlight 2</strong> &mdash; replace with a key contribution.</div></div>
+          <div class="highlight-item"><div class="hl-icon">&#10067;</div><div class="hl-text"><strong>Unknown highlight 3</strong> &mdash; replace with a key result or insight.</div></div>
+        </div>
+        <div class="detail-section-title">Outcome</div>
+        <div class="detail-text">Unknown &mdash; replace with the final result or impact of the project.</div>
+        <div class="github-link-wrap">
+          <a class="github-link" href="#" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            View on GitHub (Unknown)
+          </a>
+          <a class="report-link" href="#" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/><path d="M9 9h1"/></svg>
+            View Report (Unknown)
+          </a>
+        </div>
+      </div>
+      <div class="detail-sidebar">
+        <div class="info-card">
+          <div class="info-row"><div class="ilab">Category</div><div class="ival">Unknown</div></div>
+          <div class="info-row"><div class="ilab">Tools</div><div class="ival">Unknown</div></div>
+          <div class="info-row"><div class="ilab">Dataset</div><div class="ival">Unknown</div></div>
+          <div class="info-row"><div class="ilab">Duration</div><div class="ival">Unknown</div></div>
+          <div class="info-row"><div class="ilab">Year</div><div class="ival">Unknown</div></div>
+          <div class="info-row"><div class="ilab">Developed By</div><div class="ival">Unknown</div></div>
+        </div>
+        <div class="sidebar-screenshots">
+          <div class="sidebar-screenshots-label">Screenshots</div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/unknown-screenshot-1.png?v=1" data-lightbox-caption="Unknown Project - Screenshot 1">
+            <img src="Image%20Folder/unknown-screenshot-1.png?v=1" alt="Screenshot 1"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+          <div class="detail-img-slot" data-lightbox-src="Image%20Folder/unknown-screenshot-2.png?v=1" data-lightbox-caption="Unknown Project - Screenshot 2">
+            <img src="Image%20Folder/unknown-screenshot-2.png?v=1" alt="Screenshot 2"/>
+            <div class="detail-img-placeholder is-hidden"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>No image</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="demo-section">
+      <div class="demo-title">Project Demo</div>
+      <div class="demo-video-wrap" id="dvtemplate" data-demo-video="dvtemplate-vid" data-demo-overlay="dotemplate">
+        <video id="dvtemplate-vid" preload="metadata" playsinline controls><source src="Image%20Folder/unknown-demo.mp4?v=1" type="video/mp4"/></video>
+        <div class="demo-overlay" id="dotemplate"><div class="demo-play-btn"><div class="demo-play-icon"></div></div><div class="demo-play-label">Play Demo</div></div>
       </div>
     </div>
   </section>
@@ -821,10 +1159,6 @@
 </div>
 
 <script>
-  /* GITHUB PAGES REFRESH/DEEP-LINK FIX
-     Must run before loadRoute(). If 404.html redirected here after a
-     hard refresh on a route like /project/ecommerce, this restores
-     that path so loadRoute() below can pick it up correctly. */
   (function () {
     var redirect = sessionStorage.redirect;
     delete sessionStorage.redirect;
@@ -846,8 +1180,8 @@
   /* ROUTING */
   var basePath = (typeof window.__basePath === 'string') ? window.__basePath : '';
   var sectionRoutes={home:'/',projects:'/projects',about:'/about',skills:'/skills',contact:'/contact'};
-  var projectRoutes={p1:'/project/ecommerce',p2:'/project/customer-segmentation',p3:'/project/social-media-trend',p4:'/project/college-campaign',p5:'/project/my-portfolio'};
-  var routeProjects={'/project/ecommerce':'p1','/project/customer-segmentation':'p2','/project/social-media-trend':'p3','/project/college-campaign':'p4','/project/my-portfolio':'p5'};
+  var projectRoutes={p1:'/project/ecommerce',p2:'/project/customer-segmentation',p3:'/project/college-campaign',p4:'/project/dengue-medicine-sales',p5:'/project/social-media-trend',p6:'/project/my-portfolio',p7:'/project/your-new-project 1',p8:'/project/new-project 2',ptemplate:'/project/unknown'};
+  var routeProjects={'/project/ecommerce':'p1','/project/customer-segmentation':'p2','/project/college-campaign':'p3','/project/dengue-medicine-sales':'p4','/project/social-media-trend':'p5','/project/my-portfolio':'p6','/project/your-new-project 1':'p7','/project/new-project 2':'p8','/project/unknown':'ptemplate'};
   var routeSections={'/':'home','/projects':'projects','/about':'about','/skills':'skills','/contact':'contact'};
 
   function updateUrl(path,replaceUrl){
@@ -936,7 +1270,6 @@
   function lightboxLoad(src){
     var img=document.getElementById('lightbox-img');
     lightboxSetState('loading');
-    // Cache-bust each retry attempt so we don't just re-hit a cached 404.
     var attemptSrc = lightboxAttempt===0 ? src : src + (src.indexOf('?')>-1?'&':'?') + 'retry=' + Date.now();
     img.onload=function(){
       lightboxSetState('loaded');
